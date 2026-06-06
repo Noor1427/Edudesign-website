@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 220" width="220" height="220" role="img" aria-label="edudesign_uk by Noor logo">
+  <defs>
+    <linearGradient id="rose" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#EC6A9C"/>
+      <stop offset="0.55" stop-color="#E14C82"/>
+      <stop offset="1" stop-color="#D14479"/>
+    </linearGradient>
+    <path id="arc" d="M 40 130 A 80 80 0 0 0 180 130" fill="none"/>
+  </defs>
+
+  <!-- white disc -->
+  <circle cx="110" cy="110" r="106" fill="#ffffff"/>
+  <!-- outer ring -->
+  <circle cx="110" cy="110" r="98" fill="none" stroke="url(#rose)" stroke-width="2" opacity="0.85"/>
+
+  <!-- monogram "ed" -->
+  <text x="98" y="118" text-anchor="middle"
+        font-family="'Playfair Display', Georgia, serif"
+        font-size="92" font-style="italic" font-weight="600"
+        fill="url(#rose)">ed</text>
+
+  <!-- pen-nib accent under the d -->
+  <path d="M 138 116 L 150 116 L 144 150 Z" fill="url(#rose)"/>
+  <circle cx="144" cy="128" r="3" fill="#ffffff"/>
+
+  <!-- sparkle -->
+  <path d="M 158 56 C 159 66 161 68 171 69 C 161 70 159 72 158 82 C 157 72 155 70 145 69 C 155 68 157 66 158 56 Z" fill="url(#rose)"/>
+
+  <!-- curved brand text -->
+  <text font-family="'Poppins', Arial, sans-serif" font-size="15" font-weight="600"
+        letter-spacing="4" fill="#3C3C44">
+    <textPath href="#arc" startOffset="50%" text-anchor="middle">EDUDESIGN_UK</textPath>
+  </text>
+  <!-- arc end dots -->
+  <circle cx="40" cy="130" r="3.5" fill="#E14C82"/>
+  <circle cx="180" cy="130" r="3.5" fill="#E14C82"/>
+</svg>

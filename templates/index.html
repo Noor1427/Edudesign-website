@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>edudesign_uk by Noor – Design • Documents • Websites • Support</title>
+  <meta name="description" content="Professional academic & creative help for UK university students — CVs, assignments, logo design, projects, websites & plagiarism checks. By Noor." />
+  <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='images/logo-circle.svg') }}" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,500&family=Poppins:wght@300;400;500;600;700;800&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+
+  <!-- ── NAVBAR ── -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="#home" class="logo">
+        <img src="{{ url_for('static', filename='images/logo-circle.png') }}" onerror="this.onerror=null;this.src='{{ url_for('static', filename='images/logo-circle.svg') }}'" alt="edudesign_uk logo" class="logo-mark" />
+        <span class="logo-wordmark"><span class="edu">edu</span><span class="design">design_uk</span></span>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#services">Services</a></li>
+        <li><a href="#why-us">Why Us</a></li>
+        <li><a href="#how-it-works">Process</a></li>
+        <li><a href="#contact" class="nav-cta"><i class="fab fa-whatsapp"></i> Get Help</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ── HERO ── -->
+  <section class="hero" id="home">
+    <div class="hero-bg">
+      <div class="blob blob-1"></div>
+      <div class="blob blob-2"></div>
+      <div class="blob blob-3"></div>
+    </div>
+
+    <div class="hero-inner">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <i class="fas fa-sparkles"></i> Trusted by UK University Students
+        </div>
+        <h1 class="hero-title">
+          Your Academic &amp;<br />
+          <span class="script-accent">Creative</span> Partner
+        </h1>
+        <p class="hero-tagline">
+          <span>Design</span><i class="fas fa-circle"></i>
+          <span>Documents</span><i class="fas fa-circle"></i>
+          <span>Websites</span><i class="fas fa-circle"></i>
+          <span>Support</span>
+        </p>
+        <p class="hero-subtitle">
+          From CVs &amp; assignments to logos, projects &amp; websites — professional, confidential help
+          for Bachelor's &amp; Master's students across the UK. By Noor.
+        </p>
+        <div class="hero-actions">
+          <a href="#contact" class="btn btn-primary">
+            <i class="fab fa-whatsapp"></i> Chat on WhatsApp
+          </a>
+          <a href="#services" class="btn btn-outline">
+            Our Services <i class="fas fa-arrow-down"></i>
+          </a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat">
+            <span class="stat-number" data-target="500" data-suffix="+">0</span>
+            <span class="stat-label">Students Helped</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat">
+            <span class="stat-number" data-target="100" data-suffix="%">0</span>
+            <span class="stat-label">Confidential</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat">
+            <span class="stat-number" data-target="24" data-suffix="/7">0</span>
+            <span class="stat-label">Support</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="logo-stage">
+          <div class="logo-ring"></div>
+          <div class="logo-ring ring-2"></div>
+          <img src="{{ url_for('static', filename='images/logo-circle.png') }}" onerror="this.onerror=null;this.src='{{ url_for('static', filename='images/logo-circle.svg') }}'" alt="edudesign_uk by Noor" class="hero-logo" />
+          <div class="float-chip chip-1"><i class="fas fa-file-lines"></i> CV Ready</div>
+          <div class="float-chip chip-2"><i class="fas fa-circle-check"></i> Plagiarism Free</div>
+          <div class="float-chip chip-3"><i class="fas fa-pen-nib"></i> Logo Designed</div>
+        </div>
+      </div>
+    </div>
+
+    <a href="#services" class="scroll-cue" aria-label="Scroll down">
+      <span class="mouse"><span class="wheel"></span></span>
+    </a>
+  </section>
+
+  <!-- ── SERVICES ── -->
+  <section class="services" id="services">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">What We Offer</span>
+        <h2 class="section-title">Everything You Need,<br /><span class="script-accent">in one place</span></h2>
+        <p class="section-subtitle">Professional services crafted for UK university students — fast, affordable, and completely confidential.</p>
+      </div>
+
+      <div class="services-grid">
+
+        <div class="service-card reveal" data-delay="0">
+          <div class="service-icon"><i class="fas fa-file-user"></i></div>
+          <h3>CV Writing</h3>
+          <p>Stand out to UK employers with a professionally crafted, ATS-friendly CV tailored to your field and level.</p>
+          <ul class="service-features">
+            <li><i class="fas fa-check"></i> ATS-friendly format</li>
+            <li><i class="fas fa-check"></i> Industry templates</li>
+            <li><i class="fas fa-check"></i> Cover letter included</li>
+          </ul>
+          <a href="#contact" class="service-link">Get My CV <i class="fas fa-arrow-right"></i></a>
+        </div>
+
+        <div class="service-card featured reveal" data-delay="80">
+          <div class="featured-badge"><i class="fas fa-star"></i> Most Popular</div>
+          <div class="service-icon"><i class="fas fa-book-open"></i></div>
+          <h3>Assignment Help</h3>
+          <p>Expert support with essays, reports, dissertations and coursework across every subject and university.</p>
+          <ul class="service-features">
+            <li><i class="fas fa-check"></i> All subjects covered</li>
+            <li><i class="fas fa-check"></i> Proper UK referencing</li>
+            <li><i class="fas fa-check"></i> On-time delivery</li>
+          </ul>
+          <a href="#contact" class="service-link">Get Help <i class="fas fa-arrow-right"></i></a>
+        </div>
+
+        <div class="service-card reveal" data-delay="160">
+          <div class="service-icon"><i class="fas fa-pen-nib"></i></div>
+          <h3>Logo Design</h3>
+          <p>Eye-catching, unique logos for your society, startup or personal brand — delivered fast with revisions.</p>
+          <ul class="service-features">
+            <li><i class="fas fa-check"></i> Multiple concepts</li>
+            <li><i class="fas fa-check"></i> High-res files</li>
+            <li><i class="fas fa-check"></i> Unlimited revisions</li>
+          </ul>
+          <a href="#contact" class="service-link">Design My Logo <i class="fas fa-arrow-right"></i></a>
+        </div>
+
+        <div class="service-card reveal" data-delay="0">
+          <div class="service-icon"><i class="fas fa-laptop-code"></i></div>
+          <h3>Project Help</h3>
+          <p>Stuck on your university project? We help with research, analysis, coding and final-year work.</p>
+          <ul class="service-features">
+            <li><i class="fas fa-check"></i> Research &amp; analysis</li>
+            <li><i class="fas fa-check"></i> Coding projects</li>
+            <li><i class="fas fa-check"></i> Final-year projects</li>
+          </ul>
+          <a href="#contact" class="service-link">Start Project <i class="fas fa-arrow-right"></i></a>
+        </div>
+
+        <div class="service-card reveal" data-delay="80">
+          <div class="service-icon"><i class="fas fa-globe"></i></div>
+          <h3>Website Design</h3>
+          <p>Modern, responsive websites for your portfolio, business idea or society — fast and easy to manage.</p>
+          <ul class="service-features">
+            <li><i class="fas fa-check"></i> Mobile-friendly</li>
+            <li><i class="fas fa-check"></i> Fast &amp; modern</li>
+            <li><i class="fas fa-check"></i> Easy to manage</li>
+          </ul>
+          <a href="#contact" class="service-link">Build My Site <i class="fas fa-arrow-right"></i></a>
+        </div>
+
+        <div class="service-card reveal" data-delay="160">
+          <div class="service-icon"><i class="fas fa-shield-halved"></i></div>
+          <h3>Plagiarism Check</h3>
+          <p>Get a full originality report before submission — plus help fixing and rewriting any flagged sections.</p>
+          <ul class="service-features">
+            <li><i class="fas fa-check"></i> Detailed report</li>
+            <li><i class="fas fa-check"></i> Fix &amp; rewrite help</li>
+            <li><i class="fas fa-check"></i> Quick turnaround</li>
+          </ul>
+          <a href="#contact" class="service-link">Check My Work <i class="fas fa-arrow-right"></i></a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── WHY US ── -->
+  <section class="why-us" id="why-us">
+    <div class="container">
+      <div class="why-inner">
+        <div class="why-text reveal">
+          <span class="section-tag">Why Choose Us</span>
+          <h2 class="section-title">Built for UK<br /><span class="script-accent">students</span></h2>
+          <p class="section-subtitle">We understand the pressure of UK university life — tight deadlines, high standards, and the challenge of settling into a new country.</p>
+          <div class="why-list">
+            <div class="why-item">
+              <div class="why-icon"><i class="fas fa-lock"></i></div>
+              <div>
+                <h4>100% Confidential</h4>
+                <p>Your privacy is our priority. We never share your details with anyone.</p>
+              </div>
+            </div>
+            <div class="why-item">
+              <div class="why-icon"><i class="fas fa-bolt"></i></div>
+              <div>
+                <h4>Fast Turnaround</h4>
+                <p>Urgent deadline? We work around the clock to deliver on time.</p>
+              </div>
+            </div>
+            <div class="why-item">
+              <div class="why-icon"><i class="fas fa-sterling-sign"></i></div>
+              <div>
+                <h4>Student-Friendly Prices</h4>
+                <p>Quality help that fits a student budget — no hidden fees, ever.</p>
+              </div>
+            </div>
+            <div class="why-item">
+              <div class="why-icon"><i class="fas fa-comments"></i></div>
+              <div>
+                <h4>Direct Communication</h4>
+                <p>Talk to Noor directly on WhatsApp, Instagram or Facebook — real humans, no bots.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="why-visual">
+          <div class="testimonial-card reveal" data-delay="0">
+            <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+            <p>"Got my CV done in less than 24 hours. Landed two interviews the following week. Absolutely worth it!"</p>
+            <div class="testimonial-author">
+              <div class="avatar">A</div>
+              <div><strong>Aisha R.</strong><span>MSc Student, London</span></div>
+            </div>
+          </div>
+          <div class="testimonial-card reveal" data-delay="120">
+            <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+            <p>"Helped me with my final-year project report. Great quality, proper references, delivered on time. Highly recommend!"</p>
+            <div class="testimonial-author">
+              <div class="avatar">M</div>
+              <div><strong>Mohammed K.</strong><span>BSc Student, Manchester</span></div>
+            </div>
+          </div>
+          <div class="testimonial-card reveal" data-delay="240">
+            <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+            <p>"The logo Noor designed for my society was stunning. Everyone loved it. Super fast and affordable!"</p>
+            <div class="testimonial-author">
+              <div class="avatar">S</div>
+              <div><strong>Sara T.</strong><span>BA Student, Birmingham</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── HOW IT WORKS ── -->
+  <section class="how-it-works" id="how-it-works">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">Simple Process</span>
+        <h2 class="section-title">Get Help in<br /><span class="script-accent">3 easy steps</span></h2>
+      </div>
+      <div class="steps-grid">
+        <div class="step reveal" data-delay="0">
+          <div class="step-number">01</div>
+          <div class="step-icon"><i class="fas fa-comment-dots"></i></div>
+          <h3>Reach Out</h3>
+          <p>Message us on WhatsApp, Instagram or Facebook. Tell us what you need and your deadline.</p>
+        </div>
+        <div class="step-line reveal" data-delay="120"></div>
+        <div class="step reveal" data-delay="240">
+          <div class="step-number">02</div>
+          <div class="step-icon"><i class="fas fa-handshake-angle"></i></div>
+          <h3>We Agree &amp; Start</h3>
+          <p>We discuss your requirements, agree on price and timeline, then get to work right away.</p>
+        </div>
+        <div class="step-line reveal" data-delay="360"></div>
+        <div class="step reveal" data-delay="480">
+          <div class="step-number">03</div>
+          <div class="step-icon"><i class="fas fa-paper-plane"></i></div>
+          <h3>Receive &amp; Submit</h3>
+          <p>Get your completed work on time, review it, and submit with total confidence.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CTA BANNER ── -->
+  <section class="cta-banner">
+    <div class="container">
+      <div class="cta-inner reveal">
+        <h2>Ready to make university life <span class="script-accent">easier?</span></h2>
+        <p>Message Noor now and get a friendly reply within minutes.</p>
+        <a href="https://wa.me/447000000000" target="_blank" rel="noopener" class="btn btn-primary btn-lg">
+          <i class="fab fa-whatsapp"></i> Message on WhatsApp
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CONTACT ── -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">Contact Us</span>
+        <h2 class="section-title">Let's <span class="script-accent">get started</span></h2>
+        <p class="section-subtitle">Choose your preferred way to reach us — we're online and ready to help right now.</p>
+      </div>
+      <div class="contact-grid">
+
+        <a href="https://wa.me/447000000000" target="_blank" rel="noopener" class="contact-card whatsapp reveal" data-delay="0">
+          <div class="contact-icon"><i class="fab fa-whatsapp"></i></div>
+          <h3>WhatsApp</h3>
+          <p>Fastest way to reach us. We reply within minutes.</p>
+          <span class="contact-btn">Message Us <i class="fas fa-arrow-right"></i></span>
+        </a>
+
+        <a href="https://instagram.com/edudesign_uk" target="_blank" rel="noopener" class="contact-card instagram reveal" data-delay="120">
+          <div class="contact-icon"><i class="fab fa-instagram"></i></div>
+          <h3>Instagram</h3>
+          <p>Follow @edudesign_uk &amp; send a DM to see our latest work.</p>
+          <span class="contact-btn">Follow &amp; DM <i class="fas fa-arrow-right"></i></span>
+        </a>
+
+        <a href="https://facebook.com/YOUR_FACEBOOK" target="_blank" rel="noopener" class="contact-card facebook reveal" data-delay="240">
+          <div class="contact-icon"><i class="fab fa-facebook-f"></i></div>
+          <h3>Facebook</h3>
+          <p>Send us a message on our Facebook page anytime.</p>
+          <span class="contact-btn">Send Message <i class="fas fa-arrow-right"></i></span>
+        </a>
+
+      </div>
+      <p class="contact-note">
+        <i class="fas fa-clock"></i> Available 7 days a week &nbsp;&middot;&nbsp;
+        <i class="fas fa-shield-halved"></i> 100% Confidential &nbsp;&middot;&nbsp;
+        <i class="fas fa-sterling-sign"></i> Student-friendly prices
+      </p>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <a href="#home" class="logo footer-logo">
+            <img src="{{ url_for('static', filename='images/logo-circle.png') }}" onerror="this.onerror=null;this.src='{{ url_for('static', filename='images/logo-circle.svg') }}'" alt="edudesign_uk logo" class="logo-mark" />
+            <span class="logo-wordmark"><span class="edu">edu</span><span class="design">design_uk</span></span>
+          </a>
+          <p class="footer-by">by Noor</p>
+          <p>Your trusted academic &amp; creative partner for UK university students. Design • Documents • Websites • Support.</p>
+        </div>
+        <div class="footer-links">
+          <h4>Services</h4>
+          <ul>
+            <li><a href="#services">CV Writing</a></li>
+            <li><a href="#services">Assignment Help</a></li>
+            <li><a href="#services">Logo Design</a></li>
+            <li><a href="#services">Project Help</a></li>
+            <li><a href="#services">Website Design</a></li>
+            <li><a href="#services">Plagiarism Check</a></li>
+          </ul>
+        </div>
+        <div class="footer-social">
+          <h4>Find Us On</h4>
+          <div class="social-icons">
+            <a href="https://wa.me/447000000000" target="_blank" rel="noopener" class="social-icon whatsapp-icon" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+            <a href="https://instagram.com/edudesign_uk" target="_blank" rel="noopener" class="social-icon instagram-icon" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://facebook.com/YOUR_FACEBOOK" target="_blank" rel="noopener" class="social-icon facebook-icon" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          </div>
+          <p class="footer-hours"><i class="fas fa-headset"></i> Online 7 days a week</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 edudesign_uk by Noor. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ── FLOATING WHATSAPP ── -->
+  <a href="https://wa.me/447000000000" target="_blank" rel="noopener" class="floating-whatsapp" aria-label="Chat on WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+    <span class="floating-tooltip">Chat with Noor!</span>
+  </a>
+
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
