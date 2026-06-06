@@ -23,3 +23,6 @@ instance/
 .DS_Store
 Thumbs.db
 *.swp
+
+# Claude Code internal
+.claude/

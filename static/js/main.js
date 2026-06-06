@@ -11,16 +11,17 @@ onScroll();
 // ── Mobile hamburger menu ──
 const hamburger = document.getElementById('hamburger');
 const navLinks  = document.getElementById('navLinks');
-hamburger.addEventListener('click', () => {
-  navLinks.classList.toggle('open');
-  hamburger.classList.toggle('active');
-});
-navLinks.querySelectorAll('a').forEach(link => {
-  link.addEventListener('click', () => {
-    navLinks.classList.remove('open');
-    hamburger.classList.remove('active');
-  });
-});
+const setMenu = (open) => {
+  navLinks.classList.toggle('open', open);
+  hamburger.classList.toggle('active', open);
+  hamburger.setAttribute('aria-expanded', String(open));
+  // Lock background scroll while the full-screen menu is open
+  document.body.style.overflow = open ? 'hidden' : '';
+};
+hamburger.addEventListener('click', () => setMenu(!navLinks.classList.contains('open')));
+navLinks.querySelectorAll('a').forEach(link => link.addEventListener('click', () => setMenu(false)));
+// Close on Escape
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') setMenu(false); });
 
 // ── Scroll reveal (staggered) ──
 const revealEls = document.querySelectorAll('.reveal');
