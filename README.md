@@ -1,56 +1,43 @@
-# edudesign_uk by Noor
+# EduDesign UK
 
-Official website for **edudesign_uk by Noor** — professional academic & creative services for UK university students.
+Official website for **EduDesign UK** — academic, career, technical and creative solutions for students, graduates and small businesses.
 
-**Design · Documents · Websites · Support**
+**Academic support · CVs · Coding · Data analytics · Websites · Branding · Documents**
 
-## Services
-- ✍️ CV Writing
-- 📚 Assignment Help
-- 🖊️ Logo Design
-- 💻 Project Help
-- 🌐 Website Design
-- 🛡️ Plagiarism Check
+## Architecture
+Static, config-driven site (fast, no backend required) served on Vercel.
 
-## Tech Stack
-- **Backend:** Python + Flask
-- **Frontend:** HTML, CSS, JavaScript (no framework)
-- **Fonts:** Playfair Display, Poppins, Dancing Script
-
-## Run Locally
-
-```bash
-# 1. Create & activate a virtual environment
-python -m venv venv
-venv\Scripts\activate        # Windows
-# source venv/bin/activate   # macOS / Linux
-
-# 2. Install dependencies
-pip install -r requirements.txt
-
-# 3. Start the server
-python main.py
-```
-
-Then open <http://127.0.0.1:5000> in your browser.
-
-## Project Structure
 ```
 website/
-├── main.py                 # Flask app entry point
-├── requirements.txt
-├── templates/
-│   └── index.html          # Single-page site
-└── static/
-    ├── css/style.css
-    ├── js/main.js
-    └── images/             # Logo assets
+├── index.html              # Single-page site (all sections)
+├── policies/               # Privacy, Terms, Refund, Revision, Academic Integrity,
+│                           # Confidentiality, Feedback & Review, Cookies
+├── robots.txt · sitemap.xml
+├── static/
+│   ├── data/config.js      # ⭐ SINGLE SOURCE OF TRUTH (edit business info here)
+│   ├── css/style.css
+│   ├── js/main.js          # renders sections from config + interactions/forms
+│   └── images/             # logo, og-image, (add: portfolio/ results/ screenshots)
+├── main.py                 # tiny Flask server for local preview only
+└── vercel.json             # static deploy config
 ```
 
-## Contact
-- 📱 WhatsApp
-- 📸 Instagram: [@edudesign_uk](https://instagram.com/edudesign_uk)
-- 👍 Facebook
+## Edit content
+Almost everything (business details, WhatsApp, services, subjects, portfolio,
+results, reviews, FAQs, policies list) is edited in **`static/data/config.js`** —
+no need to touch multiple files.
+
+## Run locally
+```bash
+python -m venv venv
+venv\Scripts\activate        # Windows
+pip install -r requirements.txt
+python main.py               # http://127.0.0.1:5000
+```
+
+## Deploy
+Connected to Vercel via GitHub — pushing to `main` auto-deploys.
+Manual: `vercel --prod` from the project root.
 
 ---
-© 2025 edudesign_uk by Noor. All rights reserved.
+© 2026 EduDesign UK. All rights reserved.

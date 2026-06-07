@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://edudesign-pink.vercel.app/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://edudesign-pink.vercel.app/policies/privacy.html</loc><priority>0.4</priority></url>
+  <url><loc>https://edudesign-pink.vercel.app/policies/terms.html</loc><priority>0.4</priority></url>
+  <url><loc>https://edudesign-pink.vercel.app/policies/refund.html</loc><priority>0.4</priority></url>
+  <url><loc>https://edudesign-pink.vercel.app/policies/revision.html</loc><priority>0.4</priority></url>
+  <url><loc>https://edudesign-pink.vercel.app/policies/academic-integrity.html</loc><priority>0.4</priority></url>
+  <url><loc>https://edudesign-pink.vercel.app/policies/confidentiality.html</loc><priority>0.4</priority></url>
+  <url><loc>https://edudesign-pink.vercel.app/policies/feedback.html</loc><priority>0.4</priority></url>
+  <url><loc>https://edudesign-pink.vercel.app/policies/cookies.html</loc><priority>0.4</priority></url>
+</urlset>

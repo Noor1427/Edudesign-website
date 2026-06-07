@@ -1,401 +1,424 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-GB">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <meta name="theme-color" content="#E14C82" />
   <meta name="format-detection" content="telephone=no" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-  <title>edudesign_uk by Noor – Design • Documents • Websites • Support</title>
-  <meta name="description" content="Professional academic & creative help for UK university students — CVs, assignments, logo design, projects, websites & plagiarism checks. By Noor." />
+
+  <title>EduDesign UK | Academic, Career, Coding, Analytics and Web Services</title>
+  <meta name="description" content="EduDesign UK provides academic support, CV services, coding assistance, data analytics, website development, branding and professional digital solutions for students and small businesses." />
+  <link rel="canonical" href="https://edudesign-pink.vercel.app/" />
+
+  <!-- Open Graph / social sharing -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="EduDesign UK" />
+  <meta property="og:title" content="EduDesign UK | Academic, Career, Coding, Analytics and Web Services" />
+  <meta property="og:description" content="Tailored academic, career, technical and creative support for students, graduates and small businesses. Explore selected work and request a private quotation." />
+  <meta property="og:url" content="https://edudesign-pink.vercel.app/" />
+  <meta property="og:image" content="https://edudesign-pink.vercel.app/static/images/og-image.svg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="EduDesign UK | Academic, Career, Coding, Analytics & Web Services" />
+  <meta name="twitter:description" content="Academic support, CVs, coding, analytics, websites and branding for students and small businesses." />
+  <meta name="twitter:image" content="https://edudesign-pink.vercel.app/static/images/og-image.svg" />
+
   <link rel="icon" type="image/svg+xml" href="/static/images/logo-circle.svg" />
   <link rel="apple-touch-icon" href="/static/images/logo-circle.svg" />
   <link rel="stylesheet" href="/static/css/style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,500&family=Poppins:wght@300;400;500;600;700;800&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <!-- Professional-service schema (no aggregateRating until genuine approved reviews exist) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "EduDesign UK",
+    "description": "Academic support, CV services, coding assistance, data analytics, website development, branding and professional digital solutions for students and small businesses.",
+    "url": "https://edudesign-pink.vercel.app/",
+    "areaServed": "GB",
+    "knowsAbout": ["Academic support","CV writing","Coding","Data analytics","Website development","Logo design","Presentations"],
+    "sameAs": ["https://instagram.com/edudesign_uk"]
+  }
+  </script>
 </head>
 <body>
+  <a href="#main" class="skip-link">Skip to content</a>
 
-  <!-- ── NAVBAR ── -->
-  <nav class="navbar" id="navbar">
+  <!-- ════════ HEADER / NAV ════════ -->
+  <header class="navbar" id="navbar">
     <div class="nav-container">
-      <a href="#home" class="logo">
-        <img src="/static/images/logo-circle.png" onerror="this.onerror=null;this.src='/static/images/logo-circle.svg'" alt="edudesign_uk logo" class="logo-mark" />
-        <span class="logo-wordmark"><span class="edu">edu</span><span class="design">design_uk</span></span>
+      <a href="#home" class="logo" aria-label="EduDesign UK home">
+        <img src="/static/images/logo-circle.svg" alt="EduDesign UK logo" class="logo-mark" width="44" height="44" />
+        <span class="logo-wordmark"><span class="edu">Edu</span><span class="design">Design</span> <span class="uk">UK</span></span>
       </a>
-      <ul class="nav-links" id="navLinks">
-        <li><a href="#services">Services</a></li>
-        <li><a href="#why-us">Why Us</a></li>
-        <li><a href="#how-it-works">Process</a></li>
-        <li><a href="#contact" class="nav-cta"><i class="fab fa-whatsapp"></i> Get Help</a></li>
-      </ul>
-      <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+
+      <nav class="nav-links" id="navLinks" aria-label="Primary">
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#students">Students</a></li>
+          <li><a href="#businesses">Businesses</a></li>
+          <li><a href="#results">Results</a></li>
+          <li><a href="#portfolio">Portfolio</a></li>
+          <li><a href="#how-it-works">How It Works</a></li>
+          <li><a href="#feedback">Feedback</a></li>
+          <li><a href="#faqs">FAQs</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li class="nav-cta-wrap"><a href="#contact" class="btn btn-primary btn-sm nav-cta">Request a Consultation</a></li>
+        </ul>
+      </nav>
+
+      <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
         <span></span><span></span><span></span>
       </button>
     </div>
-  </nav>
+  </header>
 
-  <!-- ── HERO ── -->
-  <section class="hero" id="home">
-    <div class="hero-bg">
-      <div class="blob blob-1"></div>
-      <div class="blob blob-2"></div>
-      <div class="blob blob-3"></div>
-    </div>
+  <main id="main">
 
-    <div class="hero-inner">
-      <div class="hero-content">
-        <div class="hero-badge">
-          <i class="fas fa-sparkles"></i> Trusted by UK University Students
-        </div>
-        <h1 class="hero-title">
-          Your Academic &amp;<br />
-          <span class="script-accent">Creative</span> Partner
-        </h1>
-        <p class="hero-tagline">
-          <span>Design</span><i class="fas fa-circle"></i>
-          <span>Documents</span><i class="fas fa-circle"></i>
-          <span>Websites</span><i class="fas fa-circle"></i>
-          <span>Support</span>
-        </p>
-        <p class="hero-subtitle">
-          From CVs &amp; assignments to logos, projects &amp; websites — professional, confidential help
-          for Bachelor's &amp; Master's students across the UK. By Noor.
-        </p>
-        <div class="hero-actions">
-          <a href="https://wa.me/447000000000" target="_blank" rel="noopener" class="btn btn-primary">
-            <i class="fab fa-whatsapp"></i> Chat on WhatsApp
-          </a>
-          <a href="#services" class="btn btn-outline">
-            Our Services <i class="fas fa-arrow-down"></i>
-          </a>
-        </div>
-        <div class="hero-stats">
-          <div class="stat">
-            <span class="stat-number" data-target="500" data-suffix="+">0</span>
-            <span class="stat-label">Students Helped</span>
-          </div>
-          <div class="stat-divider"></div>
-          <div class="stat">
-            <span class="stat-number" data-target="100" data-suffix="%">0</span>
-            <span class="stat-label">Confidential</span>
-          </div>
-          <div class="stat-divider"></div>
-          <div class="stat">
-            <span class="stat-number" data-target="24" data-suffix="/7">0</span>
-            <span class="stat-label">Support</span>
+    <!-- ════════ HERO ════════ -->
+    <section class="hero" id="home">
+      <div class="hero-bg" aria-hidden="true"><span class="orb orb-1"></span><span class="orb orb-2"></span></div>
+      <div class="container hero-inner">
+        <div class="hero-content">
+          <p class="eyebrow"><i class="fa-solid fa-shield-halved"></i> Confidential · Professional · Tailored</p>
+          <h1 class="hero-title">Academic, Career &amp; Digital Solutions<span class="accent"> — All in One Place</span></h1>
+          <p class="hero-sub">EduDesign UK provides tailored support for students, graduates and small businesses — from academic guidance, CVs and technical projects to websites, branding and live data analytics.</p>
+          <ul class="trust-row" aria-label="What we offer">
+            <li><i class="fa-solid fa-check"></i> Confidential support</li>
+            <li><i class="fa-solid fa-check"></i> Clear communication</li>
+            <li><i class="fa-solid fa-check"></i> Tailored solutions</li>
+            <li><i class="fa-solid fa-check"></i> Flexible turnaround</li>
+          </ul>
+          <div class="hero-actions">
+            <a href="#services" class="btn btn-primary">Explore Our Services</a>
+            <a href="#" class="btn btn-ghost wa-link" data-msg="general"><i class="fa-brands fa-whatsapp"></i> Speak With Our Team</a>
           </div>
         </div>
-      </div>
 
-      <div class="hero-visual">
-        <div class="logo-stage">
-          <div class="logo-ring"></div>
-          <div class="logo-ring ring-2"></div>
-          <img src="/static/images/logo-circle.png" onerror="this.onerror=null;this.src='/static/images/logo-circle.svg'" alt="edudesign_uk by Noor" class="hero-logo" />
-          <div class="float-chip chip-1"><i class="fas fa-file-lines"></i> CV Ready</div>
-          <div class="float-chip chip-2"><i class="fas fa-circle-check"></i> Plagiarism Free</div>
-          <div class="float-chip chip-3"><i class="fas fa-pen-nib"></i> Logo Designed</div>
+        <!-- Labelled showcase collage (clearly-labelled categories, not fake screenshots) -->
+        <div class="hero-showcase" aria-label="Examples of work we produce">
+          <div class="show-tile t1"><i class="fa-solid fa-file-lines"></i><span>Academic Report</span></div>
+          <div class="show-tile t2 highlight"><i class="fa-solid fa-award"></i><span>Grade Result</span></div>
+          <div class="show-tile t3"><i class="fa-solid fa-id-badge"></i><span>CV</span></div>
+          <div class="show-tile t4"><i class="fa-solid fa-globe"></i><span>Website</span></div>
+          <div class="show-tile t5"><i class="fa-solid fa-code"></i><span>Coding</span></div>
+          <div class="show-tile t6"><i class="fa-solid fa-chart-line"></i><span>Analytics Dashboard</span></div>
+          <div class="show-tile t7"><i class="fa-solid fa-pen-nib"></i><span>Logo</span></div>
+          <div class="show-tile t8"><i class="fa-solid fa-display"></i><span>Presentation</span></div>
         </div>
       </div>
-    </div>
+    </section>
 
-    <a href="#services" class="scroll-cue" aria-label="Scroll down">
-      <span class="mouse"><span class="wheel"></span></span>
-    </a>
-  </section>
-
-  <!-- ── SERVICES ── -->
-  <section class="services" id="services">
-    <div class="container">
-      <div class="section-header reveal">
-        <span class="section-tag">What We Offer</span>
-        <h2 class="section-title">Everything You Need,<br /><span class="script-accent">in one place</span></h2>
-        <p class="section-subtitle">Professional services crafted for UK university students — fast, affordable, and completely confidential.</p>
+    <!-- ════════ STATS ════════ -->
+    <section class="stats" aria-label="At a glance">
+      <div class="container">
+        <ul class="stats-grid" id="statsGrid"><!-- rendered from config --></ul>
+        <p class="stats-note" id="statsNote" hidden></p>
       </div>
+    </section>
 
-      <div class="services-grid">
-
-        <div class="service-card reveal" data-delay="0">
-          <div class="service-icon"><i class="fas fa-file-user"></i></div>
-          <h3>CV Writing</h3>
-          <p>Stand out to UK employers with a professionally crafted, ATS-friendly CV tailored to your field and level.</p>
-          <ul class="service-features">
-            <li><i class="fas fa-check"></i> ATS-friendly format</li>
-            <li><i class="fas fa-check"></i> Industry templates</li>
-            <li><i class="fas fa-check"></i> Cover letter included</li>
-          </ul>
-          <a href="#contact" class="service-link">Get My CV <i class="fas fa-arrow-right"></i></a>
+    <!-- ════════ AUDIENCES ════════ -->
+    <section class="audiences" id="students" aria-labelledby="aud-h">
+      <div class="container">
+        <div class="section-head">
+          <span class="tag">Who We Help</span>
+          <h2 id="aud-h" class="section-title">Support built around <span class="accent">your goals</span></h2>
         </div>
-
-        <div class="service-card featured reveal" data-delay="80">
-          <div class="featured-badge"><i class="fas fa-star"></i> Most Popular</div>
-          <div class="service-icon"><i class="fas fa-book-open"></i></div>
-          <h3>Assignment Help</h3>
-          <p>Expert support with essays, reports, dissertations and coursework across every subject and university.</p>
-          <ul class="service-features">
-            <li><i class="fas fa-check"></i> All subjects covered</li>
-            <li><i class="fas fa-check"></i> Proper UK referencing</li>
-            <li><i class="fas fa-check"></i> On-time delivery</li>
-          </ul>
-          <a href="#contact" class="service-link">Get Help <i class="fas fa-arrow-right"></i></a>
-        </div>
-
-        <div class="service-card reveal" data-delay="160">
-          <div class="service-icon"><i class="fas fa-pen-nib"></i></div>
-          <h3>Logo Design</h3>
-          <p>Eye-catching, unique logos for your society, startup or personal brand — delivered fast with revisions.</p>
-          <ul class="service-features">
-            <li><i class="fas fa-check"></i> Multiple concepts</li>
-            <li><i class="fas fa-check"></i> High-res files</li>
-            <li><i class="fas fa-check"></i> Unlimited revisions</li>
-          </ul>
-          <a href="#contact" class="service-link">Design My Logo <i class="fas fa-arrow-right"></i></a>
-        </div>
-
-        <div class="service-card reveal" data-delay="0">
-          <div class="service-icon"><i class="fas fa-laptop-code"></i></div>
-          <h3>Project Help</h3>
-          <p>Stuck on your university project? We help with research, analysis, coding and final-year work.</p>
-          <ul class="service-features">
-            <li><i class="fas fa-check"></i> Research &amp; analysis</li>
-            <li><i class="fas fa-check"></i> Coding projects</li>
-            <li><i class="fas fa-check"></i> Final-year projects</li>
-          </ul>
-          <a href="#contact" class="service-link">Start Project <i class="fas fa-arrow-right"></i></a>
-        </div>
-
-        <div class="service-card reveal" data-delay="80">
-          <div class="service-icon"><i class="fas fa-globe"></i></div>
-          <h3>Website Design</h3>
-          <p>Modern, responsive websites for your portfolio, business idea or society — fast and easy to manage.</p>
-          <ul class="service-features">
-            <li><i class="fas fa-check"></i> Mobile-friendly</li>
-            <li><i class="fas fa-check"></i> Fast &amp; modern</li>
-            <li><i class="fas fa-check"></i> Easy to manage</li>
-          </ul>
-          <a href="#contact" class="service-link">Build My Site <i class="fas fa-arrow-right"></i></a>
-        </div>
-
-        <div class="service-card reveal" data-delay="160">
-          <div class="service-icon"><i class="fas fa-shield-halved"></i></div>
-          <h3>Plagiarism Check</h3>
-          <p>Get a full originality report before submission — plus help fixing and rewriting any flagged sections.</p>
-          <ul class="service-features">
-            <li><i class="fas fa-check"></i> Detailed report</li>
-            <li><i class="fas fa-check"></i> Fix &amp; rewrite help</li>
-            <li><i class="fas fa-check"></i> Quick turnaround</li>
-          </ul>
-          <a href="#contact" class="service-link">Check My Work <i class="fas fa-arrow-right"></i></a>
-        </div>
-
+        <div class="audience-grid" id="audienceGrid"><!-- rendered from config --></div>
+        <span id="businesses" class="anchor-spot" aria-hidden="true"></span>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ── WHY US ── -->
-  <section class="why-us" id="why-us">
-    <div class="container">
-      <div class="why-inner">
-        <div class="why-text reveal">
-          <span class="section-tag">Why Choose Us</span>
-          <h2 class="section-title">Built for UK<br /><span class="script-accent">students</span></h2>
-          <p class="section-subtitle">We understand the pressure of UK university life — tight deadlines, high standards, and the challenge of settling into a new country.</p>
-          <div class="why-list">
-            <div class="why-item">
-              <div class="why-icon"><i class="fas fa-lock"></i></div>
-              <div>
-                <h4>100% Confidential</h4>
-                <p>Your privacy is our priority. We never share your details with anyone.</p>
+    <!-- ════════ SERVICES ════════ -->
+    <section class="services" id="services" aria-labelledby="svc-h">
+      <div class="container">
+        <div class="section-head">
+          <span class="tag">What We Offer</span>
+          <h2 id="svc-h" class="section-title">Professional support, <span class="accent">organised clearly</span></h2>
+          <p class="section-sub">Academic, technical, analytical, career and creative services — grouped so you can find exactly what you need.</p>
+        </div>
+        <div class="services-grid" id="servicesGrid"><!-- rendered from config --></div>
+
+        <!-- Subjects & modules -->
+        <div class="subjects-block">
+          <div class="section-head left">
+            <span class="tag">Subjects &amp; Modules</span>
+            <h3 class="section-title sm">A wide range of <span class="accent">subjects covered</span></h3>
+          </div>
+          <label class="subject-search" for="subjectSearch">
+            <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+            <input type="search" id="subjectSearch" placeholder="Search your subject or module…" autocomplete="off" aria-label="Search subjects" />
+          </label>
+          <ul class="subjects-grid" id="subjectsGrid"><!-- rendered from config --></ul>
+          <p class="subjects-empty" id="subjectsEmpty" hidden>No match found — send us your module brief and we will confirm availability.</p>
+          <p class="muted center">Can’t find your subject? <a href="#" class="link wa-link" data-msg="academic">Send us your module brief</a> and we will confirm availability.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════ RESULTS & EVIDENCE ════════ -->
+    <section class="results" id="results" aria-labelledby="res-h">
+      <div class="container">
+        <div class="section-head">
+          <span class="tag">Results &amp; Evidence</span>
+          <h2 id="res-h" class="section-title">Selected results &amp; <span class="accent">completed work</span></h2>
+          <p class="section-sub">Explore selected results, completed work and project examples. Personal details are removed to protect confidentiality.</p>
+        </div>
+
+        <div class="filter-bar" id="resultFilters" role="tablist" aria-label="Filter results"><!-- rendered --></div>
+        <div class="results-grid" id="resultsGrid"><!-- rendered from config --></div>
+        <div class="empty-state" id="resultsEmpty">
+          <i class="fa-regular fa-folder-open" aria-hidden="true"></i>
+          <p>Anonymised results and evidence will appear here. Relevant samples can also be shared privately on request.</p>
+        </div>
+
+        <p class="disclaimer"><i class="fa-solid fa-circle-info"></i> Results vary according to individual effort, university requirements and marking criteria. Previous outcomes do not guarantee future grades.</p>
+
+        <div class="confidential-box">
+          <div>
+            <h3>Confidential evidence</h3>
+            <p>Some academic, technical and business work cannot be displayed publicly. Relevant anonymised samples may be shared privately after an initial discussion.</p>
+          </div>
+          <a href="#" class="btn btn-primary wa-link" data-msg="proof">Request Relevant Work Samples</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════ PORTFOLIO ════════ -->
+    <section class="portfolio" id="portfolio" aria-labelledby="pf-h">
+      <div class="container">
+        <div class="section-head">
+          <span class="tag">Portfolio</span>
+          <h2 id="pf-h" class="section-title">Selected <span class="accent">work</span></h2>
+          <p class="section-sub">Authentic and clearly-labelled examples across our services.</p>
+        </div>
+        <div class="filter-bar" id="portfolioFilters" role="tablist" aria-label="Filter portfolio"><!-- rendered --></div>
+        <div class="portfolio-grid" id="portfolioGrid"><!-- rendered from config --></div>
+      </div>
+    </section>
+
+    <!-- ════════ WHY CHOOSE ════════ -->
+    <section class="why" aria-labelledby="why-h">
+      <div class="container">
+        <div class="section-head">
+          <span class="tag">Why EduDesign UK</span>
+          <h2 id="why-h" class="section-title">Professional support <span class="accent">you can rely on</span></h2>
+        </div>
+        <div class="why-grid">
+          <article class="why-card"><div class="why-ic"><i class="fa-solid fa-folder-open"></i></div><h3>Evidence Available</h3><p>Relevant examples and anonymised proof can be reviewed where confidentiality permits.</p></article>
+          <article class="why-card"><div class="why-ic"><i class="fa-solid fa-layer-group"></i></div><h3>Multiple Services</h3><p>Academic, technical, analytical, career and creative support in one place.</p></article>
+          <article class="why-card"><div class="why-ic"><i class="fa-solid fa-sliders"></i></div><h3>Tailored Solutions</h3><p>Every project is reviewed according to its brief, deadline and expected output.</p></article>
+          <article class="why-card"><div class="why-ic"><i class="fa-solid fa-lock"></i></div><h3>Confidential Handling</h3><p>Academic, personal and business information is handled carefully.</p></article>
+          <article class="why-card"><div class="why-ic"><i class="fa-solid fa-comments"></i></div><h3>Clear Communication</h3><p>Scope, requirements, revisions and delivery expectations are discussed before work begins.</p></article>
+          <article class="why-card"><div class="why-ic"><i class="fa-solid fa-people-group"></i></div><h3>Flexible Support</h3><p>Services are available for students, graduates, professionals and small businesses.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════ HOW IT WORKS ════════ -->
+    <section class="how" id="how-it-works" aria-labelledby="how-h">
+      <div class="container">
+        <div class="section-head">
+          <span class="tag">How It Works</span>
+          <h2 id="how-h" class="section-title">A clear, <span class="accent">five-step process</span></h2>
+        </div>
+        <ol class="steps">
+          <li class="step"><span class="step-no">1</span><h3>Send Your Requirements</h3><p>Share the brief, deadline, files and expected outcome.</p></li>
+          <li class="step"><span class="step-no">2</span><h3>Speak With a Team Member</h3><p>The team reviews your requirements and asks any necessary questions.</p></li>
+          <li class="step"><span class="step-no">3</span><h3>Confirm the Scope</h3><p>The service, turnaround, deliverables and private quotation are agreed.</p></li>
+          <li class="step"><span class="step-no">4</span><h3>Work Begins</h3><p>The project is completed according to the agreed requirements.</p></li>
+          <li class="step"><span class="step-no">5</span><h3>Review &amp; Delivery</h3><p>Receive guidance, feedback and supporting materials to help improve your own work, review eligible revisions and ask final questions.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ════════ PRICING (no public prices) ════════ -->
+    <section class="pricing" aria-labelledby="price-h">
+      <div class="container">
+        <div class="pricing-card">
+          <span class="tag">Pricing</span>
+          <h2 id="price-h" class="section-title">Pricing tailored to <span class="accent">your requirements</span></h2>
+          <p>Every request is different. Pricing depends on the service, complexity, length, deadline, required tools and level of support. To receive a private quotation, contact a member of the EduDesign UK team with your brief.</p>
+          <div class="hero-actions center">
+            <a href="#" class="btn btn-primary wa-link" data-msg="quote">Request a Private Quote</a>
+            <a href="#contact" class="btn btn-ghost">Discuss Your Requirements</a>
+          </div>
+          <p class="muted small">No obligation. Your requirements and quotation remain confidential.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════ FEEDBACK ════════ -->
+    <section class="feedback" id="feedback" aria-labelledby="fb-h">
+      <div class="container">
+        <div class="section-head">
+          <span class="tag">Feedback</span>
+          <h2 id="fb-h" class="section-title">Verified <span class="accent">feedback</span></h2>
+          <p class="section-sub">Feedback may be anonymised to protect customer privacy.</p>
+        </div>
+
+        <div class="reviews-grid" id="reviewsGrid"><!-- rendered from config --></div>
+        <div class="empty-state" id="reviewsEmpty">
+          <i class="fa-regular fa-comments" aria-hidden="true"></i>
+          <p>Verified feedback will appear here as customers choose to share their experiences.</p>
+        </div>
+
+        <!-- Share Your Experience -->
+        <div class="form-card" id="share">
+          <h3>Share Your Experience</h3>
+          <p class="muted">Submissions are reviewed before appearing publicly.</p>
+          <form id="feedbackForm" class="form" novalidate>
+            <input type="text" name="company" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true" />
+            <div class="form-row">
+              <div class="field">
+                <label for="fb-name">Name or initials</label>
+                <input id="fb-name" name="name" type="text" maxlength="60" required />
+              </div>
+              <div class="field">
+                <label for="fb-contact">Email or phone (for verification)</label>
+                <input id="fb-contact" name="contact" type="text" maxlength="80" required />
               </div>
             </div>
-            <div class="why-item">
-              <div class="why-icon"><i class="fas fa-bolt"></i></div>
-              <div>
-                <h4>Fast Turnaround</h4>
-                <p>Urgent deadline? We work around the clock to deliver on time.</p>
+            <div class="form-row">
+              <div class="field">
+                <label for="fb-service">Service used</label>
+                <select id="fb-service" name="service" required><option value="">Select…</option></select>
+              </div>
+              <div class="field">
+                <label id="ratingLabel">Rating</label>
+                <div class="stars-input" id="starInput" role="radiogroup" aria-labelledby="ratingLabel"></div>
               </div>
             </div>
-            <div class="why-item">
-              <div class="why-icon"><i class="fas fa-sterling-sign"></i></div>
-              <div>
-                <h4>Student-Friendly Prices</h4>
-                <p>Quality help that fits a student budget — no hidden fees, ever.</p>
+            <div class="field">
+              <label for="fb-text">Feedback</label>
+              <textarea id="fb-text" name="text" rows="4" maxlength="600" required></textarea>
+              <span class="counter"><span id="fbCount">0</span>/600</span>
+            </div>
+            <fieldset class="field">
+              <legend>How should your name be displayed?</legend>
+              <label class="radio"><input type="radio" name="display" value="full" checked /> Full first name</label>
+              <label class="radio"><input type="radio" name="display" value="initials" /> Initials only</label>
+              <label class="radio"><input type="radio" name="display" value="anonymous" /> Anonymous</label>
+            </fieldset>
+            <label class="check"><input type="checkbox" name="permission" required /> I give permission for this feedback to be displayed publicly (after review).</label>
+            <label class="check"><input type="checkbox" name="consent" required /> I confirm that this feedback reflects my genuine experience and may be reviewed before publication.</label>
+            <button type="submit" class="btn btn-primary">Submit Feedback</button>
+            <p class="form-status" id="feedbackStatus" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════ FAQs ════════ -->
+    <section class="faqs" id="faqs" aria-labelledby="faq-h">
+      <div class="container narrow">
+        <div class="section-head">
+          <span class="tag">FAQs</span>
+          <h2 id="faq-h" class="section-title">Frequently asked <span class="accent">questions</span></h2>
+        </div>
+        <div class="faq-list" id="faqList"><!-- rendered from config --></div>
+      </div>
+    </section>
+
+    <!-- ════════ CONTACT ════════ -->
+    <section class="contact" id="contact" aria-labelledby="ct-h">
+      <div class="container">
+        <div class="contact-grid">
+          <div class="contact-intro">
+            <span class="tag">Contact</span>
+            <h2 id="ct-h" class="section-title">Tell us what <span class="accent">you need</span></h2>
+            <p>Share your requirements and a team member will respond with availability, next steps and a private quotation.</p>
+            <ul class="contact-points">
+              <li><i class="fa-solid fa-shield-halved"></i> Confidential &amp; no obligation</li>
+              <li><i class="fa-solid fa-clock"></i> We aim to respond as soon as possible</li>
+              <li><i class="fa-solid fa-file-arrow-up"></i> Share a brief and files for an accurate quote</li>
+            </ul>
+            <div class="contact-direct" id="contactDirect"><!-- whatsapp / instagram / email rendered --></div>
+          </div>
+
+          <div class="form-card">
+            <form id="contactForm" class="form" novalidate>
+              <input type="text" name="website" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true" />
+              <div class="form-row">
+                <div class="field"><label for="c-name">Full name</label><input id="c-name" name="name" type="text" required /></div>
+                <div class="field"><label for="c-email">Email address</label><input id="c-email" name="email" type="email" required /></div>
               </div>
-            </div>
-            <div class="why-item">
-              <div class="why-icon"><i class="fas fa-comments"></i></div>
-              <div>
-                <h4>Direct Communication</h4>
-                <p>Talk to Noor directly on WhatsApp, Instagram or Facebook — real humans, no bots.</p>
+              <div class="form-row">
+                <div class="field"><label for="c-phone">Phone number</label><input id="c-phone" name="phone" type="tel" /></div>
+                <div class="field"><label for="c-pref">Preferred contact method</label>
+                  <select id="c-pref" name="preferred"><option>WhatsApp</option><option>Email</option><option>Phone call</option></select></div>
               </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="why-visual">
-          <div class="testimonial-card reveal" data-delay="0">
-            <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-            <p>"Got my CV done in less than 24 hours. Landed two interviews the following week. Absolutely worth it!"</p>
-            <div class="testimonial-author">
-              <div class="avatar">A</div>
-              <div><strong>Aisha R.</strong><span>MSc Student, London</span></div>
-            </div>
-          </div>
-          <div class="testimonial-card reveal" data-delay="120">
-            <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-            <p>"Helped me with my final-year project report. Great quality, proper references, delivered on time. Highly recommend!"</p>
-            <div class="testimonial-author">
-              <div class="avatar">M</div>
-              <div><strong>Mohammed K.</strong><span>BSc Student, Manchester</span></div>
-            </div>
-          </div>
-          <div class="testimonial-card reveal" data-delay="240">
-            <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-            <p>"The logo Noor designed for my society was stunning. Everyone loved it. Super fast and affordable!"</p>
-            <div class="testimonial-author">
-              <div class="avatar">S</div>
-              <div><strong>Sara T.</strong><span>BA Student, Birmingham</span></div>
-            </div>
+              <div class="form-row">
+                <div class="field"><label for="c-type">I am a…</label>
+                  <select id="c-type" name="type"><option>Student</option><option>Graduate</option><option>Business</option></select></div>
+                <div class="field"><label for="c-service">Service required</label>
+                  <select id="c-service" name="service" required><option value="">Select…</option></select></div>
+              </div>
+              <div class="form-row">
+                <div class="field"><label for="c-subject">Subject or industry</label><input id="c-subject" name="subject" type="text" /></div>
+                <div class="field"><label for="c-deadline">Deadline</label><input id="c-deadline" name="deadline" type="date" /></div>
+              </div>
+              <div class="field"><label for="c-scope">Approximate scope</label><input id="c-scope" name="scope" type="text" placeholder="e.g. 2,000 words / 5 pages / 3 dashboards" /></div>
+              <div class="field"><label for="c-desc">Project description</label><textarea id="c-desc" name="description" rows="4" required></textarea></div>
+              <div class="field"><label for="c-file">Attach a file (optional)</label><input id="c-file" name="file" type="file" accept=".pdf,.doc,.docx,.png,.jpg,.jpeg,.zip" /><span class="hint">Files are shared in chat after you make contact.</span></div>
+              <label class="check"><input type="checkbox" name="samples" /> I would like to request relevant anonymised work samples.</label>
+              <label class="check"><input type="checkbox" name="consent" required /> I consent to EduDesign UK using these details to respond to my enquiry.</label>
+              <div class="hero-actions">
+                <button type="submit" class="btn btn-primary">Submit Enquiry</button>
+                <a href="#" class="btn btn-ghost wa-link" data-msg="general"><i class="fa-brands fa-whatsapp"></i> Message on WhatsApp</a>
+              </div>
+              <p class="form-status" id="contactStatus" role="status" aria-live="polite"></p>
+            </form>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+  </main>
 
-  <!-- ── HOW IT WORKS ── -->
-  <section class="how-it-works" id="how-it-works">
-    <div class="container">
-      <div class="section-header reveal">
-        <span class="section-tag">Simple Process</span>
-        <h2 class="section-title">Get Help in<br /><span class="script-accent">3 easy steps</span></h2>
-      </div>
-      <div class="steps-grid">
-        <div class="step reveal" data-delay="0">
-          <div class="step-number">01</div>
-          <div class="step-icon"><i class="fas fa-comment-dots"></i></div>
-          <h3>Reach Out</h3>
-          <p>Message us on WhatsApp, Instagram or Facebook. Tell us what you need and your deadline.</p>
-        </div>
-        <div class="step-line reveal" data-delay="120"></div>
-        <div class="step reveal" data-delay="240">
-          <div class="step-number">02</div>
-          <div class="step-icon"><i class="fas fa-handshake-angle"></i></div>
-          <h3>We Agree &amp; Start</h3>
-          <p>We discuss your requirements, agree on price and timeline, then get to work right away.</p>
-        </div>
-        <div class="step-line reveal" data-delay="360"></div>
-        <div class="step reveal" data-delay="480">
-          <div class="step-number">03</div>
-          <div class="step-icon"><i class="fas fa-paper-plane"></i></div>
-          <h3>Receive &amp; Submit</h3>
-          <p>Get your completed work on time, review it, and submit with total confidence.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── CTA BANNER ── -->
-  <section class="cta-banner">
-    <div class="container">
-      <div class="cta-inner reveal">
-        <h2>Ready to make university life <span class="script-accent">easier?</span></h2>
-        <p>Message Noor now and get a friendly reply within minutes.</p>
-        <a href="https://wa.me/447000000000" target="_blank" rel="noopener" class="btn btn-primary btn-lg">
-          <i class="fab fa-whatsapp"></i> Message on WhatsApp
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── CONTACT ── -->
-  <section class="contact" id="contact">
-    <div class="container">
-      <div class="section-header reveal">
-        <span class="section-tag">Contact Us</span>
-        <h2 class="section-title">Let's <span class="script-accent">get started</span></h2>
-        <p class="section-subtitle">Choose your preferred way to reach us — we're online and ready to help right now.</p>
-      </div>
-      <div class="contact-grid">
-
-        <a href="https://wa.me/447000000000" target="_blank" rel="noopener" class="contact-card whatsapp reveal" data-delay="0">
-          <div class="contact-icon"><i class="fab fa-whatsapp"></i></div>
-          <h3>WhatsApp</h3>
-          <p>Fastest way to reach us. We reply within minutes.</p>
-          <span class="contact-btn">Message Us <i class="fas fa-arrow-right"></i></span>
-        </a>
-
-        <a href="https://instagram.com/edudesign_uk" target="_blank" rel="noopener" class="contact-card instagram reveal" data-delay="120">
-          <div class="contact-icon"><i class="fab fa-instagram"></i></div>
-          <h3>Instagram</h3>
-          <p>Follow @edudesign_uk &amp; send a DM to see our latest work.</p>
-          <span class="contact-btn">Follow &amp; DM <i class="fas fa-arrow-right"></i></span>
-        </a>
-
-        <a href="https://facebook.com/YOUR_FACEBOOK" target="_blank" rel="noopener" class="contact-card facebook reveal" data-delay="240">
-          <div class="contact-icon"><i class="fab fa-facebook-f"></i></div>
-          <h3>Facebook</h3>
-          <p>Send us a message on our Facebook page anytime.</p>
-          <span class="contact-btn">Send Message <i class="fas fa-arrow-right"></i></span>
-        </a>
-
-      </div>
-      <p class="contact-note">
-        <i class="fas fa-clock"></i> Available 7 days a week &nbsp;&middot;&nbsp;
-        <i class="fas fa-shield-halved"></i> 100% Confidential &nbsp;&middot;&nbsp;
-        <i class="fas fa-sterling-sign"></i> Student-friendly prices
-      </p>
-    </div>
-  </section>
-
-  <!-- ── FOOTER ── -->
+  <!-- ════════ FOOTER ════════ -->
   <footer class="footer">
-    <div class="container">
-      <div class="footer-inner">
-        <div class="footer-brand">
-          <a href="#home" class="logo footer-logo">
-            <img src="/static/images/logo-circle.png" onerror="this.onerror=null;this.src='/static/images/logo-circle.svg'" alt="edudesign_uk logo" class="logo-mark" />
-            <span class="logo-wordmark"><span class="edu">edu</span><span class="design">design_uk</span></span>
-          </a>
-          <p class="footer-by">by Noor</p>
-          <p>Your trusted academic &amp; creative partner for UK university students. Design • Documents • Websites • Support.</p>
-        </div>
-        <div class="footer-links">
-          <h4>Services</h4>
-          <ul>
-            <li><a href="#services">CV Writing</a></li>
-            <li><a href="#services">Assignment Help</a></li>
-            <li><a href="#services">Logo Design</a></li>
-            <li><a href="#services">Project Help</a></li>
-            <li><a href="#services">Website Design</a></li>
-            <li><a href="#services">Plagiarism Check</a></li>
-          </ul>
-        </div>
-        <div class="footer-social">
-          <h4>Find Us On</h4>
-          <div class="social-icons">
-            <a href="https://wa.me/447000000000" target="_blank" rel="noopener" class="social-icon whatsapp-icon" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-            <a href="https://instagram.com/edudesign_uk" target="_blank" rel="noopener" class="social-icon instagram-icon" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-            <a href="https://facebook.com/YOUR_FACEBOOK" target="_blank" rel="noopener" class="social-icon facebook-icon" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-          </div>
-          <p class="footer-hours"><i class="fas fa-headset"></i> Online 7 days a week</p>
-        </div>
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <a href="#home" class="logo">
+          <img src="/static/images/logo-circle.svg" alt="EduDesign UK logo" class="logo-mark" width="40" height="40" />
+          <span class="logo-wordmark"><span class="edu">Edu</span><span class="design">Design</span> <span class="uk">UK</span></span>
+        </a>
+        <p>Academic, career, technical and creative solutions for students, graduates and small businesses.</p>
+        <div class="footer-social" id="footerSocial"><!-- rendered --></div>
       </div>
-      <div class="footer-bottom">
-        <p>&copy; 2025 edudesign_uk by Noor. All rights reserved.</p>
+      <div class="footer-col">
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#students">Students</a></li>
+          <li><a href="#businesses">Businesses</a></li>
+          <li><a href="#results">Results</a></li>
+          <li><a href="#portfolio">Portfolio</a></li>
+          <li><a href="#feedback">Feedback</a></li>
+          <li><a href="#faqs">FAQs</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
       </div>
+      <div class="footer-col">
+        <h4>Policies</h4>
+        <ul id="footerPolicies"><!-- rendered from config --></ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; <span id="year"></span> EduDesign UK. All rights reserved.</p>
     </div>
   </footer>
 
-  <!-- ── FLOATING WHATSAPP ── -->
-  <a href="https://wa.me/447000000000" target="_blank" rel="noopener" class="floating-whatsapp" aria-label="Chat on WhatsApp">
-    <i class="fab fa-whatsapp"></i>
-    <span class="floating-tooltip">Chat with Noor!</span>
+  <a href="#" class="floating-whatsapp wa-link" data-msg="general" aria-label="Message EduDesign UK on WhatsApp">
+    <i class="fa-brands fa-whatsapp"></i>
+    <span class="floating-tooltip">Message EduDesign UK</span>
   </a>
 
+  <script src="/static/data/config.js"></script>
   <script src="/static/js/main.js"></script>
 </body>
 </html>
