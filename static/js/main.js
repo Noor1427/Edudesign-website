@@ -2,9 +2,28 @@
    edudesign_uk by Noor — Interactions
    ════════════════════════════════════════════ */
 
-// ── Navbar scroll effect ──
+// ── Navbar: shadow on scroll + smooth auto hide/show by direction ──
 const navbar = document.getElementById('navbar');
-const onScroll = () => navbar.classList.toggle('scrolled', window.scrollY > 30);
+let lastY = window.scrollY;
+let navTicking = false;
+const onScroll = () => {
+  if (navTicking) return;
+  navTicking = true;
+  requestAnimationFrame(() => {
+    const y = window.scrollY;
+    navbar.classList.toggle('scrolled', y > 30);
+    // Hide when scrolling down past the hero, reveal when scrolling up.
+    // Never hide while the full-screen menu is open (body scroll is locked then).
+    const menuOpen = document.body.style.overflow === 'hidden';
+    if (!menuOpen && y > 400 && y > lastY + 6) {
+      navbar.classList.add('nav-hidden');
+    } else if (y < lastY - 6 || y < 400) {
+      navbar.classList.remove('nav-hidden');
+    }
+    lastY = y;
+    navTicking = false;
+  });
+};
 window.addEventListener('scroll', onScroll, { passive: true });
 onScroll();
 
@@ -17,6 +36,8 @@ const setMenu = (open) => {
   hamburger.setAttribute('aria-expanded', String(open));
   // Lock background scroll while the full-screen menu is open
   document.body.style.overflow = open ? 'hidden' : '';
+  // Make sure the navbar (with the close button) is visible when opening
+  if (open) navbar.classList.remove('nav-hidden');
 };
 hamburger.addEventListener('click', () => setMenu(!navLinks.classList.contains('open')));
 navLinks.querySelectorAll('a').forEach(link => link.addEventListener('click', () => setMenu(false)));
@@ -74,13 +95,22 @@ const highlightNav = () => {
 };
 window.addEventListener('scroll', highlightNav, { passive: true });
 
-// ── Subtle parallax on hero blobs ──
+// ── Subtle parallax on hero blobs (desktop only — skipped on phones for smoothness) ──
 const blobs = document.querySelectorAll('.blob');
-window.addEventListener('scroll', () => {
-  const y = window.scrollY;
-  if (y < window.innerHeight) {
-    blobs.forEach((blob, i) => {
-      blob.style.transform = `translateY(${y * (0.1 + i * 0.05)}px)`;
+const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+if (window.innerWidth > 680 && !prefersReduced) {
+  let blobTicking = false;
+  window.addEventListener('scroll', () => {
+    if (blobTicking) return;
+    blobTicking = true;
+    requestAnimationFrame(() => {
+      const y = window.scrollY;
+      if (y < window.innerHeight) {
+        blobs.forEach((blob, i) => {
+          blob.style.transform = `translateY(${y * (0.08 + i * 0.04)}px)`;
+        });
+      }
+      blobTicking = false;
     });
-  }
-}, { passive: true });
+  }, { passive: true });
+}
