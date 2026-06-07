@@ -3,14 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <meta name="theme-color" content="#E14C82" />
+  <meta name="theme-color" content="#EE7FB0" />
   <title>Services | EduDesign UK by Noor</title>
-  <meta name="description" content="Full details of EduDesign UK services: academic support, CV & career, coding & projects, analytics & dashboards, website development, and branding & design — with subjects and tools." />
+  <meta name="description" content="Full details of EduDesign UK services: academic support, CV & career, coding & projects, analytics & dashboards, websites, and branding & design — with subjects and tools." />
   <link rel="canonical" href="https://edudesign-pink.vercel.app/services.html" />
   <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="EduDesign UK" />
   <meta property="og:title" content="Services | EduDesign UK by Noor" />
-  <meta property="og:description" content="Academic support, CV & career, coding & projects, analytics & dashboards, website development, and branding & design — with subjects and tools." />
+  <meta property="og:description" content="Academic support, CV & career, coding, analytics, websites and branding — with subjects and tools." />
   <meta property="og:url" content="https://edudesign-pink.vercel.app/services.html" />
   <meta property="og:image" content="https://edudesign-pink.vercel.app/static/images/og-image.svg" />
   <meta name="twitter:card" content="summary_large_image" />
@@ -18,7 +17,7 @@
   <link rel="stylesheet" href="/static/css/style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
 <body>
@@ -27,16 +26,16 @@
   <header class="navbar scrolled" id="navbar">
     <div class="nav-container">
       <a href="/" class="logo" aria-label="EduDesign UK by Noor home">
-        <img src="/static/images/logo-circle.png" onerror="this.onerror=null;this.src='/static/images/logo-circle.svg'" alt="EduDesign UK by Noor" class="logo-mark" />
+        <span class="brand">Edu<span class="design">Design</span> <span class="uk">UK</span></span><span class="brand-by">by Noor</span>
       </a>
       <nav class="nav-links" id="navLinks" aria-label="Primary">
         <ul>
           <li><a href="/">Home</a></li>
           <li><a href="/services.html" class="active-link">Services</a></li>
-          <li><a href="/#work">Work</a></li>
-          <li><a href="/#process">Process</a></li>
+          <li><a href="/#work">Our Work</a></li>
           <li><a href="/#faqs">FAQs</a></li>
-          <li class="nav-cta-wrap"><a href="/#contact" class="btn btn-primary btn-sm nav-cta">Request a Consultation</a></li>
+          <li><a href="/#contact">Contact</a></li>
+          <li class="nav-cta-wrap"><a href="/#contact" class="btn btn-accent btn-sm nav-cta">Request a Consultation</a></li>
         </ul>
       </nav>
       <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks"><span></span><span></span><span></span></button>
@@ -49,35 +48,33 @@
         <a href="/" class="back-link">← Back to home</a>
         <span class="tag">Our Services</span>
         <h1 class="section-title">Everything we do, <span class="accent">in detail</span></h1>
-        <p class="section-sub">Six service areas with full lists, subjects and tools. Use responsible academic-support guidance — we help you improve your own work; we don’t guarantee grades or offer AI/Turnitin bypass.</p>
+        <p class="section-sub">Six service areas with full lists, subjects and tools. We provide responsible academic guidance to help you improve your own work — no guaranteed grades, no AI or Turnitin bypass.</p>
       </div>
     </section>
 
-    <section class="svc-detail">
-      <div class="container narrow">
-        <div class="accordion" id="servicesAccordion"></div>
-      </div>
+    <section style="padding-top:30px">
+      <div class="container narrow"><div class="accordion" id="servicesAccordion"></div></div>
     </section>
 
-    <section class="subjects-section">
+    <section style="padding-top:10px">
       <div class="container">
         <div class="subjects-block">
           <div class="section-head left"><span class="tag">Subjects &amp; Modules</span><h2 class="section-title sm">A wide range of <span class="accent">subjects covered</span></h2></div>
-          <label class="subject-search" for="subjectSearch"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i><input type="search" id="subjectSearch" placeholder="Search your subject or module…" autocomplete="off" aria-label="Search subjects" /></label>
+          <label class="subject-search" for="subjectSearch"><i class="fa-solid fa-magnifying-glass"></i><input type="search" id="subjectSearch" placeholder="Search your subject or module…" autocomplete="off" aria-label="Search subjects" /></label>
           <ul class="subjects-grid" id="subjectsGrid"></ul>
-          <p class="subjects-empty" id="subjectsEmpty" hidden>No match — send us your module brief and we’ll confirm availability.</p>
-          <p class="muted center" style="margin-top:16px">Can’t find your subject? <a href="#" class="link wa-link" data-msg="academic">Send us your module brief</a> and we’ll confirm availability.</p>
+          <p class="subjects-empty" id="subjectsEmpty" hidden>No match — send us your module brief and we'll confirm availability.</p>
+          <p class="muted center" style="margin-top:16px">Can't find your subject? <a href="#" class="link wa-link" data-msg="academic">Send us your module brief</a>.</p>
         </div>
       </div>
     </section>
 
-    <section class="cta-band">
+    <section class="cta-strip">
       <div class="container center">
         <h2 class="section-title">Ready to <span class="accent">get started?</span></h2>
         <p class="section-sub" style="margin-bottom:24px">Contact our team for a private quotation based on your requirements, deadline and complexity.</p>
-        <div class="hero-actions center">
-          <a href="/#contact" class="btn btn-primary">Request a Consultation</a>
-          <a href="#" class="btn btn-ghost wa-link" data-msg="general"><i class="fa-brands fa-whatsapp"></i> WhatsApp Us</a>
+        <div class="hero-actions" style="justify-content:center">
+          <a href="/#contact" class="btn btn-accent">Request a Consultation</a>
+          <a href="#" class="btn btn-secondary wa-link" data-msg="general"><i class="fa-brands fa-whatsapp"></i> WhatsApp Us</a>
         </div>
       </div>
     </section>
@@ -86,12 +83,12 @@
   <footer class="footer">
     <div class="container footer-grid">
       <div class="footer-brand">
-        <a href="/" class="logo"><img src="/static/images/logo-circle.png" onerror="this.onerror=null;this.src='/static/images/logo-circle.svg'" alt="EduDesign UK by Noor" class="logo-mark" /></a>
+        <a href="/" class="logo"><span class="brand">Edu<span class="design">Design</span> <span class="uk">UK</span></span><span class="brand-by">by Noor</span></a>
         <p>Academic, career, technical and creative solutions for students, graduates and small businesses.</p>
         <div class="footer-social" id="footerSocial"></div>
       </div>
       <div class="footer-col"><h4>Explore</h4><ul>
-        <li><a href="/">Home</a></li><li><a href="/#work">Selected Work</a></li><li><a href="/#process">Process</a></li><li><a href="/#feedback">Feedback</a></li><li><a href="/#faqs">FAQs</a></li><li><a href="/#contact">Contact</a></li>
+        <li><a href="/">Home</a></li><li><a href="/#work">Our Work</a></li><li><a href="/#process">Process</a></li><li><a href="/#faqs">FAQs</a></li><li><a href="/#contact">Contact</a></li>
       </ul></div>
       <div class="footer-col"><h4>Policies</h4><ul id="footerPolicies"></ul></div>
     </div>
