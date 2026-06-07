@@ -335,4 +335,7 @@ Details: ${g("description")}${cForm.samples.checked ? "\nRequesting anonymised w
 
   /* ---- Bind remaining WhatsApp links --------------------------- */
   bindWa(document);
+
+  /* ---- Remove the intro splash once it has faded --------------- */
+  setTimeout(() => { const i = document.getElementById("intro"); if (i) i.remove(); }, 2100);
 })();

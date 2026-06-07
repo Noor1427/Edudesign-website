@@ -43,9 +43,43 @@
     "sameAs": ["https://instagram.com/edudesign_uk"]
   }
   </script>
+
+  <style>
+    /* Short intro splash (auto-dismisses ~1.7s; content stays intact beneath) */
+    .intro{position:fixed;inset:0;z-index:5000;display:grid;place-items:center;
+      background:linear-gradient(135deg,#fff 0%,#FFF0F6 55%,#FDE6F0 100%);
+      animation:introOut .6s ease 1.2s forwards}
+    .intro__box{position:relative;display:grid;place-items:center;text-align:center}
+    .intro__logo{width:min(230px,54vw);height:auto;
+      animation:introPop 1s cubic-bezier(.22,1,.36,1) both;
+      filter:drop-shadow(0 12px 30px rgba(225,76,130,.25))}
+    .intro__bar{margin-top:20px;width:150px;height:4px;border-radius:50px;background:rgba(225,76,130,.15);overflow:hidden}
+    .intro__bar::after{content:"";display:block;height:100%;width:0;border-radius:50px;
+      background:linear-gradient(90deg,#E14C82,#F7B5D0);animation:introBar 1.2s ease forwards}
+    .intro__spark{position:absolute;font-size:22px;opacity:0;animation:introSpark 1.3s ease forwards}
+    .intro__spark.s1{top:-4%;left:6%;animation-delay:.25s}
+    .intro__spark.s2{top:8%;right:4%;animation-delay:.45s}
+    .intro__spark.s3{bottom:4%;left:16%;animation-delay:.6s}
+    @keyframes introPop{0%{opacity:0;transform:scale(.7) translateY(12px)}60%{opacity:1;transform:scale(1.05)}100%{opacity:1;transform:scale(1)}}
+    @keyframes introBar{to{width:100%}}
+    @keyframes introSpark{0%{opacity:0;transform:scale(.4) rotate(0)}50%{opacity:1;transform:scale(1.2) rotate(18deg)}100%{opacity:0;transform:scale(.6) rotate(36deg)}}
+    @keyframes introOut{to{opacity:0;visibility:hidden;pointer-events:none}}
+    @media (prefers-reduced-motion:reduce){.intro{display:none}}
+  </style>
 </head>
 <body>
   <a href="#main" class="skip-link">Skip to content</a>
+
+  <!-- Short intro splash -->
+  <div class="intro" id="intro" aria-hidden="true">
+    <div class="intro__box">
+      <span class="intro__spark s1">✨</span>
+      <span class="intro__spark s2">✨</span>
+      <span class="intro__spark s3">✨</span>
+      <img src="/static/images/logo-circle.png" onerror="this.onerror=null;this.src='/static/images/logo-circle.svg'" alt="" class="intro__logo" />
+      <div class="intro__bar"></div>
+    </div>
+  </div>
 
   <!-- ════════ HEADER / NAV ════════ -->
   <header class="navbar" id="navbar">
