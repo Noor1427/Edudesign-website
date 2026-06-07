@@ -107,20 +107,8 @@
     draw("All");
   }
 
-  /* ---- Results -------------------------------------------------- */
-  filterGrid("resultFilters", "resultsGrid", C.results || [], (r) => `
-    <article class="result-card reveal">
-      <div class="result-media">${r.image ? `<img src="${esc(r.image)}" alt="${esc(r.title)} — anonymised example" loading="lazy">` : `<i class="fa-solid fa-award"></i>`}</div>
-      <div class="result-body">
-        <span class="result-cat">${esc(r.category || "")}</span>
-        <h3>${esc(r.title || "")}</h3>
-        <p>${esc(r.desc || "")}</p>
-        <div class="result-meta">
-          ${r.anonymised !== false ? `<span class="badge-anon"><i class="fa-solid fa-user-shield"></i> Anonymised</span>` : ""}
-          ${r.date ? `<span class="badge-date">${esc(r.date)}</span>` : ""}
-        </div>
-      </div>
-    </article>`, "resultsEmpty");
+  /* ---- Results/Evidence are intentionally NOT shown publicly -----
+     Evidence is confidential and shared privately on request (#results). */
 
   /* ---- Portfolio ------------------------------------------------ */
   filterGrid("portfolioFilters", "portfolioGrid", C.portfolio || [], (p) => `
@@ -146,23 +134,29 @@
   /* ---- Reviews -------------------------------------------------- */
   (function reviews() {
     const grid = $("#reviewsGrid"), empty = $("#reviewsEmpty");
-    const list = (C.reviews || []).filter(r => r.verified !== false);
     if (!grid) return;
+    // Displayed feedback lives in /static/data/feedback.js (window.EDU_FEEDBACK)
+    const src = (window.EDU_FEEDBACK && window.EDU_FEEDBACK.length) ? window.EDU_FEEDBACK : (C.reviews || []);
+    const list = src.filter(r => r && r.verified !== false);
     if (!list.length) { grid.style.display = "none"; if (empty) empty.hidden = false; return; }
     if (empty) empty.hidden = true;
+    grid.style.display = "";
     grid.innerHTML = list.map(r => {
-      const name = r.display === "anonymous" ? "Anonymous" : esc(r.name || "");
-      const initial = (r.name || "A").trim()[0] || "A";
+      const rate = Math.max(1, Math.min(5, r.rating || 5));
+      const name = r.display === "anonymous" ? "Anonymous" : esc(r.name || "Anonymous");
+      const initial = ((r.name || "A").trim()[0] || "A").toUpperCase();
+      const sub = esc(r.category || r.service || "");
       return `<article class="review-card reveal">
-        <div class="review-stars">${"★".repeat(r.rating || 5)}${"☆".repeat(5 - (r.rating || 5))}</div>
+        <div class="review-stars" aria-label="${rate} out of 5 stars">${"★".repeat(rate)}${"☆".repeat(5 - rate)}</div>
         <p>${esc(r.text || "")}</p>
         <div class="review-meta">
-          <span class="review-av">${esc(initial.toUpperCase())}</span>
-          <span><span class="review-name">${name}</span><br><span class="review-cat">${esc(r.category || "")}${r.date ? " · " + esc(r.date) : ""}</span></span>
-          ${r.verified ? `<span class="badge-verified"><i class="fa-solid fa-check"></i> Verified</span>` : ""}
+          <span class="review-av">${esc(initial)}</span>
+          <span><span class="review-name">${name}</span><br><span class="review-cat">${sub}${r.date ? (sub ? " · " : "") + esc(r.date) : ""}</span></span>
+          <span class="badge-verified"><i class="fa-solid fa-check"></i> Verified</span>
         </div>
       </article>`;
     }).join("");
+    observe($$(".reveal", grid));
   })();
 
   /* ---- FAQs ----------------------------------------------------- */

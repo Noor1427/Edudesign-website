@@ -15,8 +15,7 @@ window.EDU = {
     // WhatsApp (international format, digits only). Primary + secondary line.
     whatsapp: "923446104224",        // 0344 6104224
     whatsapp2: "923336654334",       // 0333 6654334
-    // ⚠️ OWNER TODO: add a public contact email (leave blank to hide the email button)
-    email: "",
+    email: "noorieee532@gmail.com",
     instagram: "https://www.instagram.com/edudesign_assignments_helper?igsh=MW5qbG45aXRieGZ3dA%3D%3D&utm_source=qr",
     // ⚠️ OWNER TODO: add the real Facebook page URL (leave blank to hide)
     facebook: "",

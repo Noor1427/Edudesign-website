@@ -198,7 +198,9 @@ section{padding:84px 0;scroll-margin-top:80px}
 .disclaimer i{color:var(--blue);margin-right:6px}
 .confidential-box{margin-top:22px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;background:linear-gradient(135deg,#fff,var(--bg-tint));border:1px solid var(--line);border-radius:var(--radius-lg);padding:28px 30px;box-shadow:var(--shadow-sm)}
 .confidential-box h3{font-size:20px;margin-bottom:6px}
+.confidential-box h3 i{color:var(--pink);margin-right:6px}
 .confidential-box p{font-size:14.5px;color:var(--text);max-width:620px}
+.confidential-actions{display:flex;gap:10px;flex-wrap:wrap;flex-shrink:0}
 
 /* ════════ PORTFOLIO ════════ */
 .portfolio-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:22px}
