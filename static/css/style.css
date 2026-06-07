@@ -39,7 +39,7 @@
   --maxw:1180px;
 }
 
-html{scroll-behavior:smooth;scroll-padding-top:86px;-webkit-text-size-adjust:100%;text-size-adjust:100%}
+html{scroll-behavior:smooth;scroll-padding-top:104px;-webkit-text-size-adjust:100%;text-size-adjust:100%}
 body{font-family:var(--font);color:var(--text);background:var(--bg);line-height:1.7;overflow-x:hidden;-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent}
 a{color:inherit;text-decoration:none}
 ul{list-style:none}
@@ -82,10 +82,10 @@ section{padding:84px 0;scroll-margin-top:80px}
 .navbar.nav-hidden{transform:translateY(-100%)}
 .nav-container{max-width:var(--maxw);margin:0 auto;padding:11px 22px;display:flex;align-items:center;justify-content:space-between;gap:18px}
 .logo{display:flex;align-items:center;gap:10px;flex-shrink:0}
-.logo-mark{height:56px;width:auto;border-radius:12px;object-fit:contain;background:transparent;animation:logoGlow 3.6s ease-in-out infinite}
+.logo-mark{height:72px;width:auto;border-radius:12px;object-fit:contain;background:transparent;animation:logoGlow 3.6s ease-in-out infinite}
 /* The full logo already contains the name + "by Noor" + tagline */
 .logo-wordmark,.by-noor{display:none}
-.footer .logo-mark{background:#fff;padding:7px;border-radius:14px;height:66px;box-shadow:0 6px 20px rgba(0,0,0,.18)}
+.footer .logo-mark{background:#fff;padding:8px;border-radius:16px;height:88px;box-shadow:0 6px 20px rgba(0,0,0,.18)}
 .logo-wordmark{font-family:var(--head);font-weight:800;font-size:20px;letter-spacing:-.5px;color:var(--ink)}
 .logo-wordmark .edu{color:var(--pink)}
 .logo-wordmark .uk{color:var(--ink);background:var(--yellow-soft);padding:0 6px;border-radius:6px}
