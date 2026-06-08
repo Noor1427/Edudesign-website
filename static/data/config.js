@@ -91,10 +91,10 @@ window.EDU = {
 
   /* ---- Selected Work (clearly-labelled examples; add real images later) -- */
   portfolio: [
-    { title: "Sales Analytics Dashboard", category: "Data Visualisation", icon: "chart-column", image: "" },
-    { title: "Corporate Website",         category: "Web Design",         icon: "display",      image: "" },
-    { title: "Brand Identity",            category: "Logo & Brand Identity", icon: "pen-nib",   image: "" },
-    { title: "Research Report",           category: "Academic Writing",   icon: "file-lines",   image: "" }
+    { title: "Sales Analytics Dashboard", category: "Data Visualisation", icon: "chart-column", image: "/static/images/portfolio/analytics.jpg" },
+    { title: "Corporate Website",         category: "Web Design",         icon: "display",      image: "/static/images/portfolio/website.jpg" },
+    { title: "Brand Identity",            category: "Logo & Brand Identity", icon: "pen-nib",   image: "/static/images/portfolio/brand.jpg" },
+    { title: "Research Report",           category: "Academic Writing",   icon: "file-lines",   image: "/static/images/portfolio/report.jpg" }
   ],
 
   results: [],

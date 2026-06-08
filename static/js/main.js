@@ -160,7 +160,7 @@
     anchors.forEach(a => a.classList.toggle("active-link", a.getAttribute("href") === "#" + cur && !a.classList.contains("nav-cta"))); }, { passive: true });
 
   /* ---- Reveal -------------------------------------------------- */
-  $$(".section-head, .svc-card, .aud-card, .pstep, .proof-card, .qb-card, .trust-card, .cta-card, .panel, .hc, .acc-item").forEach(e => e.classList.add("reveal"));
+  $$(".section-head, .svc-card, .aud-card, .pstep, .proof-card, .qb-card, .trust-card, .cta-card, .panel, .acc-item").forEach(e => e.classList.add("reveal"));
   observe($$(".reveal"));
 
   /* ---- Validation helpers -------------------------------------- */

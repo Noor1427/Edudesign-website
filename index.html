@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <meta name="theme-color" content="#EE7FB0" />
+  <meta name="theme-color" content="#0D1B2A" />
   <meta name="format-detection" content="telephone=no" />
   <title>EduDesign UK | Academic, Career, Coding, Analytics and Web Services</title>
   <meta name="description" content="EduDesign UK provides academic support, CV services, coding assistance, data analytics, website development, branding and professional digital solutions for students and small businesses." />
@@ -31,9 +31,9 @@
   <!-- ════ HEADER ════ -->
   <header class="navbar" id="navbar">
     <div class="nav-container">
-      <a href="#home" class="logo" aria-label="EduDesign UK by Noor home">
-        <span class="brand">Edu<span class="design">Design</span> <span class="uk">UK</span></span>
-        <span class="brand-by">by Noor</span>
+      <a href="#home" class="logo" aria-label="EduDesign UK home">
+        <span class="logo-mark"></span><span class="brand">Edu<span class="design">Design</span> <span class="uk">UK</span></span>
+        
       </a>
       <nav class="nav-links" id="navLinks" aria-label="Primary">
         <ul>
@@ -53,29 +53,41 @@
 
     <!-- ════ HERO ════ -->
     <section class="hero" id="home">
+      <span class="blob blob-1"></span><span class="blob blob-2"></span>
       <div class="container hero-inner">
         <div class="hero-content">
+          <span class="hero-pill"><i class="fa-solid fa-star"></i> Academic. Career. Digital. All in One Place.</span>
           <h1 class="hero-title">Academic, Career and Digital Solutions — <span class="accent">All in One</span> Place</h1>
           <p class="hero-sub">We help students, graduates and small businesses succeed with academic support, CVs, coding, websites, branding and analytics — all delivered with confidentiality, quality and care.</p>
           <div class="hero-actions">
             <a href="/services.html" class="btn btn-primary">Explore Services <i class="fa-solid fa-arrow-right"></i></a>
             <a href="#" class="btn btn-secondary wa-link" data-msg="general">Speak With Our Team</a>
           </div>
-          <p class="hero-trust"><i class="fa-solid fa-shield-halved"></i> Trusted by students and professionals</p>
+          <div class="hero-trust">
+            <span class="avatars"><i class="fa-solid fa-user"></i><i class="fa-solid fa-user"></i><i class="fa-solid fa-user"></i><i class="fa-solid fa-user"></i></span>
+            <span class="hero-trust-txt"><i class="fa-solid fa-shield-halved"></i> Trusted by students and professionals</span>
+          </div>
         </div>
 
         <div class="collage" aria-label="Examples of work we produce">
-          <span class="pink-dash">//</span>
+          <!-- floating mini icons -->
+          <span class="mini mini-cap"><i class="fa-solid fa-graduation-cap"></i></span>
+          <span class="mini mini-code"><i class="fa-solid fa-code"></i></span>
+          <span class="mini mini-chart"><i class="fa-solid fa-arrow-trend-up"></i></span>
+          <span class="mini mini-bag"><i class="fa-solid fa-briefcase"></i></span>
+
           <div class="hc hc-cv">
-            <div class="hc-title">CV Review</div>
+            <div class="hc-title">CV Review <i class="fa-solid fa-circle-check cv-ok"></i></div>
             <div class="cv-top"><span class="cv-av">SA</span><div><div class="cv-name">Sarah Ahmed</div><div class="cv-role">Marketing Specialist</div></div></div>
-            <div class="hc-sec">Profile</div><div class="ln"></div><div class="ln s"></div>
-            <div class="hc-sec">Experience</div><div class="ln"></div><div class="ln m"></div>
-            <div class="hc-sec">Education</div><div class="ln s"></div>
-            <div class="hc-sec">Skills</div><div class="ln m"></div>
+            <div class="cv-row"><i class="fa-solid fa-user"></i><span>Profile Summary</span><b class="meter"><b style="width:92%"></b></b><em>92%</em></div>
+            <div class="cv-row"><i class="fa-solid fa-briefcase"></i><span>Experience</span><b class="meter"><b style="width:88%"></b></b><em>88%</em></div>
+            <div class="cv-row"><i class="fa-solid fa-graduation-cap"></i><span>Education</span><b class="meter"><b style="width:95%"></b></b><em>95%</em></div>
+            <div class="cv-row"><i class="fa-solid fa-star"></i><span>Skills</span><b class="meter"><b style="width:90%"></b></b><em>90%</em></div>
+            <div class="cv-score"><span><i class="fa-solid fa-circle-check"></i> Overall Score</span><b>9.2/10</b></div>
           </div>
+
           <div class="hc hc-code">
-            <div class="win"><b>Code Snippet</b><span class="dots"><i></i><i></i><i></i></span></div>
+            <div class="win"><b>Code Snippet</b><i class="fa-regular fa-copy"></i></div>
             <div class="cl"><span class="t5">1</span> <span class="t1">&lt;!DOCTYPE html&gt;</span></div>
             <div class="cl"><span class="t5">2</span> <span class="t1">&lt;html</span> <span class="t3">lang</span>=<span class="t2">"en"</span><span class="t1">&gt;</span></div>
             <div class="cl"><span class="t5">3</span> <span class="t1">&lt;head&gt;</span></div>
@@ -85,26 +97,48 @@
             <div class="cl"><span class="t5">7</span> &nbsp;<span class="t1">&lt;h1&gt;</span><span class="t4">Build Success</span></div>
             <div class="cl"><span class="t5">8</span> <span class="t1">&lt;/body&gt;</span></div>
           </div>
+
           <div class="hc hc-an">
-            <div class="hc-title">Analytics Dashboard</div>
-            <div class="an-top"><div><div class="an-views">Total Views</div><div class="an-big">12.4K</div><div class="an-up">↑ 18.6%</div></div><div class="donut"></div></div>
-            <div class="bars"><i style="height:40%"></i><i style="height:66%"></i><i style="height:50%"></i><i style="height:88%"></i><i style="height:60%"></i><i style="height:74%"></i></div>
+            <div class="an-head"><div class="hc-title">Analytics Dashboard</div><span class="an-chip">This Month <i class="fa-solid fa-chevron-down"></i></span></div>
+            <div class="an-top">
+              <div><div class="an-views">Total Views</div><div class="an-big">12.4K</div><div class="an-up"><i class="fa-solid fa-arrow-up"></i> 18.6%</div></div>
+              <div class="donut"><span>68%<small>Engagement</small></span></div>
+            </div>
+            <div class="bars"><i style="height:32%"></i><i style="height:48%"></i><i style="height:40%"></i><i style="height:70%"></i><i style="height:55%"></i><i style="height:84%"></i><i style="height:60%"></i><i style="height:46%"></i><i style="height:74%"></i></div>
+            <div class="an-x"><span>May 6</span><span>May 13</span><span>May 20</span><span>May 27</span></div>
           </div>
+
           <div class="hc hc-web">
-            <div class="hc-title">Website Design</div>
-            <div class="web-h">Build. Grow.<br>Succeed.</div>
-            <div class="ln s"></div><div class="ln m"></div>
-            <div class="web-img"></div>
-            <span class="web-btn">Learn More</span>
+            <div class="web-nav"><b>Website Design</b><span>Home About Services Contact</span></div>
+            <div class="web-body">
+              <div class="web-l">
+                <div class="web-h">Build. Grow.<br><span>Succeed.</span></div>
+                <p>Modern websites that drive results for your business.</p>
+                <span class="web-btn">View Project</span>
+              </div>
+              <div class="web-img"></div>
+            </div>
+            <div class="web-stats"><span><b>120+</b>Projects</span><span><b>98%</b>Client Satisfaction</span><span><b>5★</b>Average Rating</span></div>
           </div>
+
           <div class="hc hc-report">
-            <div class="hc-title">Academic Report</div>
+            <div class="hc-title"><span class="rp-ic"><i class="fa-solid fa-file-lines"></i></span> Academic Report</div>
             <div class="rp-sub">Research Summary</div>
-            <div class="ln"></div><div class="ln m"></div><div class="ln"></div><div class="ln s"></div><div class="ln m"></div>
+            <p class="rp-txt">This study explores the impact of digital learning on student performance and engagement across different disciplines.</p>
+            <div class="rp-prog"><span>Complete</span><b>100%</b></div>
+            <div class="rp-bar"><i></i></div>
           </div>
+
           <div class="hc hc-logo">
-            <div class="hc-title">Logo Design</div>
+            <div class="hc-title">Logo &amp; Branding</div>
             <div class="logo-box"><div class="hex"></div><div class="logo-name">NEXORA</div><div class="logo-tag">SOLUTIONS</div></div>
+            <div class="swatches"><span style="background:#2563EB"></span><span style="background:#FF6B93"></span><span style="background:#0D1B2A"></span><span style="background:#E6F1FF"></span></div>
+          </div>
+
+          <div class="hc hc-growth">
+            <div class="gr-top">Growth</div>
+            <div class="gr-num">+24.6%</div>
+            <svg class="gr-spark" viewBox="0 0 80 30" preserveAspectRatio="none"><polyline points="0,26 14,20 26,23 40,12 54,15 68,5 80,2" fill="none" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </div>
         </div>
       </div>
@@ -251,7 +285,7 @@
   <footer class="footer">
     <div class="container footer-grid">
       <div class="footer-brand">
-        <a href="#home" class="logo"><span class="brand">Edu<span class="design">Design</span> <span class="uk">UK</span></span><span class="brand-by">by Noor</span></a>
+        <a href="#home" class="logo"><span class="logo-mark"></span><span class="brand">Edu<span class="design">Design</span> <span class="uk">UK</span></span></a>
         <p>Academic, career, technical and creative solutions for students, graduates and small businesses.</p>
         <div class="footer-social" id="footerSocial"></div>
       </div>
@@ -260,7 +294,7 @@
       </ul></div>
       <div class="footer-col"><h4>Policies</h4><ul id="footerPolicies"></ul></div>
     </div>
-    <div class="footer-bottom"><p>&copy; <span id="year"></span> EduDesign UK by Noor. All rights reserved.</p></div>
+    <div class="footer-bottom"><p>&copy; <span id="year"></span> EduDesign UK. All rights reserved.</p></div>
   </footer>
 
   <a href="#" class="floating-whatsapp wa-link" data-msg="general" aria-label="Message EduDesign UK on WhatsApp"><i class="fa-brands fa-whatsapp"></i><span class="floating-tooltip">Message EduDesign UK</span></a>

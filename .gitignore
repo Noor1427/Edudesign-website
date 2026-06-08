@@ -27,4 +27,9 @@ Thumbs.db
 # Claude Code internal
 .claude/
 
+# Local AI tooling (not part of the website — do not push to Noor's repo)
+.mcp.json
+.agents/
+skills-lock.json
+
 .vercel
