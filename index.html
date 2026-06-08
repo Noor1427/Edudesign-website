@@ -216,22 +216,38 @@
       </div>
     </section>
 
-    <!-- ════ FAQ + CONTACT ════ -->
-    <section class="faq-contact" id="contact">
+    <!-- ════ FAQ ════ -->
+    <section class="faqs" id="faqs">
       <div class="container">
-        <div class="fc-grid">
-          <div class="panel">
-            <h2>FAQ</h2>
-            <div class="faq-list" id="faqList"></div>
-            <a href="/services.html" class="faq-all">More about our services <i class="fa-solid fa-arrow-right"></i></a>
+        <div class="section-head">
+          <span class="tag">FAQ</span>
+          <h2 class="section-title">Frequently Asked Questions</h2>
+          <p class="section-sub">Everything you need to know before getting started.</p>
+        </div>
+        <div class="faq-wrap">
+          <div class="faq-list" id="faqList"></div>
+          <a href="/services.html" class="faq-all">More about our services <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════ GET IN TOUCH ════ -->
+    <section class="contact" id="contact">
+      <div class="container">
+        <div class="section-head">
+          <span class="tag">Contact</span>
+          <h2 class="section-title">Get in Touch</h2>
+          <p class="section-sub">Have a question or ready to start? We're here to help.</p>
+        </div>
+        <div class="contact-grid">
+          <div class="panel contact-info">
+            <h3>Talk to us directly</h3>
+            <ul id="contactInfoList"></ul>
+            <a href="#" class="btn btn-secondary wa-link" data-msg="general" style="margin-top:6px"><i class="fa-brands fa-whatsapp"></i> Chat on WhatsApp</a>
           </div>
           <div class="panel">
-            <h2 id="ct-h">Get in Touch</h2>
-            <div class="contact-info">
-              <p class="lead">Have a question or ready to start? We're here to help.</p>
-              <ul id="contactInfoList"></ul>
-            </div>
-            <form id="contactForm" class="msg-form" novalidate style="margin-top:18px">
+            <h3>Send us a message</h3>
+            <form id="contactForm" class="msg-form" novalidate>
               <input type="text" name="website" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true" />
               <div class="field"><label for="c-name">Name</label><input id="c-name" name="name" type="text" required /></div>
               <div class="field"><label for="c-contact">Email or phone</label><input id="c-contact" name="contact" type="text" required /></div>
@@ -240,7 +256,6 @@
               <label class="check"><input type="checkbox" name="consent" required /> I consent to EduDesign UK using these details to respond to my enquiry.</label>
               <div class="hero-actions" style="margin:0">
                 <button type="submit" class="btn btn-accent">Send Message</button>
-                <a href="#" class="btn btn-secondary wa-link" data-msg="general"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
               </div>
               <p class="form-status" id="contactStatus" role="status" aria-live="polite"></p>
             </form>

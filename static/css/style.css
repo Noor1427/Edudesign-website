@@ -615,6 +615,27 @@ section{padding:72px 0}
   .collage .hc-growth{top:auto;left:-12px;bottom:-14px;width:146px;animation:popIn .8s ease both,orbit 8s ease-in-out infinite}
 }
 
+/* ════════ FAQ + CONTACT (stacked) ════════ */
+.faqs{background:var(--bg-soft)}
+.faq-wrap{max-width:820px;margin:0 auto}
+.faqs .faq-all{margin-top:22px;display:flex;justify-content:center}
+/* staggered fade-up entrance for FAQ items */
+.faq-list .faq-item{animation:fadeUp .55s ease both}
+.faq-list .faq-item:nth-child(1){animation-delay:.04s}
+.faq-list .faq-item:nth-child(2){animation-delay:.10s}
+.faq-list .faq-item:nth-child(3){animation-delay:.16s}
+.faq-list .faq-item:nth-child(4){animation-delay:.22s}
+.faq-list .faq-item:nth-child(5){animation-delay:.28s}
+.faq-list .faq-item:nth-child(6){animation-delay:.34s}
+.faq-list .faq-item:nth-child(7){animation-delay:.40s}
+.faq-list .faq-item:nth-child(8){animation-delay:.46s}
+.faq-item.open .faq-a p{animation:fadeUp .35s ease}
+.contact{background:#fff}
+.contact-grid{display:grid;grid-template-columns:1fr 1.15fr;gap:26px;align-items:start;max-width:980px;margin:0 auto}
+.contact .panel h3{font-size:18px;margin-bottom:16px;color:var(--ink)}
+.contact-info ul{margin-bottom:16px}
+@media (max-width:760px){.contact-grid{grid-template-columns:1fr}}
+
 /* ════════ RESPONSIVE ════════ */
 @media (max-width:1000px){
   .hero-inner{grid-template-columns:1fr;gap:38px}
