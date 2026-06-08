@@ -659,7 +659,7 @@ section{padding:72px 0}
   .aud-card{padding:26px 20px}
   .aud-card h3{font-size:20px}
   .aud-ic{width:54px;height:54px;font-size:22px}
-  .aud-feats{padding:14px 8px;gap:8px}
+  .aud-feats{background:transparent;padding:0;margin-top:4px;gap:8px}
   .aud-feat{font-size:11px}
   .svc-card{padding:24px 20px}
   .svc-card h3{font-size:18px}
@@ -711,7 +711,10 @@ section{padding:72px 0}
 @media (max-width:520px){
   .container{padding:0 16px}
   .services-grid,.work-grid{grid-template-columns:1fr}
-  .trust-card{grid-template-columns:1fr}
+  .trust-card{grid-template-columns:1fr 1fr;gap:16px 12px;padding:22px 14px}
+  .trust-item{flex-direction:column;text-align:center;gap:8px}
+  .trust-item i{font-size:20px}
+  .trust-item span{font-size:12px}
   .qb-feats{grid-template-columns:1fr}
   .footer-grid{grid-template-columns:1fr}
   .floating-whatsapp{width:54px;height:54px;font-size:25px}
