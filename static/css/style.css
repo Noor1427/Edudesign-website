@@ -232,12 +232,16 @@ section{padding:72px 0}
 .panel{background:#fff;border:1px solid var(--line);border-radius:var(--radius-lg);padding:30px;box-shadow:var(--shadow-sm)}
 .panel h2,.panel h3{font-size:22px;margin-bottom:18px}
 .faq-list{display:flex;flex-direction:column;gap:10px}
-.faq-item{border:1px solid var(--line);border-radius:10px;overflow:hidden}
-.faq-q{width:100%;display:flex;align-items:center;justify-content:space-between;gap:12px;text-align:left;background:none;border:0;cursor:pointer;padding:15px 16px;font-weight:600;font-size:14.5px;color:var(--ink)}
-.faq-q i{color:var(--blue);transition:transform var(--t)}
-.faq-item.open .faq-q i{transform:rotate(180deg)}
+.faq-item{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#fff;transition:border-color var(--t),background var(--t),box-shadow var(--t)}
+.faq-item:hover{border-color:var(--line-2)}
+.faq-item.open{border-color:#cfe0ff;background:var(--blue-soft-2);box-shadow:var(--shadow-sm)}
+.faq-q{width:100%;display:flex;align-items:center;justify-content:space-between;gap:12px;text-align:left;background:none;border:0;cursor:pointer;padding:16px;font-weight:600;font-size:14.5px;color:var(--ink);transition:color var(--t)}
+.faq-q:hover{color:var(--blue)}
+.faq-item.open .faq-q{color:var(--blue)}
+.faq-q i{flex-shrink:0;width:24px;height:24px;border-radius:50%;background:var(--blue-soft);color:var(--blue);display:grid;place-items:center;font-size:11px;transition:transform var(--t),background var(--t),color var(--t)}
+.faq-item.open .faq-q i{transform:rotate(180deg);background:var(--blue);color:#fff}
 .faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease}
-.faq-a p{padding:0 16px 16px;font-size:14px;color:var(--text)}
+.faq-a p{padding:0 16px 16px;font-size:14px;color:var(--text);line-height:1.6}
 .faq-all{margin-top:16px;font-weight:700;color:var(--blue);display:inline-flex;gap:7px}
 .contact-info p.lead{color:var(--muted);font-size:15px;margin-bottom:14px}
 .contact-info ul li{display:flex;align-items:center;gap:12px;font-size:14.5px;color:var(--charcoal);margin-bottom:12px}

@@ -101,18 +101,22 @@ window.EDU = {
   reviews: [],
 
   faqs: [
+    { q: "How do I get started?",
+      a: "Send us your brief, requirements and deadline through WhatsApp or the contact form. We'll review it, ask any questions, then confirm the scope and a private quote before any work begins." },
+    { q: "How much will my project cost?",
+      a: "Every project differs in complexity, length, deadline and the tools involved, so we don't list fixed prices. Once we've seen your requirements we send a clear, no-obligation quotation — with no hidden fees." },
+    { q: "How long does delivery take?",
+      a: "It depends on the service, length and complexity. Share your deadline and we'll confirm what's realistically possible — we also accommodate shorter turnarounds where we can." },
     { q: "Is my information kept confidential?",
-      a: "Yes. Your files and project details are handled privately and used only to provide the requested service." },
+      a: "Yes. Your files, personal details and project information are handled privately and used only to deliver the service you've requested. See our Confidentiality and Privacy policies for details." },
+    { q: "Do you offer revisions if I need changes?",
+      a: "Yes. Reasonable revisions within the originally agreed scope are included so the final work matches what we confirmed. Full details are in our Revision Policy." },
+    { q: "What subjects and areas do you cover?",
+      a: "A wide range — business, finance, computing, data, health & social care, law, engineering and more — across academic support, CVs, coding, analytics, websites and branding. Check the Services page or just ask." },
     { q: "Can I see samples of your work?",
-      a: "Public examples are in Selected Work, and relevant anonymised samples can be shared privately where confidentiality permits." },
-    { q: "How long does it take to deliver?",
-      a: "It depends on the service, length and complexity. Share your deadline and we'll confirm what's possible." },
-    { q: "Why are prices not shown?",
-      a: "Every request differs in complexity, length, deadline and required tools. A private quotation is provided after we review your requirements." },
-    { q: "Can you guarantee my grade?",
-      a: "No. Academic outcomes depend on your own work, your university's requirements and the marking criteria. We provide guidance and supporting materials to help you improve your own work." },
-    { q: "Do you guarantee zero AI detection or Turnitin bypass?",
-      a: "No. No legitimate service can guarantee a specific AI-detection or similarity score. We focus on original research, clear writing and careful review." }
+      a: "Yes — public examples are in our Selected Work section, and relevant anonymised samples can be shared privately on request where confidentiality permits." },
+    { q: "Can you guarantee my grade or zero AI detection?",
+      a: "No — and no honest service can. Academic outcomes depend on your own work and your university's marking criteria, and no tool can guarantee a specific AI-detection or similarity score. We focus on original research, clear writing and careful review to help you produce your best work." }
   ],
 
   policies: [
