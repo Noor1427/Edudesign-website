@@ -341,9 +341,9 @@ section{padding:72px 0}
 .subject-search:focus-within{border-color:var(--blue);box-shadow:0 0 0 3px rgba(37,99,235,.15)}
 .subject-search i{color:var(--muted)}
 .subject-search input{border:0;outline:0;font:inherit;width:100%;background:none;color:var(--ink)}
-.subjects-grid{display:flex;flex-wrap:wrap;gap:9px}
-.subjects-grid li{font-size:13.5px;font-weight:600;color:var(--charcoal);background:#fff;border:1px solid var(--line);padding:8px 15px;border-radius:50px;transition:var(--t)}
-.subjects-grid li:hover{border-color:var(--blue);color:var(--blue)}
+.subjects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:9px 24px}
+.subjects-grid li{display:flex;align-items:center;gap:10px;font-size:14.5px;font-weight:500;color:var(--charcoal)}
+.subjects-grid li::before{content:"\f00c";font-family:"Font Awesome 6 Free";font-weight:900;color:var(--blue);font-size:11px;flex-shrink:0}
 .subjects-empty{margin-top:12px;color:var(--muted);font-weight:600}
 .link{color:var(--blue);font-weight:600;text-decoration:underline;text-underline-offset:3px}
 .cta-strip{background:var(--bg-soft);text-align:center}
