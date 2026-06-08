@@ -679,40 +679,6 @@ section{padding:72px 0}
 /* never allow sideways scroll on small screens */
 @media (max-width:600px){html,body{max-width:100%;overflow-x:hidden}}
 
-/* ── mobile: show the floating cards + icons (compact, animated) ── */
-@media (max-width:600px){
-  .collage{display:grid;grid-template-columns:1fr 1fr;gap:10px;max-width:330px;margin:2px auto 0;
-    position:relative;height:auto;overflow:visible}
-  .collage::before,.collage::after{display:none}
-  .collage .hc{position:relative;top:auto;left:auto;width:auto;margin:0;font-size:8.5px;padding:11px;border-radius:12px;
-    animation:popIn .7s ease both,floatY 6s ease-in-out infinite}
-  .collage .hc-code{animation-delay:0s,-1.2s}
-  .collage .hc-an{animation-delay:0s,-2.4s}
-  .collage .hc-web{animation-delay:0s,-3.6s}
-  .collage .hc-report{animation-delay:0s,-1.8s}
-  .collage .hc-logo{animation-delay:0s,-3s}
-  .collage .hc-title{font-size:10px;margin-bottom:7px}
-  .hc-cv .cv-av{width:26px;height:26px;font-size:10px}
-  .hc-cv .cv-row{margin:5px 0;font-size:9px}
-  .hc-cv .cv-score{font-size:9.5px;padding:6px 8px}
-  .hc-an .donut{width:42px;height:42px}
-  .hc-an .donut span{font-size:9px}.hc-an .donut small{font-size:4px}
-  .hc-an .bars{height:22px}.hc-an .an-big{font-size:15px}
-  .hc-web{padding:0}
-  .hc-web .web-h{font-size:12px}
-  .hc-web .web-img{width:auto;height:40px}
-  .hc-web .web-stats b{font-size:10px}
-  .hc-logo .logo-box{padding:12px 10px}
-  /* floating mini icons — visible & small, gentle vertical float (no sideways overflow) */
-  .mini{display:grid;width:32px;height:32px;font-size:14px;border-radius:10px;
-    animation:popIn .7s ease both,floatY 5s ease-in-out infinite}
-  .mini-cap{top:-12px;left:-4px}
-  .mini-code{top:32%;right:-8px}
-  .mini-chart{bottom:16%;right:-8px}
-  .mini-bag{bottom:-12px;left:-4px}
-  .hc-growth{display:none}
-}
-
 /* ════════ RESPONSIVE ════════ */
 @media (max-width:1000px){
   .hero-inner{grid-template-columns:1fr;gap:38px}
@@ -752,17 +718,17 @@ section{padding:72px 0}
 }
 /* ── phones: hide the decorative hero collage, tidy hero ── */
 @media (max-width:600px){
-  .hero{padding:94px 0 30px}
-  .hero-inner{gap:26px}
-  .hero-pill{font-size:11px;padding:6px 12px;margin-bottom:16px;white-space:normal;line-height:1.4}
-  .hero-title{font-size:clamp(26px,7.4vw,33px)}
-  .hero-sub{font-size:14.5px;margin:16px 0 22px}
+  .collage{display:none}
+  .hero{padding:98px 0 34px}
+  .hero-inner{gap:0}
+  .hero-pill{font-size:11.5px;padding:7px 12px;margin-bottom:18px;white-space:normal;line-height:1.4}
+  .hero-title{font-size:clamp(30px,8.5vw,40px)}
+  .hero-sub{font-size:15.5px;margin:18px 0 24px}
   .hero-actions{gap:10px}
   .hero-actions .btn{flex:1 1 100%}
   .hero-trust{gap:10px}
-  .hero-trust-txt{font-size:13.5px}
-  .cta-card{padding:30px 20px}
-  .cta-feats{gap:14px 20px}
+  .cta-card{padding:32px 22px}
+  .cta-feats{gap:16px 22px}
   .proof-card,.qb-card{padding:24px 20px}
   .panel{padding:22px 18px}
 }
