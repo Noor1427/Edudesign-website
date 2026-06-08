@@ -326,8 +326,12 @@ section{padding:72px 0}
 .acc-t{flex:1}.acc-chev{color:var(--blue);transition:transform var(--t)}
 .acc-item.open .acc-chev{transform:rotate(180deg)}
 .acc-a{max-height:0;overflow:hidden;transition:max-height .4s ease}
-.acc-inner{padding:0 22px 22px 80px}
-.acc-sum{color:var(--text);margin-bottom:14px}
+.acc-inner{padding:0 22px 22px}
+.acc-banner{height:170px;border-radius:12px;overflow:hidden;margin-bottom:18px;display:grid;place-items:center;box-shadow:var(--shadow-sm);background:var(--bg-soft)}
+.acc-banner img{width:100%;height:100%;object-fit:cover;display:block}
+.acc-banner-grad{background:linear-gradient(135deg,#2563EB,#0D1B2A);color:#fff;font-size:48px}
+.acc-banner-grad i{opacity:.92}
+.acc-sum{color:var(--text);margin-bottom:14px;font-size:15.5px}
 .acc-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:8px 18px;margin-bottom:14px}
 .acc-list li{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--charcoal)}
 .acc-list li i{color:var(--blue);font-size:11px;flex-shrink:0}
