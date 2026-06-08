@@ -178,6 +178,8 @@ section{padding:72px 0}
 .services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
 .svc-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:28px 26px;box-shadow:var(--shadow-sm);transition:transform var(--t),box-shadow var(--t)}
 .svc-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-md)}
+.svc-head{display:flex;flex-direction:column;align-items:flex-start;width:100%;background:none;border:0;padding:0;font:inherit;color:inherit;text-align:left}
+.svc-chev{display:none}
 .svc-ic{width:52px;height:52px;border-radius:13px;background:var(--blue-soft);color:var(--blue);display:grid;place-items:center;font-size:21px;margin-bottom:18px}
 .svc-card h3{font-size:19px;margin-bottom:9px}
 .svc-card p{font-size:14.5px;color:var(--text);margin-bottom:16px}
@@ -661,12 +663,22 @@ section{padding:72px 0}
   .aud-ic{width:54px;height:54px;font-size:22px}
   .aud-feats{background:transparent;padding:0;margin-top:4px;gap:8px}
   .aud-feat{font-size:11px}
-  .svc-card{padding:24px 20px}
-  .svc-card h3{font-size:18px}
+  .svc-card{padding:16px 18px}
+  /* collapsible "Our Services" on mobile */
+  .svc-head{flex-direction:row;align-items:center;gap:12px;cursor:pointer}
+  .svc-head .svc-ic{margin-bottom:0;width:42px;height:42px;font-size:18px}
+  .svc-head h3{flex:1;margin:0;font-size:16px}
+  .svc-chev{display:block;color:var(--blue);font-size:13px;transition:transform .25s ease;flex-shrink:0}
+  .svc-card.open .svc-chev{transform:rotate(180deg)}
+  .svc-body{max-height:0;overflow:hidden;transition:max-height .35s ease}
+  .svc-card.open .svc-body{max-height:260px}
+  .svc-body p{margin:12px 0 12px}
   .qb-text h2{font-size:22px}
   .proof-card h2{font-size:20px}
   .work-thumb{aspect-ratio:16/10}
-  .pstep{min-width:0;max-width:none;width:100%}
+  .steps{flex-direction:column;align-items:flex-start;gap:18px}
+  .pstep{flex:none;width:100%;max-width:none;min-width:0}
+  .work{display:none}
   .cta-card{border-radius:18px;padding:30px 20px}
   .cta-card h2{font-size:26px}
   .cta-feats{gap:14px 20px}

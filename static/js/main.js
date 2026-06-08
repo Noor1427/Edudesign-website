@@ -48,10 +48,22 @@
   (function servicesHome() {
     const g = $("#servicesGrid"); if (!g || !C.services) return;
     g.innerHTML = C.services.map(s => `<article class="svc-card reveal">
-      <div class="svc-ic"><i class="fa-solid ${esc(s.icon)}"></i></div>
-      <h3>${esc(s.title)}</h3><p>${esc(s.summary)}</p>
-      <a class="svc-link" href="/services.html#${esc(s.id)}">Learn more <i class="fa-solid fa-arrow-right"></i></a>
+      <button class="svc-head" type="button" aria-expanded="false">
+        <span class="svc-ic"><i class="fa-solid ${esc(s.icon)}"></i></span>
+        <h3>${esc(s.title)}</h3>
+        <i class="fa-solid fa-chevron-down svc-chev"></i>
+      </button>
+      <div class="svc-body">
+        <p>${esc(s.summary)}</p>
+        <a class="svc-link" href="/services.html#${esc(s.id)}">Learn more <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
     </article>`).join("");
+    g.addEventListener("click", e => {
+      if (!matchMedia("(max-width:600px)").matches) return;
+      const head = e.target.closest(".svc-head"); if (!head) return;
+      const card = head.parentElement, open = card.classList.toggle("open");
+      head.setAttribute("aria-expanded", String(open));
+    });
   })();
 
   /* ---- Services FULL accordion (Services page) ----------------- */
