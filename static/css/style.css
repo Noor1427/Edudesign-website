@@ -473,7 +473,7 @@ section{padding:72px 0}
 .hc-an .an-head .hc-title{margin:0}
 .an-chip{font-size:8.5px;font-weight:600;color:var(--charcoal);background:var(--bg-soft);border:1px solid var(--line);padding:3px 8px;border-radius:50px;display:inline-flex;gap:4px;align-items:center}
 .hc-an .an-top{display:flex;justify-content:space-between;align-items:center}
-.hc-an .donut{width:56px;height:56px;border-radius:50%;background:conic-gradient(var(--blue) 0 68%,#dbeafe 68% 100%);display:grid;place-items:center;position:relative}
+.hc-an .donut{width:56px;height:56px;border-radius:50%;background:conic-gradient(var(--pink) 0 68%,#ffe0ea 68% 100%);display:grid;place-items:center;position:relative}
 .hc-an .donut::before{content:"";position:absolute;inset:8px;background:#fff;border-radius:50%}
 .hc-an .donut span{position:relative;z-index:1;font-size:12px;font-weight:800;color:var(--ink);display:flex;flex-direction:column;align-items:center;line-height:1.05}
 .hc-an .donut small{font-size:5.5px;font-weight:600;color:var(--muted)}
