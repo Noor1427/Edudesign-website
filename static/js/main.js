@@ -16,6 +16,16 @@
 
   const yr = $("#year"); if (yr) yr.textContent = new Date().getFullYear();
 
+  /* ---- Mobile intro splash: fades out on swipe/scroll ---- */
+  (function splash() {
+    const sp = document.getElementById("splash"); if (!sp) return;
+    if (!matchMedia("(max-width:600px)").matches) { sp.remove(); return; }
+    let done = false;
+    const hide = () => { if (done) return; done = true; sp.classList.add("hide"); setTimeout(() => sp.remove(), 650); };
+    ["touchstart", "touchmove", "wheel", "scroll", "click", "keydown"].forEach(ev => window.addEventListener(ev, hide, { once: true, passive: true }));
+    setTimeout(hide, 3500);
+  })();
+
   /* reveal observer */
   let io = null;
   function observe(list) {
