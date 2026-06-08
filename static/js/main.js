@@ -72,11 +72,10 @@
     wrap.innerHTML = C.services.map((s, i) => `<div class="acc-item${i===0?" open":""}" id="${esc(s.id)}">
       <button class="acc-q" aria-expanded="${i===0}"><span class="acc-ic"><i class="fa-solid ${esc(s.icon)}"></i></span><span class="acc-t">${esc(s.title)}</span><i class="fa-solid fa-chevron-down acc-chev"></i></button>
       <div class="acc-a"${i===0?' style="max-height:2200px"':''}><div class="acc-inner">
-        ${s.image ? `<div class="acc-banner"><img src="${esc(s.image)}" alt="${esc(s.title)}" loading="lazy"></div>` : `<div class="acc-banner acc-banner-grad"><i class="fa-solid ${esc(s.icon)}"></i></div>`}
         <p class="acc-sum">${esc(s.summary)}</p>
         <ul class="acc-list">${s.items.map(it => `<li><i class="fa-solid fa-check"></i> ${esc(it)}</li>`).join("")}</ul>
         ${s.tools ? `<p class="acc-tools"><strong>Tools &amp; tech:</strong> ${s.tools.map(esc).join(" · ")}</p>` : ""}
-        <a class="svc-link wa-link" data-msg="${esc(s.whatsapp || "general")}">Discuss this service <i class="fa-solid fa-arrow-right"></i></a>
+        <a class="svc-link wa-link" data-msg="${esc(s.whatsapp || "general")}">${esc(s.cta || "Discuss this service")} <i class="fa-solid fa-arrow-right"></i></a>
       </div></div></div>`).join("");
     wrap.addEventListener("click", e => { const q = e.target.closest(".acc-q"); if (!q) return;
       const item = q.parentElement, a = item.querySelector(".acc-a"), open = item.classList.toggle("open");
