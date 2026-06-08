@@ -691,22 +691,37 @@ section{padding:72px 0}
 /* never allow sideways scroll on small screens */
 @media (max-width:600px){html,body{max-width:100%;overflow-x:hidden}}
 
-/* ════════ MOBILE INTRO SPLASH (mobile only) ════════ */
+/* ════════ MOBILE INTRO SPLASH (mobile only) — bouncing scene ════════ */
 .splash{display:none}
-@keyframes spLogo{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
-@keyframes spRevolve{from{transform:rotate(0deg) translateX(116px) rotate(0deg)}to{transform:rotate(360deg) translateX(116px) rotate(-360deg)}}
-@keyframes spHint{0%,100%{opacity:.45;transform:translateY(0)}50%{opacity:1;transform:translateY(-4px)}}
+@keyframes spLogo{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
+@keyframes spGlow{0%,100%{opacity:.45;transform:translate(-50%,-50%) scale(.92)}50%{opacity:.85;transform:translate(-50%,-50%) scale(1.12)}}
+@keyframes spArrow{0%,100%{transform:translateY(3px)}50%{transform:translateY(-3px)}}
+@keyframes spFade{from{opacity:0}to{opacity:1}}
 @media (max-width:600px){
-  .splash{display:grid;position:fixed;inset:0;z-index:6000;place-items:center;
-    background:radial-gradient(circle at 50% 42%,#ffffff 0%,#ffe9f1 60%,#ffd6e6 100%);
+  .splash{display:grid;position:fixed;inset:0;z-index:6000;place-items:center;overflow:hidden;
+    background:radial-gradient(circle at 50% 38%,#ffffff 0%,#ffe9f1 55%,#ffd1e2 100%);
     transition:opacity .55s ease,visibility .55s}
   .splash.hide{opacity:0;visibility:hidden;pointer-events:none}
-  .splash-stage{position:relative;width:280px;height:280px;display:grid;place-items:center}
-  .splash-logo{width:128px;height:128px;filter:drop-shadow(0 12px 30px rgba(199,93,134,.35));animation:spLogo 2.4s ease-in-out infinite}
-  .sp-ic{position:absolute;top:50%;left:50%;width:44px;height:44px;margin:-22px;border-radius:13px;background:#fff;color:var(--pink);display:grid;place-items:center;font-size:18px;box-shadow:0 8px 20px rgba(199,93,134,.2);animation:spRevolve 11s linear infinite}
-  .sp-2,.sp-4,.sp-6{color:var(--blue)}
-  .sp-2{animation-delay:-1.83s}.sp-3{animation-delay:-3.66s}.sp-4{animation-delay:-5.5s}.sp-5{animation-delay:-7.33s}.sp-6{animation-delay:-9.16s}
-  .splash-hint{position:absolute;bottom:9%;left:0;right:0;text-align:center;color:var(--pink);font-weight:600;font-size:13px;letter-spacing:.4px;animation:spHint 1.6s ease-in-out infinite}
+  .splash::before{content:"";position:absolute;top:50%;left:50%;width:250px;height:250px;border-radius:50%;background:radial-gradient(circle,rgba(255,107,147,.4),transparent 66%);z-index:0;animation:spGlow 2.8s ease-in-out infinite}
+  .splash-logo{position:relative;z-index:5;width:170px;height:170px;filter:drop-shadow(0 16px 40px rgba(199,93,134,.42));animation:spLogo 2.6s ease-in-out infinite}
+  /* bouncing floaters (positioned by JS via transform) */
+  .sp-float{position:absolute;top:0;left:0;z-index:1;will-change:transform}
+  .sp-chip{width:44px;height:44px;border-radius:13px;background:#fff;display:grid;place-items:center;font-size:18px;box-shadow:0 10px 22px rgba(199,93,134,.18)}
+  .sp-chip.pink{color:var(--pink)}
+  .sp-chip.blue{color:var(--blue)}
+  .sp-card{background:#fff;border-radius:11px;box-shadow:0 12px 26px rgba(199,93,134,.18);padding:9px 10px}
+  .sp-cv{width:60px}
+  .sp-cv b{font-size:9px;font-weight:800;color:var(--pink);display:block;margin-bottom:6px;letter-spacing:.5px}
+  .sp-cv span{display:block;height:4px;border-radius:2px;background:#EAF0F7;margin-bottom:4px}
+  .sp-cv span.s{width:55%}
+  .sp-code{width:78px;background:var(--navy)}
+  .sp-code span{display:block;height:4px;border-radius:2px;margin-bottom:5px}
+  .sp-code span:last-child{margin-bottom:0}
+  .sp-code .c1{width:80%;background:#ff7b9c}
+  .sp-code .c2{width:55%;background:#fcd34d}
+  .sp-code .c3{width:68%;background:#7dd3fc}
+  .splash-hint{position:absolute;bottom:7%;left:0;right:0;text-align:center;color:var(--pink);font-weight:700;font-size:12.5px;letter-spacing:.6px;text-transform:uppercase;z-index:5;animation:spFade .8s ease .5s both}
+  .splash-hint::before{content:"\f077";font-family:"Font Awesome 6 Free";font-weight:900;display:block;font-size:15px;margin-bottom:8px;animation:spArrow 1.4s ease-in-out infinite}
 }
 
 /* ════════ RESPONSIVE ════════ */

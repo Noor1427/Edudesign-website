@@ -16,14 +16,49 @@
 
   const yr = $("#year"); if (yr) yr.textContent = new Date().getFullYear();
 
-  /* ---- Mobile intro splash: fades out on swipe/scroll ---- */
+  /* ---- Mobile intro splash: bouncing cards/icons, fades on swipe ---- */
   (function splash() {
     const sp = document.getElementById("splash"); if (!sp) return;
     if (!matchMedia("(max-width:600px)").matches) { sp.remove(); return; }
-    let done = false;
-    const hide = () => { if (done) return; done = true; sp.classList.add("hide"); setTimeout(() => sp.remove(), 650); };
+    const defs = [
+      { cls: "sp-card sp-cv",   html: '<b>CV</b><span></span><span></span><span class="s"></span>' },
+      { cls: "sp-card sp-cv",   html: '<b>CV</b><span></span><span class="s"></span><span></span>' },
+      { cls: "sp-card sp-code", html: '<span class="c1"></span><span class="c2"></span><span class="c3"></span>' },
+      { cls: "sp-chip pink", html: '<i class="fa-solid fa-graduation-cap"></i>' },
+      { cls: "sp-chip blue", html: '<i class="fa-solid fa-code"></i>' },
+      { cls: "sp-chip pink", html: '<i class="fa-solid fa-chart-line"></i>' },
+      { cls: "sp-chip blue", html: '<i class="fa-solid fa-robot"></i>' },
+      { cls: "sp-chip pink", html: '<i class="fa-solid fa-pen-nib"></i>' },
+      { cls: "sp-chip blue", html: '<i class="fa-solid fa-file-lines"></i>' }
+    ];
+    const sgn = () => (Math.random() < 0.5 ? -1 : 1);
+    const objs = defs.map(d => {
+      const el = document.createElement("div");
+      el.className = "sp-float " + d.cls; el.innerHTML = d.html;
+      sp.appendChild(el);
+      const w = el.offsetWidth || 44, h = el.offsetHeight || 44;
+      return { el, w, h,
+        x: Math.random() * Math.max(1, sp.clientWidth - w),
+        y: Math.random() * Math.max(1, sp.clientHeight - h),
+        vx: (0.35 + Math.random() * 0.55) * sgn(),
+        vy: (0.35 + Math.random() * 0.55) * sgn(),
+        rot: Math.random() * 24 - 12, vr: Math.random() * 0.4 - 0.2 };
+    });
+    let raf, done = false;
+    const tick = () => {
+      const W = sp.clientWidth, H = sp.clientHeight;
+      for (const o of objs) {
+        o.x += o.vx; o.y += o.vy; o.rot += o.vr;
+        if (o.x <= 0) { o.x = 0; o.vx = Math.abs(o.vx); } else if (o.x + o.w >= W) { o.x = W - o.w; o.vx = -Math.abs(o.vx); }
+        if (o.y <= 0) { o.y = 0; o.vy = Math.abs(o.vy); } else if (o.y + o.h >= H) { o.y = H - o.h; o.vy = -Math.abs(o.vy); }
+        o.el.style.transform = `translate(${o.x}px,${o.y}px) rotate(${o.rot}deg)`;
+      }
+      raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    const hide = () => { if (done) return; done = true; cancelAnimationFrame(raf); sp.classList.add("hide"); setTimeout(() => sp.remove(), 650); };
     ["touchstart", "touchmove", "wheel", "scroll", "click", "keydown"].forEach(ev => window.addEventListener(ev, hide, { once: true, passive: true }));
-    setTimeout(hide, 3500);
+    setTimeout(hide, 6000);
   })();
 
   /* reveal observer */
