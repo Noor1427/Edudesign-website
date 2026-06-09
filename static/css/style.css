@@ -699,12 +699,38 @@ section{padding:72px 0}
 @keyframes spGlow{0%,100%{opacity:.45;transform:translate(-50%,-50%) scale(.92)}50%{opacity:.85;transform:translate(-50%,-50%) scale(1.12)}}
 @keyframes spArrow{0%,100%{transform:translateY(3px)}50%{transform:translateY(-3px)}}
 @keyframes spFade{from{opacity:0}to{opacity:1}}
+@keyframes spTwinkle{0%,100%{opacity:.5}50%{opacity:1}}
+@keyframes spDrift{0%,100%{transform:translate(0,0)}50%{transform:translate(16px,-18px)}}
+@keyframes spRing{0%,100%{transform:translate(-50%,-50%) scale(1);opacity:.65}50%{transform:translate(-50%,-50%) scale(1.06);opacity:1}}
 @media (max-width:600px){
   .splash{display:grid;position:fixed;inset:0;z-index:6000;place-items:center;overflow:hidden;
-    background:radial-gradient(circle at 50% 38%,#ffffff 0%,#ffe9f1 55%,#ffd1e2 100%);
+    background:linear-gradient(165deg,#ffe4ee 0%,#f7e6fb 46%,#e7ecff 100%);
     transition:opacity .55s ease,visibility .55s}
   .splash.hide{opacity:0;visibility:hidden;pointer-events:none}
-  .splash::before{content:"";position:absolute;top:50%;left:50%;width:250px;height:250px;border-radius:50%;background:radial-gradient(circle,rgba(255,107,147,.4),transparent 66%);z-index:0;animation:spGlow 2.8s ease-in-out infinite}
+  /* central pink glow / pedestal */
+  .splash::before{content:"";position:absolute;top:50%;left:50%;width:260px;height:260px;border-radius:50%;background:radial-gradient(circle,rgba(255,107,147,.38),transparent 66%);z-index:0;animation:spGlow 2.8s ease-in-out infinite}
+  /* twinkling sparkle dots */
+  .splash::after{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;animation:spTwinkle 3.6s ease-in-out infinite;
+    background-image:
+      radial-gradient(2px 2px at 18% 16%,rgba(255,255,255,.95),transparent),
+      radial-gradient(1.6px 1.6px at 78% 20%,rgba(255,255,255,.9),transparent),
+      radial-gradient(2px 2px at 30% 72%,rgba(255,255,255,.85),transparent),
+      radial-gradient(1.6px 1.6px at 86% 60%,rgba(255,255,255,.9),transparent),
+      radial-gradient(1.6px 1.6px at 12% 48%,rgba(255,255,255,.85),transparent),
+      radial-gradient(2px 2px at 64% 86%,rgba(255,255,255,.85),transparent),
+      radial-gradient(1.4px 1.4px at 50% 30%,rgba(255,255,255,.8),transparent),
+      radial-gradient(3px 3px at 90% 40%,rgba(214,90,140,.5),transparent),
+      radial-gradient(2px 2px at 8% 80%,rgba(170,140,255,.45),transparent)}
+  /* drifting blurred blobs */
+  .sp-blob{position:absolute;border-radius:50%;filter:blur(46px);opacity:.55;z-index:0;animation:spDrift 13s ease-in-out infinite}
+  .sp-b1{width:220px;height:220px;background:radial-gradient(circle,#ffc1da,transparent 70%);top:-46px;left:-54px}
+  .sp-b2{width:250px;height:250px;background:radial-gradient(circle,#cdbcff,transparent 70%);bottom:-70px;left:-46px;animation-delay:-4.5s}
+  .sp-b3{width:210px;height:210px;background:radial-gradient(circle,#ffb3cd,transparent 70%);top:40%;right:-78px;animation-delay:-9s}
+  /* concentric rings around the logo */
+  .sp-rings{position:absolute;top:50%;left:50%;width:208px;height:208px;transform:translate(-50%,-50%);border-radius:50%;z-index:0;
+    border:1px solid rgba(255,255,255,.7);
+    box-shadow:0 0 0 26px rgba(255,255,255,.13),0 0 0 58px rgba(255,255,255,.08),0 0 0 94px rgba(255,255,255,.045);
+    animation:spRing 4.4s ease-in-out infinite}
   .splash-logo{position:relative;z-index:5;width:176px;height:176px;filter:drop-shadow(0 16px 40px rgba(199,93,134,.42));animation:spLogoIn .7s cubic-bezier(.2,.8,.2,1) both,spLogo 2.8s ease-in-out .7s infinite}
   /* bouncing floaters (positioned by JS via transform) */
   .sp-float{position:absolute;top:0;left:0;z-index:1;will-change:transform;opacity:0;animation:spFadeIn .5s ease forwards}
