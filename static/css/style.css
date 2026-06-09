@@ -215,7 +215,7 @@ section{padding:72px 0}
 .process{background:var(--bg-soft)}
 .steps{display:flex;align-items:flex-start;justify-content:center;gap:8px;flex-wrap:wrap}
 .pstep{flex:1;min-width:200px;max-width:250px;display:flex;gap:14px}
-.pstep .pno{width:48px;height:48px;flex-shrink:0;border-radius:50%;border:2px solid var(--blue);color:var(--blue);display:grid;place-items:center;font-weight:800;font-size:18px;background:#fff}
+.pstep .pno{width:48px;height:48px;flex-shrink:0;border-radius:50%;border:2px solid var(--pink);color:var(--pink);display:grid;place-items:center;font-weight:800;font-size:18px;background:#fff}
 .pstep h3{font-size:16px;margin-bottom:5px}
 .pstep p{font-size:13.5px;color:var(--muted)}
 .pstep-arrow{align-self:center;color:var(--line-2);font-size:18px;flex-shrink:0;margin-top:10px}
