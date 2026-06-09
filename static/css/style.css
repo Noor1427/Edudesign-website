@@ -193,7 +193,7 @@ section{padding:72px 0}
 .qb-text p{font-size:15px;color:var(--text);max-width:560px}
 .qb-feats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;width:100%;margin-top:22px;padding-top:22px;border-top:1px solid var(--line)}
 .qb-feat{display:flex;align-items:center;gap:10px;font-size:13px;font-weight:600;color:var(--charcoal)}
-.qb-feat i{width:30px;height:30px;border-radius:8px;background:#fff;color:var(--pink);display:grid;place-items:center;font-size:13px;flex-shrink:0;box-shadow:var(--shadow-sm)}
+.qb-feat i{width:30px;height:30px;border-radius:8px;background:#fff;color:var(--blue);display:grid;place-items:center;font-size:13px;flex-shrink:0;box-shadow:var(--shadow-sm)}
 
 /* ════════ SELECTED WORK ════════ */
 .work{background:#fff}
