@@ -370,7 +370,7 @@ section{padding:72px 0}
 /* ════════ REVEAL ════════ */
 .reveal{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}
 .reveal.visible{opacity:1;transform:none}
-@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none}.hero-content>*,.hc-an .bars i{opacity:1!important}*{transition-duration:.01ms!important}}
+/* (scroll animations intentionally run even with OS reduce-motion, per site owner) */
 /* staggered scroll-reveal inside grids */
 .services-grid .reveal:nth-child(2),.work-grid .reveal:nth-child(2),.audience-grid .reveal:nth-child(2){transition-delay:.09s}
 .services-grid .reveal:nth-child(3),.work-grid .reveal:nth-child(3){transition-delay:.18s}
