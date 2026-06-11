@@ -212,7 +212,7 @@
   /* ---- Mobile showcase: auto-swiping carousel ------------------- */
   (function mobShow() {
     const track = $("#mobTrack"); if (!track || !matchMedia("(max-width:600px)").matches) return;
-    const cards = $$(".ms-card", track), dots = $("#mobDots");
+    const cards = $$(".ms-slide", track), dots = $("#mobDots");
     if (dots) dots.innerHTML = cards.map((_, i) => `<i${i === 0 ? ' class="on"' : ""}></i>`).join("");
     let idx = 0, paused = false, pauseT;
     const center = (el) => el.offsetLeft - (track.clientWidth - el.clientWidth) / 2;
@@ -230,13 +230,40 @@
     }, { passive: true });
   })();
 
-  /* ---- Navbar: scroll + auto hide/show + progress bar ----------- */
-  const navbar = $("#navbar"), navLinks = $("#navLinks"), progress = $("#scrollProgress");
+  /* ---- Pen trail: zig-zag pink line drawn down the page --------- */
+  const trail = $("#penTrail"), trailPath = $("#penTrailPath"), trailPen = $("#penTrailPen");
+  let trailLen = 0;
+  function buildTrail() {
+    if (!trail || !trailPath) return;
+    const H = document.documentElement.scrollHeight;
+    trail.setAttribute("height", H);
+    let d = "M18 0", y = 0, left = false;
+    while (y < H) { y = Math.min(y + 280, H); d += ` L${left ? 14 : 34} ${y}`; left = !left; }
+    trailPath.setAttribute("d", d);
+    trailLen = trailPath.getTotalLength();
+    trailPath.style.strokeDasharray = trailLen;
+    updTrail();
+  }
+  function updTrail() {
+    if (!trailLen) return;
+    const max = document.documentElement.scrollHeight - innerHeight;
+    const drawn = trailLen * (max > 0 ? Math.min(scrollY / max, 1) : 0);
+    trailPath.style.strokeDashoffset = trailLen - drawn;
+    const pt = trailPath.getPointAtLength(drawn);
+    if (trailPen) trailPen.setAttribute("transform", `translate(${pt.x.toFixed(1)},${pt.y.toFixed(1)})`);
+  }
+  if (trail) {
+    buildTrail();
+    addEventListener("resize", buildTrail);
+    if ("ResizeObserver" in window) new ResizeObserver(() => buildTrail()).observe(document.body);
+  }
+
+  /* ---- Navbar: scroll + auto hide/show -------------------------- */
+  const navbar = $("#navbar"), navLinks = $("#navLinks");
   let lastY = scrollY, navTick = false;
   function onScroll() { if (navTick) return; navTick = true; requestAnimationFrame(() => {
     const y = scrollY; navbar.classList.toggle("scrolled", y > 16);
-    if (progress) { const max = document.documentElement.scrollHeight - innerHeight;
-      progress.style.width = (max > 0 ? Math.min(y / max * 100, 100) : 0) + "%"; }
+    updTrail();
     const menuOpen = document.body.style.overflow === "hidden";
     if (!menuOpen && y > 420 && y > lastY + 6) navbar.classList.add("nav-hidden");
     else if (y < lastY - 6 || y < 420) navbar.classList.remove("nav-hidden");
