@@ -809,3 +809,50 @@ section{padding:72px 0}
   .proof-card,.qb-card{padding:24px 20px}
   .panel{padding:22px 18px}
 }
+
+/* ════════ PREMIUM MOTION LAYER ════════ */
+/* scroll progress bar */
+.scroll-progress{position:fixed;top:0;left:0;height:3px;width:0;z-index:2000;border-radius:0 2px 2px 0;background:linear-gradient(90deg,var(--blue),var(--pink));pointer-events:none}
+
+/* animated gradient on accent words */
+@keyframes gradShift{to{background-position:200% center}}
+.hero-title .accent,.section-title .accent{background:linear-gradient(90deg,var(--blue),var(--pink),var(--blue));background-size:200% auto;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:gradShift 6s linear infinite}
+
+/* section title underline draws in on reveal */
+.section-head .section-title{position:relative;display:inline-block;padding-bottom:4px}
+.section-head .section-title::after{content:"";position:absolute;left:50%;transform:translateX(-50%);bottom:-8px;height:3px;width:0;border-radius:2px;background:linear-gradient(90deg,var(--blue),var(--pink));transition:width .8s cubic-bezier(.2,.8,.2,1) .25s}
+.section-head.visible .section-title::after{width:64px}
+.section-head.left .section-title::after{left:0;transform:none}
+
+/* navy marquee band */
+.marquee{overflow:hidden;background:var(--navy);padding:15px 0;position:relative}
+.marquee::before,.marquee::after{content:"";position:absolute;top:0;bottom:0;width:70px;z-index:1;pointer-events:none}
+.marquee::before{left:0;background:linear-gradient(90deg,var(--navy),transparent)}
+.marquee::after{right:0;background:linear-gradient(270deg,var(--navy),transparent)}
+@keyframes marqueeScroll{to{transform:translateX(-50%)}}
+.marquee-track{display:flex;align-items:center;gap:34px;width:max-content;animation:marqueeScroll 30s linear infinite}
+.marquee-track span{color:#fff;font-weight:600;font-size:13.5px;letter-spacing:.8px;white-space:nowrap;text-transform:uppercase}
+.marquee-track i{color:var(--pink);font-style:normal;font-size:11px}
+
+/* periodic sheen sweep on primary/accent buttons */
+.btn-primary,.btn-accent{position:relative;overflow:hidden}
+@keyframes sheen{0%,55%{left:-90%}100%{left:140%}}
+.btn-primary::before,.btn-accent::before{content:"";position:absolute;top:0;left:-90%;width:55%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.32),transparent);transform:skewX(-20deg);animation:sheen 5s ease-in-out infinite;pointer-events:none}
+
+/* hero glow blobs drift slowly */
+@keyframes blobDrift{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-26px,20px) scale(1.08)}}
+.hero .blob{animation:blobDrift 16s ease-in-out infinite}
+.hero .blob-2{animation-delay:-8s}
+
+/* CTA band: slow panning navy gradient */
+@keyframes ctaPan{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+.cta-card{background:linear-gradient(135deg,#0D1B2A,#16273C,#1e3a5f,#16273C);background-size:280% 280%;animation:ctaPan 16s ease-in-out infinite}
+
+/* count-up numbers in trust strip */
+.trust-item .cnt{font-weight:800;color:var(--ink);font-variant-numeric:tabular-nums}
+
+@media (max-width:600px){
+  .marquee{padding:11px 0}
+  .marquee-track{gap:22px;animation-duration:22s}
+  .marquee-track span{font-size:11.5px}
+}

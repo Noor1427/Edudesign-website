@@ -74,7 +74,26 @@
   /* ---- Trust strip --------------------------------------------- */
   (function trust() {
     const g = $("#trustGrid"); if (!g || !C.trustStrip) return;
-    g.innerHTML = C.trustStrip.map(t => `<div class="trust-item"><i class="fa-solid ${esc(t.icon)}"></i><span>${esc(t.text)}</span></div>`).join("");
+    g.innerHTML = C.trustStrip.map(t => {
+      const txt = esc(t.text).replace(/^(\d+)/, '<b class="cnt" data-n="$1">0</b>');
+      return `<div class="trust-item"><i class="fa-solid ${esc(t.icon)}"></i><span>${txt}</span></div>`;
+    }).join("");
+    /* count-up when scrolled into view */
+    const counters = $$(".cnt", g);
+    if (counters.length && "IntersectionObserver" in window) {
+      const cio = new IntersectionObserver(ents => ents.forEach(en => {
+        if (!en.isIntersecting) return;
+        cio.unobserve(en.target);
+        const el = en.target, n = +el.dataset.n, t0 = performance.now(), dur = 1400;
+        const step = (now) => {
+          const p = Math.min((now - t0) / dur, 1);
+          el.textContent = Math.round(n * (1 - Math.pow(1 - p, 3)));
+          if (p < 1) requestAnimationFrame(step);
+        };
+        requestAnimationFrame(step);
+      }), { threshold: 0, rootMargin: "200px 0px 200px 0px" });
+      counters.forEach(c => cio.observe(c));
+    } else counters.forEach(c => c.textContent = c.dataset.n);
   })();
 
   /* ---- Audience cards ------------------------------------------ */
@@ -190,11 +209,13 @@
     ["#c-service", "#fb-service"].forEach(sel => { const e = $(sel); if (e) e.insertAdjacentHTML("beforeend", opts); });
   })();
 
-  /* ---- Navbar: scroll + auto hide/show ------------------------- */
-  const navbar = $("#navbar"), navLinks = $("#navLinks");
+  /* ---- Navbar: scroll + auto hide/show + progress bar ----------- */
+  const navbar = $("#navbar"), navLinks = $("#navLinks"), progress = $("#scrollProgress");
   let lastY = scrollY, navTick = false;
   function onScroll() { if (navTick) return; navTick = true; requestAnimationFrame(() => {
     const y = scrollY; navbar.classList.toggle("scrolled", y > 16);
+    if (progress) { const max = document.documentElement.scrollHeight - innerHeight;
+      progress.style.width = (max > 0 ? Math.min(y / max * 100, 100) : 0) + "%"; }
     const menuOpen = document.body.style.overflow === "hidden";
     if (!menuOpen && y > 420 && y > lastY + 6) navbar.classList.add("nav-hidden");
     else if (y < lastY - 6 || y < 420) navbar.classList.remove("nav-hidden");
