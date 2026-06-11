@@ -106,6 +106,8 @@ window.EDU = {
 
   /* ---- Selected Work (clearly-labelled examples; add real images later) -- */
   portfolio: [
+    { title: "Professional CV",           category: "CV & Career",        icon: "file-user",    image: "/static/images/work/cv.jpg" },
+    { title: "Assignments & Reports",     category: "Academic Support",   icon: "file-lines",   image: "/static/images/work/assignments.jpg" },
     { title: "Sales Analytics Dashboard", category: "Data Visualisation", icon: "chart-column", image: "/static/images/portfolio/analytics.jpg" },
     { title: "Corporate Website",         category: "Web Design",         icon: "display",      image: "/static/images/portfolio/website.jpg" },
     { title: "Brand Identity",            category: "Logo & Brand Identity", icon: "pen-nib",   image: "/static/images/portfolio/brand.jpg" },

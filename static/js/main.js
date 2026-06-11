@@ -164,7 +164,7 @@
   (function portfolio() {
     const g = $("#portfolioGrid"); if (!g || !C.portfolio) return;
     g.innerHTML = C.portfolio.map(p => `<article class="work-card reveal">
-      <div class="work-thumb">${p.image ? `<img src="${esc(p.image)}" alt="${esc(p.title)}" loading="lazy">` : `<i class="fa-solid fa-${esc(p.icon || "star")}"></i>`}</div>
+      <div class="work-thumb"><i class="fa-solid fa-${esc(p.icon || "star")}"></i>${p.image ? `<img src="${esc(p.image)}" alt="${esc(p.title)}" loading="lazy" onerror="this.remove()">` : ""}</div>
       <h3>${esc(p.title)}</h3><span class="work-cat">${esc(p.category)}</span></article>`).join("");
     observe($$(".reveal", g));
   })();
