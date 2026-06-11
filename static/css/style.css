@@ -877,10 +877,10 @@ section{padding:72px 0}
   .mob-show{display:block;order:-1;position:relative;margin:0 calc(50% - 50vw) 6px}
   .mob-track{display:flex;gap:0;overflow-x:auto;scroll-snap-type:x mandatory;padding:0;-webkit-overflow-scrolling:touch;scrollbar-width:none}
   .mob-track::-webkit-scrollbar{display:none}
-  .ms-slide{flex:0 0 100%;scroll-snap-align:center;margin:0;position:relative;border-radius:0;overflow:hidden;aspect-ratio:16/10;background:var(--bg-soft);animation:fadeUp .6s ease both}
+  .ms-slide{flex:0 0 100%;scroll-snap-align:center;margin:0;position:relative;border-radius:18px;overflow:hidden;aspect-ratio:16/10;background:var(--bg-soft);animation:fadeUp .6s ease both;will-change:transform}
   .ms-slide:nth-child(2){animation-delay:.08s}
   .ms-slide:nth-child(3){animation-delay:.16s}
-  .ms-slide img{width:100%;height:100%;object-fit:cover;display:block}
+  .ms-slide img{width:100%;height:100%;object-fit:cover;display:block;will-change:transform}
   .ms-slide figcaption{position:absolute;left:14px;bottom:16px;background:rgba(13,27,42,.78);color:#fff;font-size:11px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;padding:6px 13px;border-radius:50px;backdrop-filter:blur(4px)}
   .mob-dots{position:absolute;left:0;right:0;bottom:9px;display:flex;justify-content:center;gap:7px;z-index:2}
   .mob-dots i{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.6);box-shadow:0 1px 3px rgba(13,27,42,.3);transition:all .3s ease}

@@ -221,7 +221,22 @@
       track.scrollTo({ left: center(cards[idx]), behavior: "smooth" }); }, 3000);
     track.addEventListener("touchstart", () => { paused = true; clearTimeout(pauseT); }, { passive: true });
     track.addEventListener("touchend", () => { pauseT = setTimeout(() => paused = false, 4000); }, { passive: true });
+    /* bubble effect: active slide pops, neighbours shrink; image parallax */
+    const paint = () => {
+      const c = track.scrollLeft + track.clientWidth / 2;
+      cards.forEach(el => {
+        const d = (el.offsetLeft + el.clientWidth / 2 - c) / track.clientWidth;
+        const t = Math.max(0, 1 - Math.abs(d));
+        el.style.transform = `scale(${(0.9 + 0.1 * t).toFixed(3)})`;
+        const img = el.querySelector("img");
+        if (img) img.style.transform = `scale(${(1.18 - 0.18 * t).toFixed(3)}) translateX(${(-d * 26).toFixed(1)}px)`;
+        const cap = el.querySelector("figcaption");
+        if (cap) cap.style.opacity = (0.1 + 0.9 * t).toFixed(2);
+      });
+    };
+    paint();
     track.addEventListener("scroll", () => {
+      paint();
       const c = track.scrollLeft + track.clientWidth / 2;
       let best = 0, bd = 1e9;
       cards.forEach((el, i) => { const d = Math.abs(el.offsetLeft + el.clientWidth / 2 - c); if (d < bd) { bd = d; best = i; } });
@@ -245,14 +260,19 @@
     const inner = (b) => { const c = b.querySelector(":scope > .container") || b;
       const r = c.getBoundingClientRect(); return { top: r.top + sY, bottom: r.bottom + sY }; };
     const Lx = 9, Rx = W - 9;
+    /* crossings rendered as S-curves with vertical tangents at both ends, so
+       they join the straight gutter runs with no corner — flows like handwriting */
     let side = 1, d = `M ${Rx} 0`, prev = null;
     blocks.forEach((b) => {
       if (b.getBoundingClientRect().height < 2) return; /* skip hidden sections */
       if (!prev) { prev = inner(b); return; }
       const cur = inner(b), gapTop = prev.bottom, gapBot = cur.top;
       if (gapBot - gapTop >= 18) {
-        const mid = (gapTop + gapBot) / 2, h = Math.min(26, (gapBot - gapTop) / 2 - 2);
-        d += ` L ${side ? Rx : Lx} ${Math.round(mid - h)} L ${side ? Lx : Rx} ${Math.round(mid + h)}`;
+        const mid = (gapTop + gapBot) / 2;
+        const h = Math.min(56, Math.max(10, (gapBot - gapTop) / 2 - 4));
+        const x1 = side ? Rx : Lx, x2 = side ? Lx : Rx;
+        const y1 = Math.round(mid - h), y2 = Math.round(mid + h);
+        d += ` L ${x1} ${y1} C ${x1} ${Math.round(mid)}, ${x2} ${Math.round(mid)}, ${x2} ${y2}`;
         side = 1 - side;
       }
       prev = cur;
@@ -269,7 +289,13 @@
     const drawn = trailLen * (max > 0 ? Math.min(scrollY / max, 1) : 0);
     trailPath.style.strokeDashoffset = trailLen - drawn;
     const pt = trailPath.getPointAtLength(drawn);
-    if (trailPen) trailPen.setAttribute("transform", `translate(${pt.x.toFixed(1)},${pt.y.toFixed(1)})`);
+    if (trailPen) {
+      /* tilt the pen into the curve like a writing hand */
+      const pb = trailPath.getPointAtLength(Math.max(drawn - 12, 0));
+      const ang = Math.atan2(pt.y - pb.y, pt.x - pb.x) * 180 / Math.PI;
+      const tilt = Math.max(-30, Math.min(30, (ang - 90) * 0.6));
+      trailPen.setAttribute("transform", `translate(${pt.x.toFixed(1)},${pt.y.toFixed(1)}) rotate(${tilt.toFixed(1)})`);
+    }
   }
   if (trail) {
     buildTrail();
