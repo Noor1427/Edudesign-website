@@ -209,6 +209,27 @@
     ["#c-service", "#fb-service"].forEach(sel => { const e = $(sel); if (e) e.insertAdjacentHTML("beforeend", opts); });
   })();
 
+  /* ---- Mobile showcase: auto-swiping carousel ------------------- */
+  (function mobShow() {
+    const track = $("#mobTrack"); if (!track || !matchMedia("(max-width:600px)").matches) return;
+    const cards = $$(".ms-card", track), dots = $("#mobDots");
+    if (dots) dots.innerHTML = cards.map((_, i) => `<i${i === 0 ? ' class="on"' : ""}></i>`).join("");
+    let idx = 0, paused = false, pauseT;
+    const center = (el) => el.offsetLeft - (track.clientWidth - el.clientWidth) / 2;
+    setInterval(() => { if (paused || document.hidden) return;
+      idx = (idx + 1) % cards.length;
+      track.scrollTo({ left: center(cards[idx]), behavior: "smooth" }); }, 3000);
+    track.addEventListener("touchstart", () => { paused = true; clearTimeout(pauseT); }, { passive: true });
+    track.addEventListener("touchend", () => { pauseT = setTimeout(() => paused = false, 4000); }, { passive: true });
+    track.addEventListener("scroll", () => {
+      const c = track.scrollLeft + track.clientWidth / 2;
+      let best = 0, bd = 1e9;
+      cards.forEach((el, i) => { const d = Math.abs(el.offsetLeft + el.clientWidth / 2 - c); if (d < bd) { bd = d; best = i; } });
+      idx = best;
+      if (dots) $$("i", dots).forEach((d, i) => d.classList.toggle("on", i === best));
+    }, { passive: true });
+  })();
+
   /* ---- Navbar: scroll + auto hide/show + progress bar ----------- */
   const navbar = $("#navbar"), navLinks = $("#navLinks"), progress = $("#scrollProgress");
   let lastY = scrollY, navTick = false;
