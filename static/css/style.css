@@ -856,3 +856,21 @@ section{padding:72px 0}
   .marquee-track{gap:22px;animation-duration:22s}
   .marquee-track span{font-size:11.5px}
 }
+
+/* ════════ MOBILE ANIMATION TUNING ════════ */
+@media (max-width:600px){
+  /* single-column reveals: no group stagger lag, snappier rise */
+  .services-grid .reveal,.work-grid .reveal,.audience-grid .reveal{transition-delay:0s!important}
+  .reveal{transform:translateY(14px);transition-duration:.45s}
+  /* touch press feedback (no hover on phones) */
+  .btn{transition:transform .15s ease,box-shadow var(--t),background var(--t),color var(--t),border-color var(--t)}
+  .btn:active{transform:scale(.96)}
+  .svc-head:active .svc-ic{transform:scale(1.08)}
+  .faq-q:active{color:var(--pink)}
+  .faq-q:active i{background:var(--pink);color:#fff}
+  .work-card:active .work-thumb img{transform:scale(1.05)}
+  /* counters slightly bolder so the count-up reads clearly at small size */
+  .trust-item .cnt{font-size:15px}
+  /* progress bar a touch thicker for small screens */
+  .scroll-progress{height:4px}
+}
