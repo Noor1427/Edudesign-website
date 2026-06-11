@@ -625,16 +625,7 @@ section{padding:72px 0}
 .faqs{background:var(--bg-soft)}
 .faq-wrap{max-width:820px;margin:0 auto}
 .faqs .faq-all{margin-top:22px;display:flex;justify-content:center}
-/* staggered fade-up entrance for FAQ items */
-.faq-list .faq-item{animation:fadeUp .55s ease both}
-.faq-list .faq-item:nth-child(1){animation-delay:.04s}
-.faq-list .faq-item:nth-child(2){animation-delay:.10s}
-.faq-list .faq-item:nth-child(3){animation-delay:.16s}
-.faq-list .faq-item:nth-child(4){animation-delay:.22s}
-.faq-list .faq-item:nth-child(5){animation-delay:.28s}
-.faq-list .faq-item:nth-child(6){animation-delay:.34s}
-.faq-list .faq-item:nth-child(7){animation-delay:.40s}
-.faq-list .faq-item:nth-child(8){animation-delay:.46s}
+/* FAQ items reveal on scroll via .reveal (stagger below) */
 .faq-item.open .faq-a p{animation:fadeUp .35s ease}
 .contact{background:#fff}
 .contact-grid{display:grid;grid-template-columns:1fr 1.15fr;gap:26px;align-items:start;max-width:980px;margin:0 auto}
@@ -893,3 +884,43 @@ section{padding:72px 0}
 @keyframes penWiggle2{0%,100%{transform:rotate(0deg)}50%{transform:rotate(3deg)}}
 .pen-wiggle{animation:penWiggle2 1.15s ease-in-out infinite}
 @media (max-width:600px){#penTrailPath{stroke-width:2.5}}
+
+/* ════════ EXTRA SCROLL ANIMATIONS (mobile-friendly: transform/opacity only) ════════ */
+/* audience cards slide in from opposite sides */
+.audience-grid .reveal:first-child{transform:translate(-44px,16px)}
+.audience-grid .reveal:last-child{transform:translate(44px,16px)}
+.audience-grid .reveal.visible{transform:none}
+/* trust items cascade inside the card */
+.trust-card.reveal .trust-item{opacity:0;transform:translateY(18px);transition:opacity .5s ease,transform .5s ease}
+.trust-card.reveal.visible .trust-item{opacity:1;transform:none}
+.trust-card.reveal.visible .trust-item:nth-child(2){transition-delay:.1s}
+.trust-card.reveal.visible .trust-item:nth-child(3){transition-delay:.2s}
+.trust-card.reveal.visible .trust-item:nth-child(4){transition-delay:.3s}
+/* step numbers pop with a spring */
+.pstep.reveal .pno{opacity:0;transform:scale(.3);transition:transform .55s cubic-bezier(.34,1.56,.64,1),opacity .35s ease}
+.pstep.reveal.visible .pno{opacity:1;transform:none}
+.steps div.pstep:nth-of-type(2){transition-delay:.1s}
+.steps div.pstep:nth-of-type(3){transition-delay:.2s}
+.steps div.pstep:nth-of-type(4){transition-delay:.3s}
+/* pricing-band features cascade */
+.qb-card.reveal .qb-feat{opacity:0;transform:translateY(14px);transition:opacity .45s ease,transform .45s ease}
+.qb-card.reveal.visible .qb-feat{opacity:1;transform:none}
+.qb-card.reveal.visible .qb-feat:nth-child(2){transition-delay:.08s}
+.qb-card.reveal.visible .qb-feat:nth-child(3){transition-delay:.16s}
+.qb-card.reveal.visible .qb-feat:nth-child(4){transition-delay:.24s}
+/* CTA band features cascade */
+.cta-card.reveal .cta-feat{opacity:0;transform:translateY(14px);transition:opacity .45s ease,transform .45s ease}
+.cta-card.reveal.visible .cta-feat{opacity:1;transform:none}
+.cta-card.reveal.visible .cta-feat:nth-child(2){transition-delay:.08s}
+.cta-card.reveal.visible .cta-feat:nth-child(3){transition-delay:.16s}
+.cta-card.reveal.visible .cta-feat:nth-child(4){transition-delay:.24s}
+.cta-card.reveal.visible .cta-feat:nth-child(5){transition-delay:.32s}
+/* FAQ items stagger gently as they reveal */
+.faq-list .reveal:nth-child(even){transition-delay:.08s}
+/* contact panels arrive one after the other */
+.contact-grid .reveal:nth-child(2){transition-delay:.12s}
+/* section tag chip pops, subtitle follows the title */
+.section-head.reveal .tag{opacity:0;transform:scale(.7);transition:opacity .4s ease,transform .45s cubic-bezier(.34,1.56,.64,1)}
+.section-head.reveal.visible .tag{opacity:1;transform:none}
+.section-head.reveal .section-sub{opacity:0;transform:translateY(10px);transition:opacity .5s ease .15s,transform .5s ease .15s}
+.section-head.reveal.visible .section-sub{opacity:1;transform:none}

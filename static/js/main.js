@@ -273,17 +273,19 @@
         const h = Math.min(56, Math.max(10, gapH / 2 - 4));
         const x1 = side ? Rx : Lx, x2 = side ? Lx : Rx;
         const y1 = Math.round(mid - h), y2 = Math.round(mid + h);
-        const s = Math.round(Math.min(16, gapH / 2 - 8));
-        if (s >= 9) {
+        /* doodles scale wide even when the gap is shallow (mobile-friendly) */
+        const sy = Math.round(Math.min(26, Math.max(0, (h - 4) / 1.45)));
+        const sx = Math.round(Math.min(34, 14 + gapH / 4));
+        if (sy >= 9) {
           /* sweep to the centre, sketch a little doodle, then carry on */
           const cx = Math.round(W / 2), dir = side ? -1 : 1;
-          d += ` L ${x1} ${y1} C ${x1} ${m}, ${cx - dir * 34} ${m}, ${cx} ${m}`;
+          d += ` L ${x1} ${y1} C ${x1} ${m}, ${cx - dir * 40} ${m}, ${cx} ${m}`;
           const k = doodles[dIdx++ % doodles.length];
-          if (k === "bow") d += ` C ${cx + dir * s * 1.4} ${m - s * 1.2}, ${cx + dir * s * 1.4} ${m + s * 1.2}, ${cx} ${m} C ${cx - dir * s * 1.4} ${m - s * 1.2}, ${cx - dir * s * 1.4} ${m + s * 1.2}, ${cx} ${m}`;
-          else if (k === "heart") d += ` C ${cx - s * 0.9} ${m - s}, ${cx - s * 1.7} ${m + s * 0.5}, ${cx} ${m + s * 1.3} C ${cx + s * 1.7} ${m + s * 0.5}, ${cx + s * 0.9} ${m - s}, ${cx} ${m}`;
-          else if (k === "fly") d += ` C ${cx - s * 1.6} ${m - s * 1.3}, ${cx - s * 1.6} ${m + s * 0.3}, ${cx} ${m} C ${cx - s} ${m + s * 1.2}, ${cx - s * 0.1} ${m + s * 1.3}, ${cx} ${m} C ${cx + s * 0.1} ${m + s * 1.3}, ${cx + s} ${m + s * 1.2}, ${cx} ${m} C ${cx + s * 1.6} ${m + s * 0.3}, ${cx + s * 1.6} ${m - s * 1.3}, ${cx} ${m}`;
-          else d += ` C ${cx + dir * s} ${m - s * 1.7}, ${cx - dir * s} ${m - s * 1.7}, ${cx} ${m}`;
-          d += ` C ${cx + dir * 34} ${m}, ${x2} ${m}, ${x2} ${y2}`;
+          if (k === "bow") d += ` C ${cx + dir * sx * 1.5} ${m - sy * 1.3}, ${cx + dir * sx * 1.5} ${m + sy * 1.3}, ${cx} ${m} C ${cx - dir * sx * 1.5} ${m - sy * 1.3}, ${cx - dir * sx * 1.5} ${m + sy * 1.3}, ${cx} ${m}`;
+          else if (k === "heart") d += ` C ${cx - sx} ${m - sy * 1.2}, ${cx - sx * 1.9} ${m + sy * 0.5}, ${cx} ${m + sy * 1.4} C ${cx + sx * 1.9} ${m + sy * 0.5}, ${cx + sx} ${m - sy * 1.2}, ${cx} ${m}`;
+          else if (k === "fly") d += ` C ${cx - sx * 1.8} ${m - sy * 1.4}, ${cx - sx * 1.8} ${m + sy * 0.3}, ${cx} ${m} C ${cx - sx} ${m + sy * 1.3}, ${cx - sx * 0.1} ${m + sy * 1.3}, ${cx} ${m} C ${cx + sx * 0.1} ${m + sy * 1.3}, ${cx + sx} ${m + sy * 1.3}, ${cx} ${m} C ${cx + sx * 1.8} ${m + sy * 0.3}, ${cx + sx * 1.8} ${m - sy * 1.4}, ${cx} ${m}`;
+          else d += ` C ${cx + dir * sx * 1.2} ${m - sy * 1.6}, ${cx - dir * sx * 1.2} ${m - sy * 1.6}, ${cx} ${m}`;
+          d += ` C ${cx + dir * 40} ${m}, ${x2} ${m}, ${x2} ${y2}`;
         } else {
           d += ` L ${x1} ${y1} C ${x1} ${m}, ${x2} ${m}, ${x2} ${y2}`;
         }
@@ -332,10 +334,16 @@
 
   /* ---- Navbar: scroll + auto hide/show -------------------------- */
   const navbar = $("#navbar"), navLinks = $("#navLinks");
+  const parCollage = $(".hero .collage"), parShow = $(".mob-show");
   let lastY = scrollY, navTick = false;
   function onScroll() { if (navTick) return; navTick = true; requestAnimationFrame(() => {
     const y = scrollY; navbar.classList.toggle("scrolled", y > 16);
     updTrail();
+    /* gentle hero parallax (depth) */
+    if (y < innerHeight * 1.8) {
+      if (parCollage) parCollage.style.translate = `0 ${(y * 0.1).toFixed(1)}px`;
+      if (parShow) parShow.style.translate = `0 ${(y * 0.08).toFixed(1)}px`;
+    }
     const menuOpen = document.body.style.overflow === "hidden";
     if (!menuOpen && y > 420 && y > lastY + 6) navbar.classList.add("nav-hidden");
     else if (y < lastY - 6 || y < 420) navbar.classList.remove("nav-hidden");
@@ -358,7 +366,7 @@
     anchors.forEach(a => a.classList.toggle("active-link", a.getAttribute("href") === "#" + cur && !a.classList.contains("nav-cta"))); }, { passive: true });
 
   /* ---- Reveal -------------------------------------------------- */
-  $$(".section-head, .svc-card, .aud-card, .pstep, .proof-card, .qb-card, .trust-card, .cta-card, .panel, .acc-item").forEach(e => e.classList.add("reveal"));
+  $$(".section-head, .svc-card, .aud-card, .pstep, .proof-card, .qb-card, .trust-card, .cta-card, .panel, .acc-item, .faq-item, .footer-grid").forEach(e => e.classList.add("reveal"));
   observe($$(".reveal"));
 
   /* ---- Validation helpers -------------------------------------- */
