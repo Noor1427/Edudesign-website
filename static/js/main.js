@@ -235,10 +235,29 @@
   let trailLen = 0;
   function buildTrail() {
     if (!trail || !trailPath) return;
-    const H = document.documentElement.scrollHeight;
+    const doc = document.documentElement, H = doc.scrollHeight, W = doc.clientWidth;
+    trail.setAttribute("width", W);
     trail.setAttribute("height", H);
-    let d = "M18 0", y = 0, left = false;
-    while (y < H) { y = Math.min(y + 280, H); d += ` L${left ? 14 : 34} ${y}`; left = !left; }
+    /* route: run down the side gutters (clear of text), and swing across the
+       page only inside the whitespace gaps between content blocks */
+    const blocks = $$("main > section, main > .marquee, body > footer");
+    const sY = scrollY;
+    const inner = (b) => { const c = b.querySelector(":scope > .container") || b;
+      const r = c.getBoundingClientRect(); return { top: r.top + sY, bottom: r.bottom + sY }; };
+    const Lx = 9, Rx = W - 9;
+    let side = 1, d = `M ${Rx} 0`, prev = null;
+    blocks.forEach((b) => {
+      if (b.getBoundingClientRect().height < 2) return; /* skip hidden sections */
+      if (!prev) { prev = inner(b); return; }
+      const cur = inner(b), gapTop = prev.bottom, gapBot = cur.top;
+      if (gapBot - gapTop >= 18) {
+        const mid = (gapTop + gapBot) / 2, h = Math.min(26, (gapBot - gapTop) / 2 - 2);
+        d += ` L ${side ? Rx : Lx} ${Math.round(mid - h)} L ${side ? Lx : Rx} ${Math.round(mid + h)}`;
+        side = 1 - side;
+      }
+      prev = cur;
+    });
+    d += ` L ${side ? Rx : Lx} ${H}`;
     trailPath.setAttribute("d", d);
     trailLen = trailPath.getTotalLength();
     trailPath.style.strokeDasharray = trailLen;
