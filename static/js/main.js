@@ -262,17 +262,31 @@
     const Lx = 9, Rx = W - 9;
     /* crossings rendered as S-curves with vertical tangents at both ends, so
        they join the straight gutter runs with no corner — flows like handwriting */
-    let side = 1, d = `M ${Rx} 0`, prev = null;
+    let side = 1, d = `M ${Rx} 0`, prev = null, dIdx = 0;
+    const doodles = ["bow", "heart", "fly", "curl"];
     blocks.forEach((b) => {
       if (b.getBoundingClientRect().height < 2) return; /* skip hidden sections */
       if (!prev) { prev = inner(b); return; }
-      const cur = inner(b), gapTop = prev.bottom, gapBot = cur.top;
-      if (gapBot - gapTop >= 18) {
-        const mid = (gapTop + gapBot) / 2;
-        const h = Math.min(56, Math.max(10, (gapBot - gapTop) / 2 - 4));
+      const cur = inner(b), gapTop = prev.bottom, gapBot = cur.top, gapH = gapBot - gapTop;
+      if (gapH >= 18) {
+        const mid = (gapTop + gapBot) / 2, m = Math.round(mid);
+        const h = Math.min(56, Math.max(10, gapH / 2 - 4));
         const x1 = side ? Rx : Lx, x2 = side ? Lx : Rx;
         const y1 = Math.round(mid - h), y2 = Math.round(mid + h);
-        d += ` L ${x1} ${y1} C ${x1} ${Math.round(mid)}, ${x2} ${Math.round(mid)}, ${x2} ${y2}`;
+        const s = Math.round(Math.min(16, gapH / 2 - 8));
+        if (s >= 9) {
+          /* sweep to the centre, sketch a little doodle, then carry on */
+          const cx = Math.round(W / 2), dir = side ? -1 : 1;
+          d += ` L ${x1} ${y1} C ${x1} ${m}, ${cx - dir * 34} ${m}, ${cx} ${m}`;
+          const k = doodles[dIdx++ % doodles.length];
+          if (k === "bow") d += ` C ${cx + dir * s * 1.4} ${m - s * 1.2}, ${cx + dir * s * 1.4} ${m + s * 1.2}, ${cx} ${m} C ${cx - dir * s * 1.4} ${m - s * 1.2}, ${cx - dir * s * 1.4} ${m + s * 1.2}, ${cx} ${m}`;
+          else if (k === "heart") d += ` C ${cx - s * 0.9} ${m - s}, ${cx - s * 1.7} ${m + s * 0.5}, ${cx} ${m + s * 1.3} C ${cx + s * 1.7} ${m + s * 0.5}, ${cx + s * 0.9} ${m - s}, ${cx} ${m}`;
+          else if (k === "fly") d += ` C ${cx - s * 1.6} ${m - s * 1.3}, ${cx - s * 1.6} ${m + s * 0.3}, ${cx} ${m} C ${cx - s} ${m + s * 1.2}, ${cx - s * 0.1} ${m + s * 1.3}, ${cx} ${m} C ${cx + s * 0.1} ${m + s * 1.3}, ${cx + s} ${m + s * 1.2}, ${cx} ${m} C ${cx + s * 1.6} ${m + s * 0.3}, ${cx + s * 1.6} ${m - s * 1.3}, ${cx} ${m}`;
+          else d += ` C ${cx + dir * s} ${m - s * 1.7}, ${cx - dir * s} ${m - s * 1.7}, ${cx} ${m}`;
+          d += ` C ${cx + dir * 34} ${m}, ${x2} ${m}, ${x2} ${y2}`;
+        } else {
+          d += ` L ${x1} ${y1} C ${x1} ${m}, ${x2} ${m}, ${x2} ${y2}`;
+        }
         side = 1 - side;
       }
       prev = cur;
@@ -283,10 +297,23 @@
     trailPath.style.strokeDasharray = trailLen;
     updTrail();
   }
+  function lenForY(targetY) {
+    /* find path length whose point sits at targetY (path y is ~monotonic) */
+    let lo = 0, hi = trailLen;
+    for (let i = 0; i < 18; i++) {
+      const m = (lo + hi) / 2;
+      if (trailPath.getPointAtLength(m).y < targetY) lo = m; else hi = m;
+    }
+    return (lo + hi) / 2;
+  }
   function updTrail() {
     if (!trailLen) return;
-    const max = document.documentElement.scrollHeight - innerHeight;
-    const drawn = trailLen * (max > 0 ? Math.min(scrollY / max, 1) : 0);
+    const doc = document.documentElement;
+    const max = doc.scrollHeight - innerHeight;
+    const t = max > 0 ? Math.min(scrollY / max, 1) : 0;
+    /* keep the pen tip riding near the centre of the screen */
+    const targetY = Math.min(scrollY + innerHeight * (0.22 + 0.56 * t), doc.scrollHeight);
+    const drawn = t >= 1 ? trailLen : (scrollY <= 0 ? Math.min(lenForY(targetY), trailLen * 0.02) : lenForY(targetY));
     trailPath.style.strokeDashoffset = trailLen - drawn;
     const pt = trailPath.getPointAtLength(drawn);
     if (trailPen) {
