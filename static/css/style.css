@@ -892,6 +892,20 @@ section{padding:72px 0}
   .mob-dots i.on{width:18px;border-radius:4px;background:var(--pink)}
 }
 
+/* ════════ DESKTOP TOP IMAGE SHOWCASE — same auto-swiping banner as mobile ════════ */
+@media (min-width:601px){
+  .mob-show{display:block;order:-1;grid-column:1 / -1;position:relative;margin:0 calc(50% - 50vw) 42px}
+  .mob-track{display:flex;gap:0;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  .mob-track::-webkit-scrollbar{display:none}
+  .ms-slide{flex:0 0 100%;scroll-snap-align:center;position:relative;overflow:hidden;height:clamp(300px,33vw,420px);background:var(--bg-soft);will-change:transform}
+  .ms-slide img{width:100%;height:100%;object-fit:cover;display:block;will-change:transform}
+  .ms-slide::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(13,27,42,.45));pointer-events:none}
+  .ms-slide figcaption{position:absolute;z-index:2;left:max(24px,calc(50vw - 588px));bottom:28px;background:rgba(13,27,42,.82);color:#fff;font-size:13px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;padding:9px 18px;border-radius:50px;backdrop-filter:blur(5px)}
+  .mob-dots{position:absolute;left:0;right:0;bottom:16px;display:flex;justify-content:center;gap:8px;z-index:3}
+  .mob-dots i{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.7);box-shadow:0 1px 4px rgba(13,27,42,.35);transition:all .3s ease;cursor:pointer}
+  .mob-dots i.on{width:22px;border-radius:5px;background:var(--pink)}
+}
+
 /* ════════ PEN TRAIL (zig-zag line drawn down the page) ════════ */
 #penTrail{position:absolute;top:0;left:0;width:100%;z-index:60;pointer-events:none;overflow:visible}
 #penTrailPen{filter:drop-shadow(0 3px 6px rgba(13,27,42,.35))}

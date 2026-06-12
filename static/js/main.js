@@ -211,7 +211,7 @@
 
   /* ---- Mobile showcase: auto-swiping carousel ------------------- */
   (function mobShow() {
-    const track = $("#mobTrack"); if (!track || !matchMedia("(max-width:600px)").matches) return;
+    const track = $("#mobTrack"); if (!track) return;
     const cards = $$(".ms-slide", track), dots = $("#mobDots");
     if (dots) dots.innerHTML = cards.map((_, i) => `<i${i === 0 ? ' class="on"' : ""}></i>`).join("");
     let idx = 0, paused = false, pauseT;
@@ -221,6 +221,8 @@
       track.scrollTo({ left: center(cards[idx]), behavior: "smooth" }); }, 3000);
     track.addEventListener("touchstart", () => { paused = true; clearTimeout(pauseT); }, { passive: true });
     track.addEventListener("touchend", () => { pauseT = setTimeout(() => paused = false, 4000); }, { passive: true });
+    track.addEventListener("mouseenter", () => { paused = true; clearTimeout(pauseT); });
+    track.addEventListener("mouseleave", () => { pauseT = setTimeout(() => paused = false, 1200); });
     /* bubble effect: active slide pops, neighbours shrink; image parallax */
     const paint = () => {
       const c = track.scrollLeft + track.clientWidth / 2;
