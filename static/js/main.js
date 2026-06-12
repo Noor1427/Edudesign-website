@@ -247,7 +247,18 @@
 
   /* ---- Pen trail: zig-zag pink line drawn down the page --------- */
   const trail = $("#penTrail"), trailPath = $("#penTrailPath"), trailPen = $("#penTrailPen");
-  let trailLen = 0;
+  let trailLen = 0, doodleEls = [];
+  const SVGNS = "http://www.w3.org/2000/svg";
+  /* cute doodle shapes (path centred at cx,cy, radius s) */
+  const doodleD = {
+    heart: (x, y, s) => `M ${x} ${y + s} C ${x - s * 1.5} ${y - s * 0.2}, ${x - s * 0.55} ${y - s}, ${x} ${y - s * 0.3} C ${x + s * 0.55} ${y - s}, ${x + s * 1.5} ${y - s * 0.2}, ${x} ${y + s} Z`,
+    bow: (x, y, s) => `M ${x} ${y} C ${x - s * 1.7} ${y - s}, ${x - s * 1.7} ${y + s}, ${x} ${y} C ${x + s * 1.7} ${y - s}, ${x + s * 1.7} ${y + s}, ${x} ${y} Z`,
+    fly: (x, y, s) => `M ${x} ${y} C ${x - s * 1.7} ${y - s * 1.3}, ${x - s * 1.7} ${y - s * 0.1}, ${x} ${y} C ${x - s * 1.2} ${y + s * 1.4}, ${x - s * 0.1} ${y + s * 1.4}, ${x} ${y} C ${x + s * 0.1} ${y + s * 1.4}, ${x + s * 1.2} ${y + s * 1.4}, ${x} ${y} C ${x + s * 1.7} ${y - s * 0.1}, ${x + s * 1.7} ${y - s * 1.3}, ${x} ${y}`,
+    swirl: (x, y, s) => `M ${x} ${y} C ${x} ${y - s * 0.7} ${x + s} ${y - s * 0.7} ${x + s} ${y} C ${x + s} ${y + s * 1.1} ${x - s} ${y + s * 1.1} ${x - s} ${y} C ${x - s} ${y - s * 1.6} ${x + s * 1.6} ${y - s * 1.6} ${x + s * 1.6} ${y}`,
+    star: (x, y, s) => { let p = ""; for (let i = 0; i < 11; i++) { const r = i % 2 ? s * 0.45 : s, a = (-90 + i * 36) * Math.PI / 180; p += (i ? "L" : "M") + ` ${(x + r * Math.cos(a)).toFixed(1)} ${(y + r * Math.sin(a)).toFixed(1)} `; } return p + "Z"; },
+    flower: (x, y, s) => { let p = ""; for (let i = 0; i < 5; i++) { const a = (i * 72 - 90) * Math.PI / 180, ox = x + Math.cos(a) * s, oy = y + Math.sin(a) * s, lx = x + Math.cos(a - .6) * s * .55, ly = y + Math.sin(a - .6) * s * .55, rx = x + Math.cos(a + .6) * s * .55, ry = y + Math.sin(a + .6) * s * .55; p += `M ${x} ${y} C ${lx.toFixed(1)} ${ly.toFixed(1)}, ${ox.toFixed(1)} ${oy.toFixed(1)}, ${ox.toFixed(1)} ${oy.toFixed(1)} C ${ox.toFixed(1)} ${oy.toFixed(1)}, ${rx.toFixed(1)} ${ry.toFixed(1)}, ${x} ${y} `; } return p; }
+  };
+  const doodleKinds = ["heart", "bow", "fly", "star", "swirl", "flower"];
   function buildTrail() {
     if (!trail || !trailPath) return;
     const doc = document.documentElement, H = doc.scrollHeight, W = doc.clientWidth;
@@ -262,8 +273,8 @@
     const Lx = 9, Rx = W - 9;
     /* crossings rendered as S-curves with vertical tangents at both ends, so
        they join the straight gutter runs with no corner — flows like handwriting */
-    let side = 1, d = `M ${Rx} 0`, prev = null, dIdx = 0;
-    const doodles = ["bow", "heart", "fly", "curl"];
+    let side = 1, d = `M ${Rx} 0`, prev = null;
+    const gaps = [];
     blocks.forEach((b) => {
       if (b.getBoundingClientRect().height < 2) return; /* skip hidden sections */
       if (!prev) { prev = inner(b); return; }
@@ -273,22 +284,9 @@
         const h = Math.min(56, Math.max(10, gapH / 2 - 4));
         const x1 = side ? Rx : Lx, x2 = side ? Lx : Rx;
         const y1 = Math.round(mid - h), y2 = Math.round(mid + h);
-        /* doodles scale wide even when the gap is shallow (mobile-friendly) */
-        const sy = Math.round(Math.min(26, Math.max(0, (h - 4) / 1.45)));
-        const sx = Math.round(Math.min(34, 14 + gapH / 4));
-        if (sy >= 9) {
-          /* sweep to the centre, sketch a little doodle, then carry on */
-          const cx = Math.round(W / 2), dir = side ? -1 : 1;
-          d += ` L ${x1} ${y1} C ${x1} ${m}, ${cx - dir * 40} ${m}, ${cx} ${m}`;
-          const k = doodles[dIdx++ % doodles.length];
-          if (k === "bow") d += ` C ${cx + dir * sx * 1.5} ${m - sy * 1.3}, ${cx + dir * sx * 1.5} ${m + sy * 1.3}, ${cx} ${m} C ${cx - dir * sx * 1.5} ${m - sy * 1.3}, ${cx - dir * sx * 1.5} ${m + sy * 1.3}, ${cx} ${m}`;
-          else if (k === "heart") d += ` C ${cx - sx} ${m - sy * 1.2}, ${cx - sx * 1.9} ${m + sy * 0.5}, ${cx} ${m + sy * 1.4} C ${cx + sx * 1.9} ${m + sy * 0.5}, ${cx + sx} ${m - sy * 1.2}, ${cx} ${m}`;
-          else if (k === "fly") d += ` C ${cx - sx * 1.8} ${m - sy * 1.4}, ${cx - sx * 1.8} ${m + sy * 0.3}, ${cx} ${m} C ${cx - sx} ${m + sy * 1.3}, ${cx - sx * 0.1} ${m + sy * 1.3}, ${cx} ${m} C ${cx + sx * 0.1} ${m + sy * 1.3}, ${cx + sx} ${m + sy * 1.3}, ${cx} ${m} C ${cx + sx * 1.8} ${m + sy * 0.3}, ${cx + sx * 1.8} ${m - sy * 1.4}, ${cx} ${m}`;
-          else d += ` C ${cx + dir * sx * 1.2} ${m - sy * 1.6}, ${cx - dir * sx * 1.2} ${m - sy * 1.6}, ${cx} ${m}`;
-          d += ` C ${cx + dir * 40} ${m}, ${x2} ${m}, ${x2} ${y2}`;
-        } else {
-          d += ` L ${x1} ${y1} C ${x1} ${m}, ${x2} ${m}, ${x2} ${y2}`;
-        }
+        /* clean, corner-free S-curve crossing (pen draws smoothly + stays centred) */
+        d += ` L ${x1} ${y1} C ${x1} ${m}, ${x2} ${m}, ${x2} ${y2}`;
+        if (gapH >= 40) gaps.push(m);
         side = 1 - side;
       }
       prev = cur;
@@ -297,7 +295,34 @@
     trailPath.setAttribute("d", d);
     trailLen = trailPath.getTotalLength();
     trailPath.style.strokeDasharray = trailLen;
+    buildDoodles(gaps, W);
     updTrail();
+  }
+  function buildDoodles(gaps, W) {
+    doodleEls.forEach(o => o.el.remove());
+    doodleEls = [];
+    gaps.forEach((y, i) => {
+      const kind = doodleKinds[(i * 3 + 1) % doodleKinds.length];
+      const s = 16 + ((i * 37) % 12);                 /* 16–27px, varied */
+      const fx = [0.2, 0.74, 0.36, 0.84, 0.28, 0.66, 0.48, 0.8][i % 8]; /* random-ish x, never centre-only */
+      const x = Math.round(W * fx);
+      const rot = ((i * 53) % 30) - 15;               /* gentle tilt */
+      const el = document.createElementNS(SVGNS, "path");
+      el.setAttribute("d", doodleD[kind](x, y, s));
+      el.setAttribute("fill", "none");
+      el.setAttribute("stroke", "url(#trailGrad)");
+      el.setAttribute("stroke-width", "2.4");
+      el.setAttribute("stroke-linecap", "round");
+      el.setAttribute("stroke-linejoin", "round");
+      el.setAttribute("transform", `rotate(${rot} ${x} ${y})`);
+      el.style.filter = "drop-shadow(0 2px 4px rgba(199,93,134,.25))";
+      trail.insertBefore(el, trailPen);
+      const len = el.getTotalLength();
+      el.style.strokeDasharray = len;
+      el.style.strokeDashoffset = len;
+      el.style.opacity = "0";
+      doodleEls.push({ el, y, len });
+    });
   }
   function lenForY(targetY) {
     /* find path length whose point sits at targetY (path y is ~monotonic) */
@@ -324,6 +349,12 @@
       const ang = Math.atan2(pt.y - pb.y, pt.x - pb.x) * 180 / Math.PI;
       const tilt = Math.max(-30, Math.min(30, (ang - 90) * 0.6));
       trailPen.setAttribute("transform", `translate(${pt.x.toFixed(1)},${pt.y.toFixed(1)}) rotate(${tilt.toFixed(1)})`);
+    }
+    /* each doodle draws itself smoothly as the pen passes its height */
+    for (const dd of doodleEls) {
+      const p = Math.max(0, Math.min(1, (targetY - (dd.y - 40)) / 120));
+      dd.el.style.strokeDashoffset = dd.len * (1 - p);
+      dd.el.style.opacity = p < 0.04 ? "0" : "1";
     }
   }
   if (trail) {
