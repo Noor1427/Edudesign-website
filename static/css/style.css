@@ -1088,3 +1088,102 @@ body.mouse-active .cursor-glow {
   position: relative;
   z-index: 2; /* keep controls above canvas */
 }
+
+/* ════════════════════════════════════════════════════════════════
+   MODERN OVERHAUL — display type, depth, bento, polished cards
+   Brand kept (pink/navy/blue/yellow) — only modernised
+   ════════════════════════════════════════════════════════════════ */
+:root{
+  --font-display:'Sora',var(--font);
+  --grad-brand:linear-gradient(110deg,#FF6B93 0%,#9b5cf0 50%,#3b82f6 100%);
+}
+
+/* Display font on the headings that carry the brand voice */
+.hero-title,.section-title,.section-title.sm,.cta-card h2,.qb-text h2,
+.brand,.aud-top h3,.svc-card h3,.work-card h3,.pstep h3{
+  font-family:var(--font-display);letter-spacing:-.6px;
+}
+
+/* Gradient-clipped accent words inside the big headings.
+   Target the inner word spans too — the word-split wraps each word in an
+   inline-block, and background-clip:text won't paint across those, so without
+   this the accent text would render transparent (invisible). */
+.hero-title .accent,.hero-title .accent .reveal-word,
+.section-title .accent,.section-title .accent .reveal-word{
+  background:var(--grad-brand);
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;color:transparent;
+}
+
+/* ---- Section background rhythm (subtle depth instead of flat grey) ---- */
+.hero{
+  background:
+    radial-gradient(1100px 620px at 80% -10%,rgba(255,107,147,.12),transparent 60%),
+    radial-gradient(900px 600px at 6% 16%,rgba(37,99,235,.11),transparent 55%),
+    linear-gradient(180deg,#ffffff 0%,#F5F8FD 100%);
+}
+.audiences,.work{background:#fff}
+.services{background:linear-gradient(180deg,#FAFBFE 0%,#EAF0FA 100%)}
+.process{background:linear-gradient(180deg,#FFF7FA 0%,#FFEDF3 100%)}
+.faq-contact{background:linear-gradient(180deg,#F3F8FF 0%,#E8F1FC 100%)}
+.services,.process,.faq-contact{position:relative;overflow:hidden}
+/* soft floating colour blobs give the "block" energy the style calls for */
+.services::before,.process::before,.faq-contact::before{
+  content:"";position:absolute;width:420px;height:420px;border-radius:50%;
+  filter:blur(80px);opacity:.5;pointer-events:none;z-index:0;
+}
+.services::before{background:rgba(37,99,235,.10);top:-120px;right:-100px}
+.process::before{background:rgba(255,107,147,.12);bottom:-140px;left:-120px}
+.faq-contact::before{background:rgba(37,99,235,.10);top:-120px;left:-120px}
+.services .container,.process .container,.faq-contact .container{position:relative;z-index:1}
+
+/* ---- Bento services grid (desktop) ---- */
+@media(min-width:781px){
+  .services-grid{grid-template-columns:repeat(3,1fr);grid-auto-flow:dense;gap:18px}
+  .services-grid .svc-card:first-child{
+    grid-column:span 2;grid-row:span 2;
+    background:linear-gradient(155deg,#11243b,#0D1B2A);border-color:transparent;
+    display:flex;flex-direction:column;justify-content:center;
+  }
+  .services-grid .svc-card:first-child .svc-head h3{color:#fff;font-size:27px}
+  .services-grid .svc-card:first-child .svc-body p{color:#cdd8e6;font-size:16px}
+  .services-grid .svc-card:first-child .svc-ic{
+    width:64px;height:64px;font-size:27px;background:var(--pink);color:#fff;
+    box-shadow:0 12px 28px rgba(255,107,147,.45);
+  }
+  .services-grid .svc-card:first-child .svc-link{color:#ff9bb5}
+}
+
+/* ---- Service card polish ---- */
+.svc-card{border-radius:16px}
+.svc-ic{transition:transform var(--t),box-shadow var(--t)}
+.svc-card:hover .svc-ic{transform:scale(1.08) rotate(-4deg);box-shadow:0 10px 22px rgba(255,107,147,.35)}
+
+/* ---- Selected Work polish (rounded, hover overlay + category chip) ---- */
+.work-thumb{border-radius:16px;position:relative}
+.work-thumb::after{
+  content:"";position:absolute;inset:0;z-index:1;border-radius:16px;
+  background:linear-gradient(to top,rgba(13,27,42,.5),transparent 55%);
+  opacity:0;transition:opacity var(--t);
+}
+.work-card:hover .work-thumb::after{opacity:1}
+.work-cat{display:inline-block;margin-top:6px;font-size:12px;font-weight:700;
+  letter-spacing:.3px;color:var(--blue);background:var(--blue-soft);
+  padding:3px 10px;border-radius:50px}
+
+/* ---- Pink CTA buttons: keep pink, add depth + better legibility ---- */
+.btn-accent{background:linear-gradient(135deg,#FF7DA1,#F5436F);box-shadow:0 8px 20px rgba(245,67,111,.28)}
+.btn-accent:hover{background:linear-gradient(135deg,#F5436F,#E0295A)}
+
+/* ---- Roomier spacing rhythm ---- */
+section{padding:90px 0}
+.section-head{margin-bottom:54px}
+@media(max-width:600px){section{padding:56px 0}.section-head{margin-bottom:38px}}
+
+/* ---- Honest guarantees strip ---- */
+.trust-band{padding:0;margin-top:-30px;position:relative;z-index:5}
+.trust-band .trust-card{box-shadow:var(--shadow-md)}
+@media(max-width:600px){
+  .trust-band{margin-top:0}
+  .trust-card{grid-template-columns:1fr 1fr;gap:18px 12px}
+}
