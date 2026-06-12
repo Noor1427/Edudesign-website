@@ -931,10 +931,159 @@ section{padding:72px 0}
 .cta-card.reveal.visible .cta-feat:nth-child(5){transition-delay:.32s}
 /* FAQ items stagger gently as they reveal */
 .faq-list .reveal:nth-child(even){transition-delay:.08s}
-/* contact panels arrive one after the other */
 .contact-grid .reveal:nth-child(2){transition-delay:.12s}
-/* section tag chip pops, subtitle follows the title */
 .section-head.reveal .tag{opacity:0;transform:scale(.7);transition:opacity .4s ease,transform .45s cubic-bezier(.34,1.56,.64,1)}
 .section-head.reveal.visible .tag{opacity:1;transform:none}
 .section-head.reveal .section-sub{opacity:0;transform:translateY(10px);transition:opacity .5s ease .15s,transform .5s ease .15s}
 .section-head.reveal.visible .section-sub{opacity:1;transform:none}
+}
+
+/* ════════ PREMIUM INTERACTIVE ANIMATION SUITE ════════ */
+
+/* Page Transition Overlay */
+.page-transition-overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--navy);
+  z-index: 99999;
+  pointer-events: none;
+  opacity: 1;
+  transition: opacity 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+}
+.page-transition-overlay.fade-out {
+  opacity: 1;
+  pointer-events: all;
+}
+.page-transition-overlay.fade-in {
+  opacity: 0;
+}
+
+/* Glassy Cursor Glow */
+.cursor-glow {
+  position: fixed;
+  width: 380px;
+  height: 380px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 107, 147, 0.15) 0%, rgba(37, 99, 235, 0.08) 45%, rgba(255, 232, 163, 0.02) 65%, transparent 75%);
+  pointer-events: none;
+  z-index: 1;
+  mix-blend-mode: screen;
+  transform: translate(-50%, -50%);
+  will-change: transform;
+  transition: opacity 0.4s ease;
+  opacity: 0;
+}
+body.mouse-active .cursor-glow {
+  opacity: 1;
+}
+@media (max-width: 768px) {
+  .cursor-glow { display: none !important; }
+}
+
+/* Scroll Progress Indicator on Navbar */
+.navbar {
+  position: fixed; /* ensure position relative context for progress indicator */
+}
+.nav-scroll-progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  width: var(--scroll-pct, 0%);
+  background: linear-gradient(90deg, var(--pink), var(--blue));
+  z-index: 1005;
+  transition: width 0.05s linear;
+}
+
+/* 3D Card Tilt & Glare Effect */
+.svc-card, .work-card, .aud-card {
+  transform: perspective(1000px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) translateY(var(--ty, 0px));
+  transform-style: preserve-3d;
+  transition: transform 0.15s cubic-bezier(0.25, 1, 0.5, 1), box-shadow var(--t);
+  position: relative;
+}
+.svc-card::before, .work-card::before, .aud-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(circle at var(--mx, 50%) var(--my, 50%), rgba(255, 255, 255, 0.14) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: 10;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.svc-card:hover::before, .work-card:hover::before, .aud-card:hover::before {
+  opacity: 1;
+}
+
+/* Override native card hover transforms to support 3D Tilt translate */
+.svc-card:hover {
+  transform: perspective(1000px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) translateY(-6px) !important;
+}
+.aud-card:hover {
+  transform: perspective(1000px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) translateY(-5px) !important;
+}
+.work-card:hover {
+  transform: perspective(1000px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) translateY(-4px) !important;
+}
+
+/* Magnetic Button physics */
+.btn-primary, .btn-accent, .floating-whatsapp, .hamburger {
+  transform: translate(var(--bx, 0px), var(--by, 0px)) scale(var(--bs, 1));
+  transition: transform 0.22s cubic-bezier(0.25, 1, 0.5, 1), box-shadow var(--t), background var(--t), color var(--t);
+}
+.btn-primary:hover, .btn-accent:hover {
+  transform: translate(var(--bx, 0px), var(--by, 0px)) scale(1.03);
+}
+
+/* Word Split Entrance Animations */
+.reveal-word-wrap {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+  margin-right: 0.22em; /* standard word gap */
+}
+.reveal-word {
+  display: inline-block;
+  transform: translateY(110%);
+  opacity: 0;
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.7s ease;
+}
+.visible .reveal-word, .revealed .reveal-word {
+  transform: translateY(0);
+  opacity: 1;
+}
+/* Stagger details for titles */
+.reveal-word-wrap:nth-child(1) .reveal-word { transition-delay: 0.03s; }
+.reveal-word-wrap:nth-child(2) .reveal-word { transition-delay: 0.06s; }
+.reveal-word-wrap:nth-child(3) .reveal-word { transition-delay: 0.09s; }
+.reveal-word-wrap:nth-child(4) .reveal-word { transition-delay: 0.12s; }
+.reveal-word-wrap:nth-child(5) .reveal-word { transition-delay: 0.15s; }
+.reveal-word-wrap:nth-child(6) .reveal-word { transition-delay: 0.18s; }
+.reveal-word-wrap:nth-child(7) .reveal-word { transition-delay: 0.21s; }
+.reveal-word-wrap:nth-child(8) .reveal-word { transition-delay: 0.24s; }
+.reveal-word-wrap:nth-child(n+9) .reveal-word { transition-delay: 0.27s; }
+
+/* Global sparkles layer */
+#sparkleCanvas {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  pointer-events: none;
+}
+
+/* Hero Particles Canvas wrapper */
+.hero {
+  position: relative;
+}
+#heroParticlesCanvas {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+.hero-inner {
+  position: relative;
+  z-index: 2; /* keep controls above canvas */
+}

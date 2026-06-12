@@ -433,4 +433,357 @@
 
   $$("input, select, textarea").forEach(inp => inp.addEventListener("input", () => markInvalid(inp, false)));
   bindWa(document);
+
+  /* ════════ PREMIUM INTERACTIVE ANIMATION SUITE ════════ */
+
+  // Utilities
+  const lerp = (start, end, amt) => (1 - amt) * start + amt * end;
+
+  // 1. DOM Injection
+  const transitionOverlay = document.createElement("div");
+  transitionOverlay.className = "page-transition-overlay";
+  document.body.appendChild(transitionOverlay);
+
+  const cursorGlow = document.createElement("div");
+  cursorGlow.className = "cursor-glow";
+  document.body.appendChild(cursorGlow);
+
+  const sparkleCanvas = document.createElement("canvas");
+  sparkleCanvas.id = "sparkleCanvas";
+  document.body.appendChild(sparkleCanvas);
+  const sCtx = sparkleCanvas.getContext("2d");
+
+  // Resize canvas helpers
+  const resizeSparkleCanvas = () => {
+    sparkleCanvas.width = window.innerWidth;
+    sparkleCanvas.height = window.innerHeight;
+  };
+  resizeSparkleCanvas();
+  window.addEventListener("resize", resizeSparkleCanvas);
+
+  // 2. Smooth Page Transitions
+  setTimeout(() => {
+    transitionOverlay.classList.add("fade-in");
+  }, 50);
+
+  document.addEventListener("click", (e) => {
+    const anchor = e.target.closest("a");
+    if (!anchor) return;
+
+    const href = anchor.getAttribute("href");
+    const target = anchor.getAttribute("target");
+
+    // Filter out external, download, and anchor links
+    if (
+      !href ||
+      target === "_blank" ||
+      href.startsWith("#") ||
+      href.startsWith("tel:") ||
+      href.startsWith("mailto:") ||
+      href.startsWith("javascript:") ||
+      href.includes("wa.me") ||
+      href.includes("whatsapp.com") ||
+      anchor.hasAttribute("download")
+    ) {
+      return;
+    }
+
+    e.preventDefault();
+    transitionOverlay.classList.remove("fade-in");
+    transitionOverlay.classList.add("fade-out");
+    setTimeout(() => {
+      window.location.href = href;
+    }, 320);
+  });
+
+  // 3. Glassy Cursor Glow Easing
+  let mouseX = 0, mouseY = 0, glowX = 0, glowY = 0;
+  let isMouseMoving = false;
+
+  document.addEventListener("mousemove", (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+    if (!isMouseMoving) {
+      isMouseMoving = true;
+      document.body.classList.add("mouse-active");
+    }
+  });
+
+  const runGlowLoop = () => {
+    glowX = lerp(glowX, mouseX, 0.07);
+    glowY = lerp(glowY, mouseY, 0.07);
+    cursorGlow.style.transform = `translate(${glowX}px, ${glowY}px)`;
+    requestAnimationFrame(runGlowLoop);
+  };
+  requestAnimationFrame(runGlowLoop);
+
+  // 4. Scroll Progress Indicator & Navbar Progress
+  const nav = $("#navbar");
+  if (nav) {
+    const progress = document.createElement("div");
+    progress.className = "nav-scroll-progress";
+    nav.appendChild(progress);
+
+    const updateScrollProgress = () => {
+      const doc = document.documentElement;
+      const pct = (window.scrollY / (doc.scrollHeight - window.innerHeight)) * 100;
+      nav.style.setProperty("--scroll-pct", `${pct.toFixed(2)}%`);
+    };
+    window.addEventListener("scroll", updateScrollProgress, { passive: true });
+    updateScrollProgress();
+  }
+
+  // 5. 3D Card Tilt & Glare Math
+  const cards = $$(".svc-card, .work-card, .aud-card");
+  cards.forEach(card => {
+    card.addEventListener("mousemove", (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const px = (x / rect.width) * 100;
+      const py = (y / rect.height) * 100;
+      
+      const rx = ((py - 50) / 50) * -8; // max degrees
+      const ry = ((px - 50) / 50) * 8;
+      
+      card.style.setProperty("--rx", `${rx.toFixed(2)}deg`);
+      card.style.setProperty("--ry", `${ry.toFixed(2)}deg`);
+      card.style.setProperty("--mx", `${px.toFixed(1)}%`);
+      card.style.setProperty("--my", `${py.toFixed(1)}%`);
+    });
+
+    card.addEventListener("mouseleave", () => {
+      card.style.setProperty("--rx", "0deg");
+      card.style.setProperty("--ry", "0deg");
+      card.style.setProperty("--mx", "50%");
+      card.style.setProperty("--my", "50%");
+    });
+  });
+
+  // 6. Magnetic Buttons
+  const buttons = $$(".btn-primary, .btn-accent, .floating-whatsapp, .hamburger");
+  const magnetForces = new Map();
+  buttons.forEach(btn => magnetForces.set(btn, { bx: 0, by: 0, tx: 0, ty: 0 }));
+
+  document.addEventListener("mousemove", (e) => {
+    const isMobile = window.innerWidth <= 600;
+    if (isMobile) return;
+
+    buttons.forEach(btn => {
+      const rect = btn.getBoundingClientRect();
+      const btnX = rect.left + rect.width / 2;
+      const btnY = rect.top + rect.height / 2;
+      const dx = e.clientX - btnX;
+      const dy = e.clientY - btnY;
+      const dist = Math.hypot(dx, dy);
+      const force = magnetForces.get(btn);
+
+      if (dist < 85) {
+        const pull = (85 - dist) / 85 * 14; // max 14px pull
+        force.tx = (dx / dist) * pull;
+        force.ty = (dy / dist) * pull;
+      } else {
+        force.tx = 0;
+        force.ty = 0;
+      }
+    });
+  });
+
+  const runMagnetLoop = () => {
+    buttons.forEach(btn => {
+      const force = magnetForces.get(btn);
+      force.bx = lerp(force.bx, force.tx, 0.1);
+      force.by = lerp(force.by, force.ty, 0.1);
+      btn.style.setProperty("--bx", `${force.bx.toFixed(1)}px`);
+      btn.style.setProperty("--by", `${force.by.toFixed(1)}px`);
+    });
+    requestAnimationFrame(runMagnetLoop);
+  };
+  requestAnimationFrame(runMagnetLoop);
+
+  // 7. Text Node word-splitter utility
+  const splitTextNode = (node) => {
+    if (node.nodeType === Node.TEXT_NODE) {
+      const text = node.textContent;
+      const words = text.split(/(\s+)/);
+      const fragment = document.createDocumentFragment();
+      words.forEach(word => {
+        if (word.trim() === "") {
+          fragment.appendChild(document.createTextNode(word));
+        } else {
+          const wrapper = document.createElement("span");
+          wrapper.className = "reveal-word-wrap";
+          const inner = document.createElement("span");
+          inner.className = "reveal-word";
+          inner.textContent = word;
+          wrapper.appendChild(inner);
+          fragment.appendChild(wrapper);
+        }
+      });
+      node.parentNode.replaceChild(fragment, node);
+    } else if (node.nodeType === Node.ELEMENT_NODE) {
+      if (node.tagName !== "SCRIPT" && node.tagName !== "STYLE" && !node.classList.contains("reveal-word-wrap")) {
+        Array.from(node.childNodes).forEach(splitTextNode);
+      }
+    }
+  };
+
+  // Split text inside key titles
+  const heroTitle = $(".hero-title");
+  if (heroTitle) {
+    splitTextNode(heroTitle);
+    setTimeout(() => heroTitle.classList.add("revealed"), 150);
+  }
+  $$(".section-title").forEach(title => {
+    splitTextNode(title);
+  });
+
+  // 8. Hero Particles Emitter Canvas
+  const heroSec = $(".hero");
+  if (heroSec) {
+    const canvas = document.createElement("canvas");
+    canvas.id = "heroParticlesCanvas";
+    heroSec.appendChild(canvas);
+    const ctx = canvas.getContext("2d");
+
+    const resizeCanvas = () => {
+      canvas.width = heroSec.clientWidth;
+      canvas.height = heroSec.clientHeight;
+    };
+    resizeCanvas();
+    window.addEventListener("resize", resizeCanvas);
+    if ("ResizeObserver" in window) {
+      new ResizeObserver(() => resizeCanvas()).observe(heroSec);
+    }
+
+    const symbols = ["🎓", "💻", "📊", "⭐", "⚙️", "📚", "🚀", "💡"];
+    const colors = ["#FF6B93", "#2563EB", "#FFE8A3", "#E6F1FF"];
+    const particles = [];
+
+    for (let i = 0; i < 24; i++) {
+      particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        vx: (Math.random() - 0.5) * 0.4,
+        vy: (Math.random() - 0.5) * 0.4,
+        size: 14 + Math.random() * 12,
+        symbol: symbols[i % symbols.length],
+        color: colors[i % colors.length],
+        rotation: Math.random() * Math.PI * 2,
+        rotSpeed: (Math.random() - 0.5) * 0.005,
+        opacity: 0.12 + Math.random() * 0.18
+      });
+    }
+
+    const runParticlesLoop = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      const isMobile = window.innerWidth <= 600;
+
+      const hRect = heroSec.getBoundingClientRect();
+      const hMouseX = mouseX - hRect.left;
+      const hMouseY = mouseY - hRect.top;
+
+      particles.forEach(p => {
+        if (!isMobile && mouseX > 0 && mouseY > 0 && hMouseX > 0 && hMouseY > 0) {
+          const dx = p.x - hMouseX;
+          const dy = p.y - hMouseY;
+          const dist = Math.hypot(dx, dy);
+          if (dist < 180) {
+            const force = (180 - dist) / 180 * 0.4;
+            p.vx += (dx / dist) * force * 0.1;
+            p.vy += (dy / dist) * force * 0.1;
+          }
+        }
+
+        p.vx *= 0.98;
+        p.vy *= 0.98;
+
+        p.x += p.vx + (Math.random() - 0.5) * 0.05;
+        p.y += p.vy + (Math.random() - 0.5) * 0.05;
+        p.rotation += p.rotSpeed;
+
+        if (p.x < 0) { p.x = 0; p.vx = Math.abs(p.vx); }
+        else if (p.x > canvas.width) { p.x = canvas.width; p.vx = -Math.abs(p.vx); }
+        if (p.y < 0) { p.y = 0; p.vy = Math.abs(p.vy); }
+        else if (p.y > canvas.height) { p.y = canvas.height; p.vy = -Math.abs(p.vy); }
+
+        ctx.save();
+        ctx.translate(p.x, p.y);
+        ctx.rotate(p.rotation);
+        ctx.globalAlpha = p.opacity;
+        ctx.font = `${p.size}px Inter, sans-serif`;
+        ctx.fillStyle = p.color;
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
+        ctx.fillText(p.symbol, 0, 0);
+        ctx.restore();
+      });
+
+      requestAnimationFrame(runParticlesLoop);
+    };
+    requestAnimationFrame(runParticlesLoop);
+  }
+
+  // 9. Sparkle Click Emitter Logic
+  const activeSparkles = [];
+  class Sparkle {
+    constructor(x, y, color) {
+      this.x = x;
+      this.y = y;
+      this.vx = (Math.random() - 0.5) * 7.5;
+      this.vy = (Math.random() - 0.5) * 7.5 - 2;
+      this.size = 3 + Math.random() * 5;
+      this.color = color || "#FF6B93";
+      this.life = 1.0;
+      this.decay = 0.025 + Math.random() * 0.02;
+    }
+    update() {
+      this.x += this.vx;
+      this.y += this.vy;
+      this.vy += 0.12;
+      this.vx *= 0.96;
+      this.life -= this.decay;
+    }
+    draw(ctx) {
+      ctx.save();
+      ctx.globalAlpha = this.life;
+      ctx.fillStyle = this.color;
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.restore();
+    }
+  }
+
+  const runSparkleLoop = () => {
+    sCtx.clearRect(0, 0, sparkleCanvas.width, sparkleCanvas.height);
+    for (let i = activeSparkles.length - 1; i >= 0; i--) {
+      const sp = activeSparkles[i];
+      sp.update();
+      if (sp.life <= 0) {
+        activeSparkles.splice(i, 1);
+      } else {
+        sp.draw(sCtx);
+      }
+    }
+    requestAnimationFrame(runSparkleLoop);
+  };
+  requestAnimationFrame(runSparkleLoop);
+
+  document.addEventListener("click", (e) => {
+    const el = e.target;
+    if (
+      el.closest(".stars-input button") ||
+      el.closest(".btn-accent") ||
+      el.closest(".btn-primary") ||
+      el.closest(".wa-link") ||
+      el.closest(".hamburger")
+    ) {
+      const colors = ["#FF6B93", "#2563EB", "#FFE8A3", "#3b82f6", "#fca5c0"];
+      for (let i = 0; i < 18; i++) {
+        activeSparkles.push(new Sparkle(e.clientX, e.clientY, colors[i % colors.length]));
+      }
+    }
+  });
 })();
+
