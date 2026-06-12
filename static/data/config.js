@@ -110,8 +110,7 @@ window.EDU = {
     { title: "Assignments & Reports",     category: "Academic Support",      icon: "file-lines",  image: "/static/images/work/assignments.jpg" },
     { title: "Coding & Projects",         category: "Development",           icon: "code",        image: "/static/images/work/coding.jpg" },
     { title: "Logo & Branding",           category: "Logo & Brand Identity", icon: "pen-nib",     image: "/static/images/work/logo.jpg" },
-    { title: "Analytics Dashboard",       category: "Data Visualisation",    icon: "chart-column",image: "/static/images/work/analytics.jpg" },
-    { title: "Website Design",            category: "Web Design",            icon: "display",     image: "/static/images/work/website.jpg" }
+    { title: "Website & Analytics Dashboard", category: "Web App & Data Visualisation", icon: "chart-column", image: "/static/images/work/web-analytics.jpg" }
   ],
 
   results: [],
