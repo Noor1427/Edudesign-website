@@ -211,7 +211,7 @@
 
   /* ---- Mobile showcase: auto-swiping carousel ------------------- */
   (function mobShow() {
-    const track = $("#mobTrack"); if (!track) return;
+    const track = $("#mobTrack"); if (!track || !matchMedia("(max-width:600px)").matches) return;
     const cards = $$(".ms-slide", track), dots = $("#mobDots");
     if (dots) dots.innerHTML = cards.map((_, i) => `<i${i === 0 ? ' class="on"' : ""}></i>`).join("");
     let idx = 0, paused = false, pauseT;
@@ -221,8 +221,6 @@
       track.scrollTo({ left: center(cards[idx]), behavior: "smooth" }); }, 3000);
     track.addEventListener("touchstart", () => { paused = true; clearTimeout(pauseT); }, { passive: true });
     track.addEventListener("touchend", () => { pauseT = setTimeout(() => paused = false, 4000); }, { passive: true });
-    track.addEventListener("mouseenter", () => { paused = true; clearTimeout(pauseT); });
-    track.addEventListener("mouseleave", () => { pauseT = setTimeout(() => paused = false, 1200); });
     /* bubble effect: active slide pops, neighbours shrink; image parallax */
     const paint = () => {
       const c = track.scrollLeft + track.clientWidth / 2;
@@ -664,8 +662,8 @@
       new ResizeObserver(() => resizeCanvas()).observe(heroSec);
     }
 
-    const shapes = ["dot", "ring", "plus", "tri", "diamond"];
-    const colors = ["#FF6B93", "#2563EB", "#FFE8A3", "#3b82f6"];
+    const symbols = ["🎓", "💻", "📊", "⭐", "⚙️", "📚", "🚀", "💡"];
+    const colors = ["#FF6B93", "#2563EB", "#FFE8A3", "#E6F1FF"];
     const particles = [];
 
     for (let i = 0; i < 24; i++) {
@@ -675,7 +673,7 @@
         vx: (Math.random() - 0.5) * 0.4,
         vy: (Math.random() - 0.5) * 0.4,
         size: 14 + Math.random() * 12,
-        shape: shapes[i % shapes.length],
+        symbol: symbols[i % symbols.length],
         color: colors[i % colors.length],
         rotation: Math.random() * Math.PI * 2,
         rotSpeed: (Math.random() - 0.5) * 0.005,
@@ -718,18 +716,12 @@
         ctx.save();
         ctx.translate(p.x, p.y);
         ctx.rotate(p.rotation);
-        const r = p.size * 0.5;
         ctx.globalAlpha = p.opacity;
+        ctx.font = `${p.size}px Inter, sans-serif`;
         ctx.fillStyle = p.color;
-        ctx.strokeStyle = p.color;
-        ctx.lineWidth = 2;
-        ctx.lineCap = "round";
-        ctx.beginPath();
-        if (p.shape === "ring") { ctx.arc(0, 0, r, 0, Math.PI * 2); ctx.stroke(); }
-        else if (p.shape === "plus") { ctx.moveTo(-r, 0); ctx.lineTo(r, 0); ctx.moveTo(0, -r); ctx.lineTo(0, r); ctx.stroke(); }
-        else if (p.shape === "tri") { ctx.moveTo(0, -r); ctx.lineTo(r, r); ctx.lineTo(-r, r); ctx.closePath(); ctx.fill(); }
-        else if (p.shape === "diamond") { ctx.moveTo(0, -r); ctx.lineTo(r, 0); ctx.lineTo(0, r); ctx.lineTo(-r, 0); ctx.closePath(); ctx.fill(); }
-        else { ctx.arc(0, 0, r, 0, Math.PI * 2); ctx.fill(); }
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
+        ctx.fillText(p.symbol, 0, 0);
         ctx.restore();
       });
 
