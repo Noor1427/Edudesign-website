@@ -286,7 +286,7 @@
         const y1 = Math.round(mid - h), y2 = Math.round(mid + h);
         /* clean, corner-free S-curve crossing (pen draws smoothly + stays centred) */
         d += ` L ${x1} ${y1} C ${x1} ${m}, ${x2} ${m}, ${x2} ${y2}`;
-        if (gapH >= 40) gaps.push(m);
+        if (gapH >= 40) gaps.push({ y1, y2 });
         side = 1 - side;
       }
       prev = cur;
@@ -295,18 +295,23 @@
     trailPath.setAttribute("d", d);
     trailLen = trailPath.getTotalLength();
     trailPath.style.strokeDasharray = trailLen;
-    buildDoodles(gaps, W);
+    buildDoodles(gaps);
     updTrail();
   }
-  function buildDoodles(gaps, W) {
+  function buildDoodles(gaps) {
     doodleEls.forEach(o => o.el.remove());
     doodleEls = [];
-    gaps.forEach((y, i) => {
+    gaps.forEach((g, i) => {
+      /* sample a point ALONG the pen's S-curve crossing, so the doodle sits
+         exactly where the pen tip passes (left / centre / right varies by gap) */
+      const fy = [0.34, 0.66, 0.5, 0.4, 0.62, 0.3, 0.7, 0.56][i % 8];
+      const sampleY = g.y1 + (g.y2 - g.y1) * fy;
+      const atLen = lenForY(sampleY);                 /* pen-tip length at this spot */
+      const pt = trailPath.getPointAtLength(atLen);
       const kind = doodleKinds[(i * 3 + 1) % doodleKinds.length];
-      const s = 16 + ((i * 37) % 12);                 /* 16–27px, varied */
-      const fx = [0.2, 0.74, 0.36, 0.84, 0.28, 0.66, 0.48, 0.8][i % 8]; /* random-ish x, never centre-only */
-      const x = Math.round(W * fx);
+      const s = 15 + ((i * 37) % 11);                 /* 15–25px, varied */
       const rot = ((i * 53) % 30) - 15;               /* gentle tilt */
+      const x = Math.round(pt.x), y = Math.round(pt.y);
       const el = document.createElementNS(SVGNS, "path");
       el.setAttribute("d", doodleD[kind](x, y, s));
       el.setAttribute("fill", "none");
@@ -321,7 +326,7 @@
       el.style.strokeDasharray = len;
       el.style.strokeDashoffset = len;
       el.style.opacity = "0";
-      doodleEls.push({ el, y, len });
+      doodleEls.push({ el, atLen, len });
     });
   }
   function lenForY(targetY) {
@@ -350,9 +355,10 @@
       const tilt = Math.max(-30, Math.min(30, (ang - 90) * 0.6));
       trailPen.setAttribute("transform", `translate(${pt.x.toFixed(1)},${pt.y.toFixed(1)}) rotate(${tilt.toFixed(1)})`);
     }
-    /* each doodle draws itself smoothly as the pen passes its height */
+    /* each doodle is drawn BY the pen: it blooms exactly as the pen tip's
+       drawn length sweeps through the doodle's spot on the path */
     for (const dd of doodleEls) {
-      const p = Math.max(0, Math.min(1, (targetY - (dd.y - 40)) / 120));
+      const p = Math.max(0, Math.min(1, (drawn - (dd.atLen - 8)) / 70));
       dd.el.style.strokeDashoffset = dd.len * (1 - p);
       dd.el.style.opacity = p < 0.04 ? "0" : "1";
     }

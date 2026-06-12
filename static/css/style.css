@@ -900,6 +900,7 @@ section{padding:72px 0}
 @media (max-width:600px){#penTrailPath{stroke-width:2.5}}
 
 /* ════════ EXTRA SCROLL ANIMATIONS (mobile-friendly: transform/opacity only) ════════ */
+@media (max-width:600px){
 /* audience cards slide in from opposite sides */
 .audience-grid .reveal:first-child{transform:translate(-44px,16px)}
 .audience-grid .reveal:last-child{transform:translate(44px,16px)}
